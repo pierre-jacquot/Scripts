@@ -1,23 +1,23 @@
 <#
 .SYNOPSIS
-	Detailed computer/server config information
+    Detailed computer/server config information
 .DESCRIPTION
-	Export the detailed configuration of a computer/server
+    Export the detailed configuration of a computer/server
 .NOTES
-	File name : Computer-Config.ps1
-	Author : Pierre JACQUOT
-	Date : 10/11/2015
-	Version : 1.0
-.LINKS
-	Website : http://pierro.jacquot.free.fr
+    File name : Computer-Config.ps1
+    Author : Pierre JACQUOT
+    Date : 10/11/2015
+    Version : 1.0
+.LINK
+    Website : http://pierro.jacquot.free.fr
     Reference : http://pierro.jacquot.free.fr/index.php/scripts/25-script-computer-config
 #>
 
 Clear-Host
 
 Function Write-Log([string]$Output, [string]$Message) {
-	Write-Verbose $Message
-	((Get-Date -UFormat "[%d-%m-%Y %H:%M:%S] ") + $Message) | Out-File -FilePath $Output -Append -Force
+    Write-Verbose $Message
+    ((Get-Date -UFormat "[%d-%m-%Y %H:%M:%S] ") + $Message) | Out-File -FilePath $Output -Append -Force
 }
 
 $StartTime = Get-Date
