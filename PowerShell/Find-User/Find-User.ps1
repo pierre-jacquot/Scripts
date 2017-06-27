@@ -1,15 +1,15 @@
 <#
 .SYNOPSIS
-	Find AD users
+    Find AD users
 .DESCRIPTION
-	Check if users exist in AD
+    Check if users exist in AD
 .NOTES
-	File name : Find-User.ps1
-	Author : Pierre JACQUOT
-	Date : 14/05/2016
-	Version : 1.0
-.LINKS
-	Website : http://pierro.jacquot.free.fr
+    File name : Find-User.ps1
+    Author : Pierre JACQUOT
+    Date : 14/05/2016
+    Version : 1.0
+.LINK
+    Website : http://pierro.jacquot.free.fr
     Reference : http://pierro.jacquot.free.fr/index.php/scripts/26-script-find-user
 #>
 
@@ -17,8 +17,8 @@ Clear-Host
 Import-Module ActiveDirectory
 
 Function Write-Log([string]$Output, [string]$Message) {
-	Write-Verbose $Message
-	((Get-Date -UFormat "[%d-%m-%Y %H:%M:%S] ") + $Message) | Out-File -FilePath $Output -Append -Force
+    Write-Verbose $Message
+    ((Get-Date -UFormat "[%d-%m-%Y %H:%M:%S] ") + $Message) | Out-File -FilePath $Output -Append -Force
 }
 
 $StartTime = Get-Date
