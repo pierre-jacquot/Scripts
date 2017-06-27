@@ -1,7 +1,7 @@
 Scripts PowerCLI
 ==================
 
-Ce répertoire contient l'ensemble de mes scripts en PowerCLI pour VMware.
+Ce répertoire contient l'ensemble de mes scripts en **PowerCLI** pour VMware.
 
 Liste des scripts :
 ===================
