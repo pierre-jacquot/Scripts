@@ -122,7 +122,7 @@ Get-WmiObject Win32_NetworkAdapterConfiguration -Filter "IPEnabled=True" | Forma
 
 Write-Host "#11 - [PRINTER CONFIGURATION] has been exported" -ForegroundColor Green
 Write-Log -Output $LogFile -Message "#11 - [PRINTER CONFIGURATION]"
-Get-WmiObject Win32_Printer -filter "Shared=True" | Select-Object Name, SystemName, ShareName, Comment, DriverName, PortName, Status, Shared, Published | Out-File -FilePath $LogFile -Append -Force
+Get-WmiObject Win32_Printer -Filter "Shared=True" | Select-Object Name, SystemName, ShareName, Comment, DriverName, PortName, Status, Shared, Published | Out-File -FilePath $LogFile -Append -Force
 "-------------------------------------------------------------------------------" | Out-File -FilePath $LogFile -Append -Force
 "`r" | Out-File -FilePath $LogFile -Append -Force
 
