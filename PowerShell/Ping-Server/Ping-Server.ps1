@@ -4,12 +4,12 @@
 .DESCRIPTION
 	Check if servers are reachable with event logs creation
 .NOTES
-	File name : MCN.ps1
+    File name : MCN.ps1
 	Author : Pierre JACQUOT
 	Date : 27/10/2015
 	Version : 1.0
-.LINKS
-	Website : http://pierro.jacquot.free.fr
+.LINK
+    Website : http://pierro.jacquot.free.fr
     Reference : http://pierro.jacquot.free.fr/index.php/scripts/22-script-ping-server
 #>
 
