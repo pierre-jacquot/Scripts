@@ -5,7 +5,7 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerShell**.
 
 Liste des scripts :
 ===================
-- *ACM
+- ACM
 - Add-DNS
 - Add-User
 - Computer-Config
