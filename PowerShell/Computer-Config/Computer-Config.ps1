@@ -58,41 +58,41 @@ Write-Host "`r"
 
 Write-Host "#01 - [BIOS CONFIGURATION] has been exported" -ForegroundColor Green
 Write-Log -Output $LogFile -Message "#01 - [BIOS CONFIGURATION]"
-Get-WmiObject Win32_Bios | Format-List Manufacturer, @{Name='ReleaseDate';Expression={$_.ConverttoDateTime($_.ReleaseDate)}}, SMBIOSBIOSVersion, SerialNumber | Out-File -FilePath $LogFile -Append -Force
+Get-WmiObject "Win32_Bios" | Format-List Manufacturer, @{Name='ReleaseDate';Expression={$_.ConverttoDateTime($_.ReleaseDate)}}, SMBIOSBIOSVersion, SerialNumber | Out-File -FilePath $LogFile -Append -Force
 "-------------------------------------------------------------------------------" | Out-File -FilePath $LogFile -Append -Force
 "`r" | Out-File -FilePath $LogFile -Append -Force
 
 Write-Host "#02 - [COMPUTER CONFIGURATION] has been exported" -ForegroundColor Green
 Write-Log -Output $LogFile -Message "#02 - [COMPUTER CONFIGURATION]"
-Get-WmiObject Win32_ComputerSystem | Format-List Name, Manufacturer, Model, Domain, UserName | Out-File -FilePath $LogFile -Append -Force
+Get-WmiObject "Win32_ComputerSystem" | Format-List Name, Manufacturer, Model, Domain, UserName | Out-File -FilePath $LogFile -Append -Force
 "-------------------------------------------------------------------------------" | Out-File -FilePath $LogFile -Append -Force
 "`r" | Out-File -FilePath $LogFile -Append -Force
 
 Write-Host "#03 - [OS CONFIGURATION] has been exported" -ForegroundColor Green
 Write-Log -Output $LogFile -Message "#03 - [OS CONFIGURATION]"
-Get-WmiObject Win32_OperatingSystem | Format-List Manufacturer, Caption, CSDVersion, OSArchitecture, Version, BuildNumber, SystemDrive, WindowsDirectory, SystemDirectory, @{Name='InstallDate';Expression={$_.ConverttoDateTime($_.InstallDate)}}, @{Name='LastBootUpTime';Expression={$_.ConverttoDateTime($_.LastBootUpTime)}}, @{Name='LocalDateTime';Expression={$_.ConverttoDateTime($_.LocalDateTime)}} | Out-File -FilePath $LogFile -Append -Force
+Get-WmiObject "Win32_OperatingSystem" | Format-List Manufacturer, Caption, CSDVersion, OSArchitecture, Version, BuildNumber, SystemDrive, WindowsDirectory, SystemDirectory, @{Name='InstallDate';Expression={$_.ConverttoDateTime($_.InstallDate)}}, @{Name='LastBootUpTime';Expression={$_.ConverttoDateTime($_.LastBootUpTime)}}, @{Name='LocalDateTime';Expression={$_.ConverttoDateTime($_.LocalDateTime)}} | Out-File -FilePath $LogFile -Append -Force
 "-------------------------------------------------------------------------------" | Out-File -FilePath $LogFile -Append -Force
 "`r" | Out-File -FilePath $LogFile -Append -Force
 
 Write-Host "#04 - [CPU CONFIGURATION] has been exported" -ForegroundColor Green
 Write-Log -Output $LogFile -Message "#04 - [CPU CONFIGURATION]"
-Get-WmiObject Win32_Processor | Format-List Name, NumberOfCores, NumberOfLogicalProcessors | Out-File -FilePath $LogFile -Append -Force
-Get-WmiObject Win32_Processor | Measure-Object -Property LoadPercentage -Average | Format-List @{Name="Used CPU (%)";Expression={$_.Average}}, @{Name="Free CPU (%)";Expression={"{0:N0}" -f ((100)-($_.Average))}} | Out-File -FilePath $LogFile -Append -Force
+Get-WmiObject "Win32_Processor" | Format-List Name, NumberOfCores, NumberOfLogicalProcessors | Out-File -FilePath $LogFile -Append -Force
+Get-WmiObject "Win32_Processor" | Measure-Object -Property LoadPercentage -Average | Format-List @{Name="Used CPU (%)";Expression={$_.Average}}, @{Name="Free CPU (%)";Expression={"{0:N0}" -f ((100)-($_.Average))}} | Out-File -FilePath $LogFile -Append -Force
 "-------------------------------------------------------------------------------" | Out-File -FilePath $LogFile -Append -Force
 "`r" | Out-File -FilePath $LogFile -Append -Force
 
 Write-Host "#05 - [RAM CONFIGURATION] has been exported" -ForegroundColor Green
 Write-Log -Output $LogFile -Message "#05 - [RAM CONFIGURATION]"
-Get-WmiObject Win32_PhysicalMemory | Format-List Manufacturer, Tag, DeviceLocator, Speed, SerialNumber, @{Name="Installed memory (Go)";Expression={$_.Capacity/1024/1024}} | Out-File -FilePath $LogFile -Append -Force
-Get-WmiObject Win32_OperatingSystem | Format-List @{Name="Total Physical Memory (Go)";Expression={"{0:N2}" -f ($_.TotalVisibleMemorySize/1024/1024)}}, @{Name="Used Physical Memory (Go)";Expression={"{0:N2}" -f (($_.TotalVisibleMemorySize/1024/1024)-($_.FreePhysicalMemory/1024/1024))}}, @{Name="Free Physical Memory (Go)";Expression={"{0:N2}" -f ($_.FreePhysicalMemory/1024/1024)}} | Out-File -FilePath $LogFile -Append -Force
-Get-WmiObject Win32_OperatingSystem | Format-List @{Name="Used Memory (%)"; Expression={"{0:N0}" -f (((($_.TotalVisibleMemorySize)-($_.FreePhysicalMemory))*100)/($_.TotalVisibleMemorySize))}}, @{Name = "Free Memory (%)";Expression={“{0:N0}” -f  ((($_.FreePhysicalMemory)/($_.TotalVisibleMemorySize))*100)}} | Out-File -FilePath $LogFile -Append -Force
+Get-WmiObject "Win32_PhysicalMemory" | Format-List Manufacturer, Tag, DeviceLocator, Speed, SerialNumber, @{Name="Installed memory (Go)";Expression={$_.Capacity/1024/1024}} | Out-File -FilePath $LogFile -Append -Force
+Get-WmiObject "Win32_OperatingSystem" | Format-List @{Name="Total Physical Memory (Go)";Expression={"{0:N2}" -f ($_.TotalVisibleMemorySize/1024/1024)}}, @{Name="Used Physical Memory (Go)";Expression={"{0:N2}" -f (($_.TotalVisibleMemorySize/1024/1024)-($_.FreePhysicalMemory/1024/1024))}}, @{Name="Free Physical Memory (Go)";Expression={"{0:N2}" -f ($_.FreePhysicalMemory/1024/1024)}} | Out-File -FilePath $LogFile -Append -Force
+Get-WmiObject "Win32_OperatingSystem" | Format-List @{Name="Used Memory (%)"; Expression={"{0:N0}" -f (((($_.TotalVisibleMemorySize)-($_.FreePhysicalMemory))*100)/($_.TotalVisibleMemorySize))}}, @{Name = "Free Memory (%)";Expression={“{0:N0}” -f  ((($_.FreePhysicalMemory)/($_.TotalVisibleMemorySize))*100)}} | Out-File -FilePath $LogFile -Append -Force
 "-------------------------------------------------------------------------------" | Out-File -FilePath $LogFile -Append -Force
 "`r" | Out-File -FilePath $LogFile -Append -Force
 
 Write-Host "#06 - [HDD CONFIGURATION] has been exported" -ForegroundColor Green
 Write-Log -Output $LogFile -Message "#06 - [HDD CONFIGURATION]"
-Get-WmiObject Win32_LogicalDisk -Filter "DriveType=3" | Format-List FileSystem, DeviceID, VolumeName, @{Name="Total Size (Go)";Expression={"{0:N2}" -f ($_.Size/1GB)}}, @{Name="Used Space (Go)";Expression={"{0:N2}" -f (($_.Size/1GB)-($_.FreeSpace/1GB))}}, @{Name="Free Space (Go)";Expression={"{0:N2}" -f ($_.FreeSpace/1GB)}} | Out-File -FilePath $LogFile -Append -Force
-Get-WmiObject Win32_Volume -Filter "DriveType=3" | Format-List Label, DriveLetter, @{Name="Capacity (Go)";Expression={“{0:N2}” -f ($_.Capacity/1024/1024/1024)}}, @{Name = "Used Space (Go)";Expression={“{0:N2}” -f  (($_.Capacity/1024/1024/1024)-($_.FreeSpace/1024/1024/1024))}}, @{Name="Free Space (Go)";Expression={“{0:N2}” -f ($_.FreeSpace/1024/1024/1024)}}, @{Name = "Used Space (%)";Expression={“{0:N0}” -f  (((($_.Capacity)-($_.FreeSpace))/($_.Capacity))*100)}}, @{Name = "Free Space (%)";Expression={“{0:N0}” -f  ((($_.FreeSpace)/($_.Capacity))*100)}} | Out-File -FilePath $LogFile -Append -Force
+Get-WmiObject "Win32_LogicalDisk" -Filter "DriveType=3" | Format-List FileSystem, DeviceID, VolumeName, @{Name="Total Size (Go)";Expression={"{0:N2}" -f ($_.Size/1GB)}}, @{Name="Used Space (Go)";Expression={"{0:N2}" -f (($_.Size/1GB)-($_.FreeSpace/1GB))}}, @{Name="Free Space (Go)";Expression={"{0:N2}" -f ($_.FreeSpace/1GB)}} | Out-File -FilePath $LogFile -Append -Force
+Get-WmiObject "Win32_Volume" -Filter "DriveType=3" | Format-List Label, DriveLetter, @{Name="Capacity (Go)";Expression={“{0:N2}” -f ($_.Capacity/1024/1024/1024)}}, @{Name = "Used Space (Go)";Expression={“{0:N2}” -f  (($_.Capacity/1024/1024/1024)-($_.FreeSpace/1024/1024/1024))}}, @{Name="Free Space (Go)";Expression={“{0:N2}” -f ($_.FreeSpace/1024/1024/1024)}}, @{Name = "Used Space (%)";Expression={“{0:N0}” -f  (((($_.Capacity)-($_.FreeSpace))/($_.Capacity))*100)}}, @{Name = "Free Space (%)";Expression={“{0:N0}” -f  ((($_.FreeSpace)/($_.Capacity))*100)}} | Out-File -FilePath $LogFile -Append -Force
 "-------------------------------------------------------------------------------" | Out-File -FilePath $LogFile -Append -Force
 "`r" | Out-File -FilePath $LogFile -Append -Force
 
@@ -104,25 +104,25 @@ Get-Culture | Format-List Parent, NativeName | Out-File -FilePath $LogFile -Appe
 
 Write-Host "#08 - [TIMEZONE CONFIGURATION] has been exported" -ForegroundColor Green
 Write-Log -Output $LogFile -Message "#08 - [TIMEZONE CONFIGURATION]"
-Get-WmiObject Win32_TimeZone | Format-List DayLightName, Description | Out-File -FilePath $LogFile -Append -Force
+Get-WmiObject "Win32_TimeZone" | Format-List DayLightName, Description | Out-File -FilePath $LogFile -Append -Force
 "-------------------------------------------------------------------------------" | Out-File -FilePath $LogFile -Append -Force
 "`r" | Out-File -FilePath $LogFile -Append -Force
 
 Write-Host "#09 - [SHARE CONFIGURATION] has been exported" -ForegroundColor Green
 Write-Log -Output $LogFile -Message "#09 - [SHARE CONFIGURATION]"
-Get-WmiObject Win32_Share | Format-List Name, Path, Description | Out-File -FilePath $LogFile -Append -Force
+Get-WmiObject "Win32_Share" | Format-List Name, Path, Description | Out-File -FilePath $LogFile -Append -Force
 "-------------------------------------------------------------------------------" | Out-File -FilePath $LogFile -Append -Force
 "`r" | Out-File -FilePath $LogFile -Append -Force
 
 Write-Host "#10 - [NETWORK CONFIGURATION] has been exported" -ForegroundColor Green
 Write-Log -Output $LogFile -Message "#10 - [NETWORK CONFIGURATION]"
-Get-WmiObject Win32_NetworkAdapterConfiguration -Filter "IPEnabled=True" | Format-List Description, DHCPServer, DNSDomain, DNSServerSearchOrder, IPAddress, DefaultIPGateway, IPSubnet, MACAddress | Out-File -FilePath $LogFile -Append -Force
+Get-WmiObject "Win32_NetworkAdapterConfiguration" -Filter "IPEnabled=True" | Format-List Description, DHCPServer, DNSDomain, DNSServerSearchOrder, IPAddress, DefaultIPGateway, IPSubnet, MACAddress | Out-File -FilePath $LogFile -Append -Force
 "-------------------------------------------------------------------------------" | Out-File -FilePath $LogFile -Append -Force
 "`r" | Out-File -FilePath $LogFile -Append -Force
 
 Write-Host "#11 - [PRINTER CONFIGURATION] has been exported" -ForegroundColor Green
 Write-Log -Output $LogFile -Message "#11 - [PRINTER CONFIGURATION]"
-Get-WmiObject Win32_Printer -Filter "Shared=True" | Select-Object Name, SystemName, ShareName, Comment, DriverName, PortName, Status, Shared, Published | Out-File -FilePath $LogFile -Append -Force
+Get-WmiObject "Win32_Printer" -filter "Shared=True" | Select-Object Name, SystemName, ShareName, Comment, DriverName, PortName, Status, Shared, Published | Out-File -FilePath $LogFile -Append -Force
 "-------------------------------------------------------------------------------" | Out-File -FilePath $LogFile -Append -Force
 "`r" | Out-File -FilePath $LogFile -Append -Force
 
@@ -134,13 +134,13 @@ Get-Process | Sort-Object CPU -Descending | Format-Table | Out-File -FilePath $L
 
 Write-Host "#13 - [SERVICES LIST] has been exported" -ForegroundColor Green
 Write-Log -Output $LogFile -Message "#13 - [SERVICES LIST]"
-Get-WmiObject Win32_Service | Sort-Object State, Name | Format-Table Name, ProcessId, StartMode, State, Status, Description | Out-File -FilePath $LogFile -Append -Force
+Get-WmiObject "Win32_Service" | Sort-Object State, Name | Format-Table Name, ProcessId, StartMode, State, Status, Description | Out-File -FilePath $LogFile -Append -Force
 "-------------------------------------------------------------------------------" | Out-File -FilePath $LogFile -Append -Force
 "`r" | Out-File -FilePath $LogFile -Append -Force
 
 Write-Host "#14 - [PROGRAMS LIST] has been exported" -ForegroundColor Green
 Write-Log -Output $LogFile -Message "#14 - [PROGRAMS LIST]"
-Get-WmiObject Win32_Product | Sort-Object InstallDate -Descending | Format-Table Name, Version, HelpLink, InstallDate, InstallLocation, Vendor | Out-File -FilePath $LogFile -Append -Force
+Get-WmiObject "Win32_Product" | Sort-Object InstallDate -Descending | Format-Table Name, Version, HelpLink, InstallDate, InstallLocation, Vendor | Out-File -FilePath $LogFile -Append -Force
 "-------------------------------------------------------------------------------" | Out-File -FilePath $LogFile -Append -Force
 "`r" | Out-File -FilePath $LogFile -Append -Force
 
