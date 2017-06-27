@@ -1,15 +1,15 @@
 <#
 .SYNOPSIS
-	Remove AD users
+    Remove AD users
 .DESCRIPTION
-	Remove multiple users of an AD group
+    Remove multiple users of an AD group
 .NOTES
-	File name : Remove-User.ps1
-	Author : Pierre JACQUOT
-	Date : 16/05/2016
-	Version : 1.0
-.LINKS
-	Website : http://pierro.jacquot.free.fr
+    File name : Remove-User.ps1
+    Author : Pierre JACQUOT
+    Date : 16/05/2016
+    Version : 1.0
+.LINK
+    Website : http://pierro.jacquot.free.fr
     Reference : http://pierro.jacquot.free.fr/index.php/scripts/28-script-remove-user
 #>
 
@@ -17,8 +17,8 @@ Clear-Host
 Import-Module ActiveDirectory
 
 Function Write-Log([string]$Output, [string]$Message) {
-	Write-Verbose $Message
-	((Get-Date -UFormat "[%d-%m-%Y %H:%M:%S] ") + $Message) | Out-File -FilePath $Output -Append -Force
+    Write-Verbose $Message
+    ((Get-Date -UFormat "[%d-%m-%Y %H:%M:%S] ") + $Message) | Out-File -FilePath $Output -Append -Force
 }
 
 $StartTime = Get-Date
