@@ -1,13 +1,13 @@
 <#
 .SYNOPSIS
-	Ping multiple servers
+    Ping multiple servers
 .DESCRIPTION
-	Check if servers are reachable with event logs creation
+    Check if servers are reachable with event logs creation
 .NOTES
     File name : MCN.ps1
-	Author : Pierre JACQUOT
-	Date : 27/10/2015
-	Version : 1.0
+    Author : Pierre JACQUOT
+    Date : 27/10/2015
+    Version : 1.0
 .LINK
     Website : http://pierro.jacquot.free.fr
     Reference : http://pierro.jacquot.free.fr/index.php/scripts/22-script-ping-server
@@ -16,8 +16,8 @@
 Clear-Host
 
 Function Write-Log([string]$Output, [string]$Message) {
-	Write-Verbose $Message
-	((Get-Date -UFormat "[%d-%m-%Y %H:%M:%S] ") + $Message) | Out-File -FilePath $Output -Append -Force
+    Write-Verbose $Message
+    ((Get-Date -UFormat "[%d-%m-%Y %H:%M:%S] ") + $Message) | Out-File -FilePath $Output -Append -Force
 }
 
 $StartTime = Get-Date
@@ -36,7 +36,7 @@ Write-Host "`r"
 
 ForEach ($Server in $Servers) {
     If (Test-Connection -ComputerName $Server -Count 2 -Quiet) {
-        write-Host "$Server is alive and Pinging " -ForegroundColor Green
+        Write-Host "$Server is alive and Pinging " -ForegroundColor Green
         Write-Log -Output $LogFileOK -Message "$Server is alive and Pinging"
     }
     Else {
