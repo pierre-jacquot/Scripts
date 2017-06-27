@@ -8,7 +8,7 @@
     Author : Pierre JACQUOT
     Date : 16/05/2016
     Version : 1.0
-.LINKS
+.LINK
     Website : http://pierro.jacquot.free.fr
     Reference : http://pierro.jacquot.free.fr/index.php/scripts/27-script-add-user
 #>
