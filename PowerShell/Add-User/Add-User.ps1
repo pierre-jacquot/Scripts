@@ -1,15 +1,15 @@
 <#
 .SYNOPSIS
-	Add AD users
+    Add AD users
 .DESCRIPTION
-	Add multiple users in an AD group
+    Add multiple users in an AD group
 .NOTES
-	File name : Add-User.ps1
-	Author : Pierre JACQUOT
-	Date : 16/05/2016
-	Version : 1.0
+    File name : Add-User.ps1
+    Author : Pierre JACQUOT
+    Date : 16/05/2016
+    Version : 1.0
 .LINKS
-	Website : http://pierro.jacquot.free.fr
+    Website : http://pierro.jacquot.free.fr
     Reference : http://pierro.jacquot.free.fr/index.php/scripts/27-script-add-user
 #>
 
@@ -17,8 +17,8 @@ Clear-Host
 Import-Module ActiveDirectory
 
 Function Write-Log([string]$Output, [string]$Message) {
-	Write-Verbose $Message
-	((Get-Date -UFormat "[%d-%m-%Y %H:%M:%S] ") + $Message) | Out-File -FilePath $Output -Append -Force
+    Write-Verbose $Message
+    ((Get-Date -UFormat "[%d-%m-%Y %H:%M:%S] ") + $Message) | Out-File -FilePath $Output -Append -Force
 }
 
 $StartTime = Get-Date
