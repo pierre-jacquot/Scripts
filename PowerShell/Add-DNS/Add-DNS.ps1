@@ -1,15 +1,15 @@
 <#
 .SYNOPSIS
-	DNS records creation
+    DNS records creation
 .DESCRIPTION
-	Create multiple DNS records with associated PTR
+    Create multiple DNS records with associated PTR
 .NOTES
-	File name : Add-DNS.ps1
-	Author : Pierre JACQUOT
-	Date : 07/05/2017
-	Version : 1.0
-.LINKS
-	Website : http://pierro.jacquot.free.fr
+    File name : Add-DNS.ps1
+    Author : Pierre JACQUOT
+    Date : 07/05/2017
+    Version : 1.0
+.LINK
+    Website : http://pierro.jacquot.free.fr
     Reference : http://pierro.jacquot.free.fr/index.php/scripts/31-script-add-dns
 #>
 
