@@ -37,11 +37,11 @@ $AlertsNumber = $Alerts.Count
 
 If ($AlertsNumber -ge 1) {
     ## Send-MailMessage parameters ##
-    $MailFrom = 'vCenter@mail.fr'
+    $MailFrom = "vCenter@mail.fr"
     $MailTo = @('UserName@mail.fr')
     $MailCc = @('UserName@mail.fr')
     $MailSubject = "[VMware] - Alert(s) daily report on $vCenter"
-    $MailSmtp = 'SMTPServerName'
+    $MailSmtp = "SMTPServerName"
 
     $MailBody = '<html>'
     $MailBody += '<head>'
