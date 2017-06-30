@@ -63,10 +63,10 @@ If ($SnapshotsNumber -ge 1) {
 
     Foreach ($Snapshot in $Snapshots) {
         $Snap = "" | Select-Object VM, SizeGB, Created, Name, Description
-	    $SnapVM = ($Snapshot.VM).Name
+        $SnapVM = ($Snapshot.VM).Name
         $SnapSizeGB = "{0:N2}" -f $Snapshot.SizeGB
-	    $SnapCreated = $Snapshot.Created
-	    $SnapName = $Snapshot.Name
+        $SnapCreated = $Snapshot.Created
+        $SnapName = $Snapshot.Name
         $SnapDescription = $Snapshot.Description
 
         $Table += "<tr><td>$SnapVM</td><td>$SnapSizeGB</td><td>$SnapCreated</td><td>$SnapName</td><td>$SnapDescription</td></tr>"
