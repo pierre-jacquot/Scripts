@@ -37,9 +37,10 @@ $SnapshotsNumber = $Snapshots.Count
 
 If ($SnapshotsNumber -ge 1) {
     ## Send-MailMessage parameters ##
-    $MailFrom = 'Username@mail.fr'
-    $MailTo = @('Username@mail.fr')
-    $MailSubject = '[VMware] - Snapshots daily report'
+    $MailFrom = 'vCenter@mail.fr'
+    $MailTo = @('UserName@mail.fr')
+    $MailCc = @('UserName@mail.fr')
+    $MailSubject = "[VMware] - Snapshot(s) daily report on $vCenter"
     $MailSmtp = 'SMTPServerName'
 
     $MailBody = '<html>'
@@ -55,7 +56,7 @@ If ($SnapshotsNumber -ge 1) {
 
     $MailBody += '<body>'
     $MailBody += "<h1>VM snapshot(s) overview : $Date</h1>"
-    $MailBody += "<p style='font-size:13px;font-family:Arial;'>Number of snapshot(s) : <strong>$SnapshotsNumber</strong></p>"
+    $MailBody += "<p style='font-size:13px;font-family:Arial;'>Number of snapshot(s) : <strong>$SnapshotsNumber</strong> on <strong>$vCenter</strong></p>"
 
     ## Prepare Table ##
     $Table += '<table class="customTable">'
@@ -83,7 +84,7 @@ If ($SnapshotsNumber -ge 1) {
     $MailBody += $Info
     $MailBody += '</body>'
 
-    Send-MailMessage -To $MailTo -From $MailFrom -Subject $MailSubject -Body $MailBody -SmtpServer $MailSmtp -BodyAsHtml -Encoding UTF8
+    Send-MailMessage -To $MailTo -Cc $MailCc -From $MailFrom -Subject $MailSubject -Body $MailBody -SmtpServer $MailSmtp -BodyAsHtml -Encoding UTF8
 
     Disconnect-VIServer -Server $vCenter -Confirm:$false
 }
