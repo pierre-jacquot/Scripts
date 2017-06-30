@@ -37,9 +37,10 @@ $AlertsNumber = $Alerts.Count
 
 If ($AlertsNumber -ge 1) {
     ## Send-MailMessage parameters ##
-    $MailFrom = 'Username@mail.fr'
-    $MailTo = @('Username@mail.fr')
-    $MailSubject = '[VMware] - Alerts daily report'
+    $MailFrom = 'vCenter@mail.fr'
+    $MailTo = @('UserName@mail.fr')
+    $MailCc = @('UserName@mail.fr')
+    $MailSubject = "[VMware] - Alert(s) daily report on $vCenter"
     $MailSmtp = 'SMTPServerName'
 
     $MailBody = '<html>'
@@ -55,7 +56,7 @@ If ($AlertsNumber -ge 1) {
 
     $MailBody += '<body>'
     $MailBody += "<h1>vCenter alert(s) overview : $Date</h1>"
-    $MailBody += "<p style='font-size:13px;font-family:Arial;'>Number of alert(s) : <strong>$AlertsNumber</strong></p>"
+    $MailBody += "<p style='font-size:13px;font-family:Arial;'>Number of alert(s) : <strong>$AlertsNumber</strong> on <strong>$vCenter</strong></p>"
 
     ## Prepare Table ##
     $Table += '<table class="customTable">'
@@ -100,7 +101,7 @@ If ($AlertsNumber -ge 1) {
     $MailBody += $Info
     $MailBody += '</body>'
 
-    Send-MailMessage -To $MailTo -From $MailFrom -Subject $MailSubject -Body $MailBody -SmtpServer $MailSmtp -BodyAsHtml -Encoding UTF8
+    Send-MailMessage -To $MailTo -Cc $MailCc -From $MailFrom -Subject $MailSubject -Body $MailBody -SmtpServer $MailSmtp -BodyAsHtml -Encoding UTF8
 
     Disconnect-VIServer -Server $vCenter -Confirm:$false
 }
