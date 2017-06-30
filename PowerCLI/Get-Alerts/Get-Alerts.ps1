@@ -66,7 +66,6 @@ If ($AlertsNumber -ge 1) {
         $Alarm = "" | Select-Object VC, EntityType, Alarm, Entity, Status, Time, Acknowledged, AckBy, AckTime
         $AlarmVC = $vCenter
         $AlarmAlarm = (Get-View $Alert.Alarm).Info.Name
-        $Entity = Get-View $Alert.Entity
         $AlarmEntity = (Get-View $Alert.Entity).Name
         $AlarmEntityType = (Get-View $Alert.Entity).GetType().Name
         $AlarmStatus = $Alert.OverallStatus
