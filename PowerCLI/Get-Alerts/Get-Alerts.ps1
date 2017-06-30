@@ -94,7 +94,7 @@ If ($AlertsNumber -ge 1) {
     $EndTime = (Get-Date)
     $Duration = ($EndTime-$StartTime).totalseconds
 
-    $Info = "<p style='font-weight:normal;font-style:italic;color:#000000;font-size:9px;text-align:left;font-family:arial, helvetica, sans-serif;line-height:1;'>Script launched from $Hostname in $Workfolder<br/>By : $Login<br/>Duration : $Duration seconds</p>"
+    $Info = "<p style='font-style:italic;font-size:9px;font-family:Arial;'>Script launched from $Hostname in $Workfolder<br/>By : $Login<br/>Duration : $Duration seconds</p>"
 
     $MailBody += $Table
     $MailBody += $Info
