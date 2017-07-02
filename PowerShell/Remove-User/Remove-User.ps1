@@ -38,7 +38,7 @@ ForEach ($Record in $Records) {
     $LoginName = $Record.sAMAccountName
     $GroupName = $Record.GroupName
     Try {
-        Remove-ADGroupMember -Identity $GroupName -Member $LoginName -Confirm:$false
+        Remove-ADGroupMember -Identity $GroupName -Members $LoginName -Confirm:$false
         Write-Host "$LoginName has been removed of the group : $GroupName" -ForegroundColor Green
         Write-Log -Output $LogFile -Message "$LoginName has been removed of the group : $GroupName"
     }
@@ -50,7 +50,7 @@ ForEach ($Record in $Records) {
 }
 
 $EndTime = Get-Date
-$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalMinutes,2)
+$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
 
 Write-Host "`r"
 Write-Host "Script launched from : " -NoNewline; Write-Host $Hostname -ForegroundColor Red
@@ -58,5 +58,5 @@ Write-Host "By : " -NoNewline; Write-Host $Login -ForegroundColor Red
 Write-Host "Path : " -NoNewline; Write-Host $Workfolder -ForegroundColor Red
 Write-Host "Start time : " -NoNewline; Write-Host $StartTime -ForegroundColor Red
 Write-Host "End time : " -NoNewline; Write-Host $EndTime -ForegroundColor Red
-Write-Host "Duration : " -NoNewline; Write-Host $Duration -ForegroundColor Red -nonewline; Write-Host " minutes"
+Write-Host "Duration : " -NoNewline; Write-Host $Duration -ForegroundColor Red -nonewline; Write-Host " seconds"
 Write-Host "`r"
