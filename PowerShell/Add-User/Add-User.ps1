@@ -24,6 +24,7 @@ Function Write-Log([string]$Output, [string]$Message) {
 $StartTime = Get-Date
 $Hostname = [Environment]::MachineName
 $Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+$Workfolder = Split-Path $script:MyInvocation.MyCommand.Path
 $Date = Get-Date -UFormat "%Y-%m-%d"
 $LogFile = $Workfolder + "\$Date-Add-User.log"
 $Records = Import-Csv -Path ".\Add-User.csv"
@@ -37,7 +38,7 @@ ForEach ($Record in $Records) {
     $LoginName = $Record.sAMAccountName
     $GroupName = $Record.GroupName
     Try {
-        Add-ADGroupMember -Identity $GroupName -Member $LoginName
+        Add-ADGroupMember -Identity $GroupName -Members $LoginName
         Write-Host "$LoginName has been added into the group : $GroupName" -ForegroundColor Green
         Write-Log -Output $LogFile -Message "$LoginName has been added into the group : $GroupName"
     }
@@ -49,7 +50,7 @@ ForEach ($Record in $Records) {
 }
 
 $EndTime = Get-Date
-$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalMinutes,2)
+$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
 
 Write-Host "`r"
 Write-Host "Script launched from : " -NoNewline; Write-Host $Hostname -ForegroundColor Red
@@ -57,5 +58,5 @@ Write-Host "By : " -NoNewline; Write-Host $Login -ForegroundColor Red
 Write-Host "Path : " -NoNewline; Write-Host $Workfolder -ForegroundColor Red
 Write-Host "Start time : " -NoNewline; Write-Host $StartTime -ForegroundColor Red
 Write-Host "End time : " -NoNewline; Write-Host $EndTime -ForegroundColor Red
-Write-Host "Duration : " -NoNewline; Write-Host $Duration -ForegroundColor Red -nonewline; Write-Host " minutes"
+Write-Host "Duration : " -NoNewline; Write-Host $Duration -ForegroundColor Red -nonewline; Write-Host " seconds"
 Write-Host "`r"
