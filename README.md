@@ -2,11 +2,11 @@
 
 Ce répertoire contient l'ensemble de mes scripts en **PowerShell / PowerCLI**.
 
-# Catégories :
+## Catégories :
 - PowerCLI
 - PowerShell
 
-# Licensing :
+## Licensing :
 The MIT License (MIT)
 
 Copyright (c) 2017 Pierre JACQUOT
