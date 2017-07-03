@@ -2,12 +2,12 @@
 
 Ce répertoire contient l'ensemble de mes scripts en **PowerCLI** pour VMware.
 
-# Liste des scripts :
+## Liste des scripts :
 - Create-VM
 - Get-Alerts
 - Get-Snapshots
 
-# Licensing :
+## Licensing :
 The MIT License (MIT)
 
 Copyright (c) 2017 Pierre JACQUOT
