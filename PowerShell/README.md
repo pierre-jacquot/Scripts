@@ -15,6 +15,10 @@ Liste des scripts :
 - Ping-Server
 - Remove-User
 
+# To Do : Scripts à venir :
+- [x] Add-DNS
+- [ ] Add-DHCP
+
 Licensing :
 -----------
 The MIT License (MIT)
