@@ -13,7 +13,7 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerShell**.
 - Ping-Server
 - Remove-User
 
-# To Do : Scripts à venir :
+# To Do - Scripts à venir :
 - [x] Add-DNS
 - [ ] Add-DHCP
 
