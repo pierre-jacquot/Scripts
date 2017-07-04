@@ -1,12 +1,12 @@
 # Scripts PowerShell
 Ce répertoire contient l'ensemble de mes scripts en **PowerShell**.
 
-## Sommaire :
-- [Liste des scripts](#Liste des scripts :)
-- [To Do - Scripts à venir](#To Do - Scripts à venir :)
-- [Licensing](#Licensing :)
+## Sommaire
+- [Liste des scripts](#Liste des scripts)
+- [To Do - Scripts à venir](#To Do - Scripts à venir)
+- [Licensing](#Licensing)
 
-## Liste des scripts :
+## Liste des scripts
 - ACM
 - Add-DNS
 - Add-User
@@ -17,12 +17,12 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerShell**.
 - Ping-Server
 - Remove-User
 
-## To Do - Scripts à venir :
+## To Do - Scripts à venir
 - [x] Add-DNS
 - [ ] Add-DHCP
 - [ ] Get-Certificates
 
-## Licensing :
+## Licensing
 The MIT License (MIT)
 
 Copyright (c) 2017 Pierre JACQUOT
