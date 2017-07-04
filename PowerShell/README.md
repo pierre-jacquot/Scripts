@@ -20,14 +20,14 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerShell**.
 | Script Function | Script Download |
 |-----------------|-----------------|
 | ACM | [ACM.ps1](ACM\ACM.ps1) |
-| Add-DNS | [Add-DNS.ps1](Add-DNS\Add-DNS.ps1) |
-| Add-User | [Add-User.ps1](Add-User\User.ps1) |
-| Computer-Config | [Computer-Config.ps1](Computer-Config\Computer-Config.ps1) |
-| Copy-File | [Copy-File.ps1](Copy-File\Copy-File.ps1) |
-| Create-Zip | [Create-Zip.ps1](Create-Zip\Create-Zip.ps1) |
-| Find-User | [Find-User.ps1](Find-User\Find-User.ps1) |
-| Ping-Server | [Ping-Server.ps1](Ping-Server\Ping-Server.ps1) |
-| Remove-User | [Remove-User.ps1](Remove-User\Remove-User.ps1) |
+| Add-DNS | [Add-DNS.ps1](Add-DNS/Add-DNS.ps1) |
+| Add-User | [Add-User.ps1](Add-User/User.ps1) |
+| Computer-Config | [Computer-Config.ps1](Computer-Config/Computer-Config.ps1) |
+| Copy-File | [Copy-File.ps1](Copy-File/Copy-File.ps1) |
+| Create-Zip | [Create-Zip.ps1](Create-Zip/Create-Zip.ps1) |
+| Find-User | [Find-User.ps1](Find-User/Find-User.ps1) |
+| Ping-Server | [Ping-Server.ps1](Ping-Server/Ping-Server.ps1) |
+| Remove-User | [Remove-User.ps1](Remove-User/Remove-User.ps1) |
 
 ## To Do - Scripts à venir :
 - [x] Add-DNS
