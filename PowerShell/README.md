@@ -16,6 +16,7 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerShell**.
 ## To Do - Scripts à venir :
 - [x] Add-DNS
 - [ ] Add-DHCP
+- [ ] Get-Certificates
 
 ## Licensing :
 The MIT License (MIT)
