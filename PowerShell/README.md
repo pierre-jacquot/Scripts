@@ -7,16 +7,6 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerShell**.
 - Licensing
 
 ## Liste des scripts :
-- ACM
-- Add-DNS
-- Add-User
-- Computer-Config
-- Copy-File
-- Create-Zip
-- Find-User
-- Ping-Server
-- Remove-User
-
 | Script Function | Script Download |
 |:---|:---|
 | **ACM** | [ACM.ps1](ACM/ACM.ps1) |
