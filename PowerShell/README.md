@@ -7,7 +7,7 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerShell**.
 - Licensing
 
 ## Liste des scripts :
-| Script Function | Script Download |
+| Nom du script | Téléchargement |
 |:---|:---|
 | **ACM** | [ACM.ps1](ACM/ACM.ps1) |
 | **Add-DNS** | [Add-DNS.ps1](Add-DNS/Add-DNS.ps1) |
