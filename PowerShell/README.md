@@ -18,7 +18,6 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerShell**.
 | **Find-User** | [Find-User.ps1](Find-User/Find-User.ps1) |
 | **Ping-Server** | [Ping-Server.ps1](Ping-Server/Ping-Server.ps1) |
 | **Remove-User** | [Remove-User.ps1](Remove-User/Remove-User.ps1) |
-<Link to="chart" target="_blank" to="http://link2external.page.com" >Test</Link>
 
 ## To Do - Scripts à venir :
 - [x] **Add-DNS**
