@@ -7,17 +7,17 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerShell**.
 - Licensing
 
 ## Liste des scripts :
-| Nom du script | Référence | Téléchargement |
-|:---|:---|:---|
-| **ACM** | <a href="http://pierro.jacquot.free.fr/index.php/scripts/23-script-account-manager-acm" target="_blank">Reference</a> | [ACM.ps1](ACM/ACM.ps1) |
-| **Add-DNS** | **Ref** | [Add-DNS.ps1](Add-DNS/Add-DNS.ps1) |
-| **Add-User** | **Ref** | [Add-User.ps1](Add-User/Add-User.ps1) |
-| **Computer-Config** | **Ref** | [Computer-Config.ps1](Computer-Config/Computer-Config.ps1) |
-| **Copy-File** | **Ref** | [Copy-File.ps1](Copy-File/Copy-File.ps1) |
-| **Create-Zip** | **Ref** | [Create-Zip.ps1](Create-Zip/Create-Zip.ps1) |
-| **Find-User** | **Ref** | [Find-User.ps1](Find-User/Find-User.ps1) |
-| **Ping-Server** | **Ref** | [Ping-Server.ps1](Ping-Server/Ping-Server.ps1) |
-| **Remove-User** | **Ref** | [Remove-User.ps1](Remove-User/Remove-User.ps1) |
+| Nom du script | Téléchargement |
+|:---|:---|
+| **ACM** | [ACM.ps1](ACM/ACM.ps1) |
+| **Add-DNS** | [Add-DNS.ps1](Add-DNS/Add-DNS.ps1) |
+| **Add-User** | [Add-User.ps1](Add-User/Add-User.ps1) |
+| **Computer-Config** | [Computer-Config.ps1](Computer-Config/Computer-Config.ps1) |
+| **Copy-File** | [Copy-File.ps1](Copy-File/Copy-File.ps1) |
+| **Create-Zip** | [Create-Zip.ps1](Create-Zip/Create-Zip.ps1) |
+| **Find-User** | [Find-User.ps1](Find-User/Find-User.ps1) |
+| **Ping-Server** | [Ping-Server.ps1](Ping-Server/Ping-Server.ps1) |
+| **Remove-User** | [Remove-User.ps1](Remove-User/Remove-User.ps1) |
 
 ## To Do - Scripts à venir :
 - [x] **Add-DNS**
