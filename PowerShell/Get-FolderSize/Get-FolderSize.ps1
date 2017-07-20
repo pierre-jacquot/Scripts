@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    Provide folders list with their size
+    Displays folders list with their size
 .DESCRIPTION
-    Provide and export folders list with their size
+    Displays and exports folders list with their size
 .NOTES
     File name : Get-FolderSize.ps1
     Author : Pierre JACQUOT
