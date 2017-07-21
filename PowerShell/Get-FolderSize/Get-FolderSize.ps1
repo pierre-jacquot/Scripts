@@ -8,6 +8,9 @@
     Author : Pierre JACQUOT
     Date : 19/07/2017
     Version : 1.0
+.LINK
+    Website : http://pierro.jacquot.free.fr
+    Reference : http://pierro.jacquot.free.fr/index.php/scripts/39-script-get-foldersize
 #>
 
 Clear-Host
@@ -17,7 +20,7 @@ $Hostname = [Environment]::MachineName
 $Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $Workfolder = Split-Path $script:MyInvocation.MyCommand.Path
 $Date = Get-Date -UFormat "%Y-%m-%d"
-$BasePath = "E:\Programmes"
+$BasePath = "C:\Users"
 $ExportFile = $Workfolder + "\$Date-Folders.csv"
 $AllFolders = Get-Childitem -Path $BasePath -Directory
 $FolderNumbers = $AllFolders.Count
