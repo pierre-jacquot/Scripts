@@ -52,8 +52,8 @@ ForEach ($Folder in $AllFolders) {
 
     $FolderList.Add($FolderObject) | Out-Null
 }
-$folderList | Sort-Object "Size (GB)" -Descending | Select-Object FolderName,"Size (MB)","Size (GB)", CreationTime, LastWriteTime | Format-Table -AutoSize
-$folderList | Sort-Object "Size (GB)" -Descending | Select-Object FolderName,"Size (MB)","Size (GB)", CreationTime, LastWriteTime | Export-Csv -Path $ExportFile -NoTypeInformation -Delimiter ";" -Encoding UTF8
+$FolderList | Sort-Object "Size (GB)" -Descending | Select-Object FolderName, "Size (MB)", "Size (GB)", CreationTime, LastWriteTime | Format-Table -AutoSize
+$FolderList | Sort-Object "Size (GB)" -Descending | Select-Object FolderName, "Size (MB)", "Size (GB)", CreationTime, LastWriteTime | Export-Csv -Path $ExportFile -NoTypeInformation -Delimiter ";" -Encoding UTF8
 
 $EndTime = Get-Date
 $Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
