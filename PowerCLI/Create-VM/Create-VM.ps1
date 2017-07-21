@@ -1,13 +1,13 @@
 <#
 .SYNOPSIS
-	VMs creation
+    VMs creation
 .DESCRIPTION
-	Create multiple VMs on the vCenter
+    Create multiple VMs on the vCenter
 .NOTES
-	File name : Create-VM.ps1
-	Author : Pierre JACQUOT
-	Date : 20/06/2017
-	Version : 1.0
+    File name : Create-VM.ps1
+    Author : Pierre JACQUOT
+    Date : 20/06/2017
+    Version : 1.0
 #>
 
 Clear-Host
@@ -57,14 +57,14 @@ Try {
     Write-Host "Trying to connect on VMware Server..."
     Write-Host "`r"
     Write-Log -Output $LogFile -Message "Trying to connect on VMware Server..."
-	$Connection = Connect-VIServer -Server vCenterServerName
+    $Connection = Connect-VIServer -Server vCenterServerName
 }
 Catch {
-	Write-Host "[ERROR] Unable to connect on VMware Server" -ForegroundColor Red
+    Write-Host "[ERROR] Unable to connect on VMware Server" -ForegroundColor Red
     Write-Log -Output $LogFile -Message "[ERROR] Unable to connect on VMware Server"
     Write-Host "`r"
     "`r" | Out-File -FilePath $LogFile -Append -Force
-	Exit
+    Exit
 }
 
 Write-Host "Connected on the vCenter [$Connection] :" -ForegroundColor Green
@@ -157,7 +157,7 @@ ForEach ($vm in $xml.CreateVM.VM) {
             "`r" | Out-File -FilePath $LogFile -Append -Force
             Write-Host "`r"
             Exit
-		}
+        }
 
         ## Ask the local admin password of the VM ##
         Write-Log -Output $LogFile -Message "- Ask the local admin password on $VMName"
@@ -188,9 +188,9 @@ ForEach ($vm in $xml.CreateVM.VM) {
         Catch {
             $ErrorMessage = $_.Exception.Message
             Write-Host "  [ERROR] Unable to clone [$Template] : $ErrorMessage" -ForegroundColor Red
-			Write-Log -Output $LogFile -Message "- [ERROR] Unable to clone $Template : $ErrorMessage"
+            Write-Log -Output $LogFile -Message "- [ERROR] Unable to clone $Template : $ErrorMessage"
             "`r" | Out-File -FilePath $LogFile -Append -Force
-			Continue
+            Continue
         }
 
         ## Setting the VM (Hostname, CPU, RAM) ##
@@ -202,7 +202,7 @@ ForEach ($vm in $xml.CreateVM.VM) {
         Catch {
             $ErrorMessage = $_.Exception.Message
             Write-Host "  [ERROR] Unable to configure [$VMName] : $ErrorMessage" -ForegroundColor Red
-			Write-Log -Output $LogFile -Message "- [ERROR] Unable to configure $VMName : $ErrorMessage"
+            Write-Log -Output $LogFile -Message "- [ERROR] Unable to configure $VMName : $ErrorMessage"
             "`r" | Out-File -FilePath $LogFile -Append -Force
             Continue
         }
@@ -218,9 +218,9 @@ ForEach ($vm in $xml.CreateVM.VM) {
             Catch {
                 $ErrorMessage = $_.Exception.Message
                 Write-Host "  [ERROR] Unable to resize the first virtual disk on [$VMName] : $ErrorMessage" -ForegroundColor Red
-			    Write-Log -Output $LogFile -Message "- [ERROR] Unable to resize the first virtual disk on $VMName : $ErrorMessage"
+                Write-Log -Output $LogFile -Message "- [ERROR] Unable to resize the first virtual disk on $VMName : $ErrorMessage"
                 "`r" | Out-File -FilePath $LogFile -Append -Force
-			    Continue
+                Continue
             }
         }
         If ($Drive2 -gt 10) {
@@ -232,9 +232,9 @@ ForEach ($vm in $xml.CreateVM.VM) {
             Catch {
                 $ErrorMessage = $_.Exception.Message
                 Write-Host "  [ERROR] Unable to resize the second virtual disk on [$VMName] : $ErrorMessage" -ForegroundColor Red
-			    Write-Log -Output $LogFile -Message "- [ERROR] Unable to resize the second virtual disk on $VMName : $ErrorMessage"
+                Write-Log -Output $LogFile -Message "- [ERROR] Unable to resize the second virtual disk on $VMName : $ErrorMessage"
                 "`r" | Out-File -FilePath $LogFile -Append -Force
-			    Continue
+                Continue
             }
         }
 
@@ -248,9 +248,9 @@ ForEach ($vm in $xml.CreateVM.VM) {
             Catch {
                 $ErrorMessage = $_.Exception.Message
                 Write-Host "  [ERROR] Unable to add the third virtual disk on [$VMname] : $ErrorMessage" -ForegroundColor Red
-				Write-Log -Output $LogFile -Message "- [ERROR] Unable to add the third virtual disk on $VMname : $ErrorMessage"
+                Write-Log -Output $LogFile -Message "- [ERROR] Unable to add the third virtual disk on $VMname : $ErrorMessage"
                 "`r" | Out-File -FilePath $LogFile -Append -Force
-				Continue
+                Continue
             }
         }
 
@@ -263,15 +263,14 @@ ForEach ($vm in $xml.CreateVM.VM) {
         Catch {
             $ErrorMessage = $_.Exception.Message
             Write-Host "  [ERROR] Unable to set network card : $ErrorMessage" -ForegroundColor Red
-			Write-Log -Output $LogFile -Message "- [ERROR] Unable to set network card : $ErrorMessage"
+            Write-Log -Output $LogFile -Message "- [ERROR] Unable to set network card : $ErrorMessage"
             "`r" | Out-File -FilePath $LogFile -Append -Force
-			Continue
+            Continue
         }
 
         ## Customizing VM ##
         Try {
-            #$OSCustSpec = New-OSCustomizationSpec -Name $VMName -NamingScheme Fixed -NamingPrefix $VMName -OSType Windows -FullName Administrateur -OrgName "MAF" -ChangeSid -Workgroup Workgroup -AdminPassword $AdminPassword -TimeZone 105
-            $OSCustSpec = New-OSCustomizationSpec -Name $VMName -NamingScheme Fixed -NamingPrefix $VMName -OSType Windows -FullName MAF -OrgName "MAF" -ChangeSid -Domain "maf.local" -DomainUsername $Login -DomainPassword $Password -AdminPassword $AdminPassword -TimeZone 105
+            $OSCustSpec = New-OSCustomizationSpec -Name $VMName -NamingScheme Fixed -NamingPrefix $VMName -OSType Windows -FullName Name -OrgName "OrgName" -ChangeSid -Domain "YourDomain.local" -DomainUsername $Login -DomainPassword $Password -AdminPassword $AdminPassword -TimeZone 105
             Write-Host "  Applying customization on [$VMName]" -ForegroundColor Green
             $OSCustSpec | Get-OSCustomizationNicMapping | Set-OSCustomizationNicMapping -IpMode UseStaticIp -IpAddress $IP -SubnetMask $Mask -DefaultGateway $Gateway -DNS $DNS | Out-null
             Set-VM -VM $VMName -OSCustomizationSpec $OSCustSpec -Confirm:$false | Out-Null
@@ -298,9 +297,9 @@ ForEach ($vm in $xml.CreateVM.VM) {
         Catch {
             $ErrorMessage = $_.Exception.Message
             Write-Host "- [ERROR] Unable to start the VM [$VMName] : $ErrorMessage" -ForegroundColor Red
-			Write-Log -Output $LogFile -Message "- [ERROR] Unable to start the VM $VMName : $ErrorMessage"
+            Write-Log -Output $LogFile -Message "- [ERROR] Unable to start the VM $VMName : $ErrorMessage"
             "`r" | Out-File -FilePath $LogFile -Append -Force
-			Continue
+            Continue
         }
 
         ## Creation of AD groups (TSE, ADM) ##
