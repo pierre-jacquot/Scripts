@@ -20,7 +20,7 @@ $Hostname = [Environment]::MachineName
 $Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $Workfolder = Split-Path $script:MyInvocation.MyCommand.Path
 $Date = Get-Date -UFormat "%Y-%m-%d"
-$BasePath = "C:\Users"
+$BasePath = "E:\Programmes"
 $ExportFile = $Workfolder + "\$Date-Folders.csv"
 $AllFolders = Get-Childitem -Path $BasePath -Directory
 $FolderNumbers = $AllFolders.Count
@@ -42,8 +42,8 @@ ForEach ($Folder in $AllFolders) {
     $FolderFullPath = $Folder.FullName
     $FolderCreationTime = $Folder.CreationTime
     $FolderLastWriteTime = $Folder.LastWriteTime
-    $FolderSizeInMB = "{0:N3}" -f ((Get-ChildItem $FolderFullPath -Recurse | Measure-Object -Property Length -Sum).Sum / 1MB)
-    $FolderSizeInGB = "{0:N3}" -f ((Get-ChildItem $FolderFullPath -Recurse | Measure-Object -Property Length -Sum).Sum / 1GB)
+    $FolderSizeInMB = "{0:N3}" -f ((Get-ChildItem -Path $FolderFullPath -Recurse | Measure-Object -Property Length -Sum).Sum / 1MB)
+    $FolderSizeInGB = "{0:N3}" -f ((Get-ChildItem -Path $FolderFullPath -Recurse | Measure-Object -Property Length -Sum).Sum / 1GB)
 
     $FolderProp = @{FolderName = $FolderName}
     $FolderProp += @{CreationTime = $FolderCreationTime}
@@ -60,6 +60,12 @@ $FolderList | Sort-Object "Size (GB)" -Descending | Select-Object FolderName, "S
 
 $EndTime = Get-Date
 $Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
+
+$TotalSizeInMB = "{0:N3} (MB)" -f ((Get-ChildItem -Path $BasePath -Recurse | Measure-Object -Property Length -Sum).Sum / 1MB)
+$TotalSizeInGB = "{0:N3} (GB)" -f ((Get-ChildItem -Path $BasePath -Recurse | Measure-Object -Property Length -Sum).Sum / 1GB)
+
+Write-Host "Total size : $TotalSizeInMB - $TotalSizeInGB" -ForegroundColor Cyan
+Write-Host "`r"
 
 Write-Host "Script launched from : " -NoNewline; Write-Host $Hostname -ForegroundColor Red
 Write-Host "By : " -NoNewline; Write-Host $Login -ForegroundColor Red
