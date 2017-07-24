@@ -64,7 +64,7 @@ $Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSe
 $TotalSizeInMB = "{0:N3} (MB)" -f ((Get-ChildItem -Path $BasePath -Recurse | Measure-Object -Property Length -Sum).Sum / 1MB)
 $TotalSizeInGB = "{0:N3} (GB)" -f ((Get-ChildItem -Path $BasePath -Recurse | Measure-Object -Property Length -Sum).Sum / 1GB)
 
-Write-Host "Total size : $TotalSizeInMB - $TotalSizeInGB" -ForegroundColor Cyan
+Write-Host "Total size : $TotalSizeInMB - $TotalSizeInGB on [$BasePath]" -ForegroundColor Cyan
 Write-Host "`r"
 
 Write-Host "Script launched from : " -NoNewline; Write-Host $Hostname -ForegroundColor Red
