@@ -8,6 +8,9 @@
     Author : Pierre JACQUOT
     Date : 30/05/2016
     Version : 1.0
+.LINK
+    Website : http://pierro.jacquot.free.fr
+    Reference : http://pierro.jacquot.free.fr/index.php/scripts/41-script-get-alerts
 #>
 
 Clear-Host
