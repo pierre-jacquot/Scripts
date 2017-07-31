@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    Ping multiple servers
+    Ping multiple servers.
 .DESCRIPTION
-    Check if servers are reachable with event logs creation
+    Check if servers are reachable with event logs creation.
 .NOTES
     File name : Ping-Server.ps1
     Author : Pierre JACQUOT
