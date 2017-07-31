@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Retrieves alerts on your vCenter
+    Retrieves alerts on your vCenter.
 .DESCRIPTION
     Retrieves and send by e-mail all alerts on your vCenter.
 .NOTES
