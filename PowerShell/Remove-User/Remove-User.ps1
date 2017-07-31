@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    Remove AD users
+    Remove AD users.
 .DESCRIPTION
-    Remove multiple users of an AD group
+    Remove multiple users of an AD group.
 .NOTES
     File name : Remove-User.ps1
     Author : Pierre JACQUOT
