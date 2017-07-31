@@ -1,7 +1,7 @@
 <CreateVM>
   <VM>
     <VMName>VMName</VMName>
-    <Template>Modèle 2012 R2</Template>
+    <Template>TemplateName</Template>
     <Datacenter>DCName</Datacenter>
     <Cluster>ClusterName</Cluster>
     <ESX>ESXName</ESX>
