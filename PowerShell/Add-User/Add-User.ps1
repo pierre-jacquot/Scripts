@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    Add AD users
+    Add AD users.
 .DESCRIPTION
-    Add multiple users in an AD group
+    Add multiple users in an AD group.
 .NOTES
     File name : Add-User.ps1
     Author : Pierre JACQUOT
