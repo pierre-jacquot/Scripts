@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Retrieves snapshots on your vCenter
+    Retrieves snapshots on your vCenter.
 .DESCRIPTION
     Retrieves and send by e-mail all snapshots on your vCenter.
 .NOTES
