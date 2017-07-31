@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    Detailed computer/server config information
+    Detailed computer/server config information.
 .DESCRIPTION
-    Export the detailed configuration of a computer/server
+    Export the detailed configuration of a computer/server.
 .NOTES
     File name : Computer-Config.ps1
     Author : Pierre JACQUOT
