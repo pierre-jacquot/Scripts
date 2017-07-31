@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    DNS records creation
+    DNS records creation.
 .DESCRIPTION
-    Create multiple DNS records with associated PTR
+    Create multiple DNS records with associated PTR.
 .NOTES
     File name : Add-DNS.ps1
     Author : Pierre JACQUOT
