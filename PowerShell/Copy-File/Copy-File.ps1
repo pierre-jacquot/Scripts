@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    Copy existing files
+    Copy existing files.
 .DESCRIPTION
-    Copy multiple files on a shared folder
+    Copy multiple files on a shared folder.
 .NOTES
     File name : Copy-File.ps1
     Author : Pierre JACQUOT
