@@ -1,21 +1,21 @@
 <CreateVM>
   <VM>
     <VMName>DEVPARADM01</VMName>
-		<Template>Modèle 2012 R2</Template>
-		<Datacenter>DCName</Datacenter>
-		<Cluster>ClusterName</Cluster>
-		<ESX>ESXName</ESX>
-		<Datastore>DatastoreName</Datastore>
-		<Drive>40</Drive>
-		<Drive2>20</Drive2>
-		<Drive3>4</Drive3>
-		<CPU>2</CPU>
-		<MemoryGB>4</MemoryGB>
-		<VLAN>VLANName</VLAN>
-		<IP>192.XXX.XXX.XXX</IP>
-		<Mask>255.255.255.0</Mask>
-		<Gateway>192.XXX.XXX.XXX</Gateway>
-		<DNS>8.8.8.8 8.8.4.4</DNS>
-		<Description>Server Description</Description>
-	</VM>
+    <Template>Modèle 2012 R2</Template>
+    <Datacenter>DCName</Datacenter>
+    <Cluster>ClusterName</Cluster>
+    <ESX>ESXName</ESX>
+    <Datastore>DatastoreName</Datastore>
+    <Drive>40</Drive>
+    <Drive2>20</Drive2>
+    <Drive3>4</Drive3>
+    <CPU>2</CPU>
+    <MemoryGB>4</MemoryGB>
+    <VLAN>VLANName</VLAN>
+    <IP>192.XXX.XXX.XXX</IP>
+    <Mask>255.255.255.0</Mask>
+    <Gateway>192.XXX.XXX.XXX</Gateway>
+    <DNS>8.8.8.8 8.8.4.4</DNS>
+    <Description>Server Description</Description>
+  </VM>
 </CreateVM>
