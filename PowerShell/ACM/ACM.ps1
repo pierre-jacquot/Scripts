@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    Account Management Program (ACM) on AD
+    Account Management Program (ACM) on AD.
 .DESCRIPTION
-    Create User, Administrator, Service, Monitoring accounts or groups on AD
+    Create User, Administrator, Service, Monitoring accounts or groups on AD.
 .NOTES
     File name : ACM.ps1
     Author : Pierre JACQUOT
