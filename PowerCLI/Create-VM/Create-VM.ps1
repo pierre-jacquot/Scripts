@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    VMs creation
+    VMs creation.
 .DESCRIPTION
-    Create multiple VMs on the vCenter
+    Create multiple VMs on the vCenter.
 .NOTES
     File name : Create-VM.ps1
     Author : Pierre JACQUOT
