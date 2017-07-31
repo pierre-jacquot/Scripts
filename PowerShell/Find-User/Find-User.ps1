@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    Find AD users
+    Find AD users.
 .DESCRIPTION
-    Check if users exist in AD
+    Check if users exist in AD.
 .NOTES
     File name : Find-User.ps1
     Author : Pierre JACQUOT
