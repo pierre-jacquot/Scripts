@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    Zip files creation
+    Zip files creation.
 .DESCRIPTION
-    Create multiple zip files on a shared folder
+    Create multiple zip files on a shared folder.
 .NOTES
     File name : Create-Zip.ps1
     Author : Pierre JACQUOT
