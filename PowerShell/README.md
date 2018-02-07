@@ -18,12 +18,13 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerShell**.
 | **Find-User** | [Find-User.ps1](Find-User/Find-User.ps1) |
 | **Get-FolderSize** | [Get-FolderSize.ps1](Get-FolderSize/Get-FolderSize.ps1) |
 | **Ping-Server** | [Ping-Server.ps1](Ping-Server/Ping-Server.ps1) |
+| **Purge-Folder** | [Purge-Folder.ps1](Purge-Folder/Purge-Folder.ps1) |
 | **Remove-User** | [Remove-User.ps1](Remove-User/Remove-User.ps1) |
 
 ## To Do - Scripts à venir :
 - [x] **Add-DNS**
 - [x] **Get-FolderSize**
-- [ ] **Add-DHCP**
+- [x] **Purge-Folder**
 
 ## Licensing :
 The MIT License (MIT)
