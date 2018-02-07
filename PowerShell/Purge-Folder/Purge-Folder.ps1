@@ -37,7 +37,7 @@ Write-Host "Launching the deletion of [$FilesNumber] log file(s)." -ForegroundCo
 Write-Host "`r"
 
 If ($FilesNumber -eq 0) {
-    Write-Host "No file has been removed !" -ForegroundColor Green
+    Write-Host "No file has been removed" -ForegroundColor Green
     Write-Log -Output "$LogFile" -Message "No file has been removed"
 }
 Else {
