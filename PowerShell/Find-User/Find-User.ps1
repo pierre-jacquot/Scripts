@@ -39,11 +39,11 @@ ForEach ($Login in $Logins) {
     $User = Get-ADUser -Filter { sAMAccountName -eq $Login }
     If ($User  -eq $Null) {
         Write-Host "$Login - User does not exist in AD" -ForegroundColor Red
-        Write-Log -Output $LogFileKO -Message "$Login - User does not exist in AD !"
+        Write-Log -Output $LogFileKO -Message "$Login - User does not exist in AD"
     }
     Else {
         Write-host "$Login - User found in AD" -ForegroundColor Green
-        Write-Log -Output $LogFileOK -Message "$Login - User found in AD !"
+        Write-Log -Output $LogFileOK -Message "$Login - User found in AD"
     }
 }
 
