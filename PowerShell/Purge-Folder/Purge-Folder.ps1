@@ -10,7 +10,7 @@
     Version : 1.0
 .LINK
     Website : http://pierro.jacquot.free.fr
-    Reference : http://pierro.jacquot.free.fr/index.php/scripts/42-script-purge-folder
+    Reference : http://pierro.jacquot.free.fr/index.php/scripts/43-script-purge-folder
 #>
 
 Clear-Host
