@@ -10,7 +10,7 @@
     Version : 1.0
 .LINK
     Website : http://pierro.jacquot.free.fr
-    Reference : http://pierro.jacquot.free.fr/index.php/scripts/
+    Reference : http://pierro.jacquot.free.fr/index.php/scripts/42-script-purge-folder
 #>
 
 Clear-Host
@@ -25,7 +25,7 @@ $Hostname = [Environment]::MachineName
 $Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $Workfolder = Split-Path $script:MyInvocation.MyCommand.Path
 $Date = Get-Date -UFormat "%Y-%m-%d"
-$LogFile = $Workfolder + "\$Date-Purge_Folder.log"
+$LogFile = $Workfolder + "\$Date-Purge-Folder.log"
 $SourceFolder = "D:\Scripts\Purge-Folder\Logs"
 $AllFiles = Get-ChildItem -Path $SourceFolder -Recurse | Where-Object { ($_.LastWriteTime -lt (Get-Date).AddDays(-30)) -and ($_.Name -like "Test*") -and ($_.Extension -eq ".txt") }
 $FilesNumber = $AllFiles.Count
