@@ -184,9 +184,9 @@ ForEach ($vm in $xml.CreateVM.VM) {
         ## Cloning the template ##
         $ResourcePool = Get-Cluster -Location $Datacenter -Name $Cluster
         Try {
-        Write-Host "  Cloning [$Template] template" -ForegroundColor Green
-        New-VM -VMHost $ESX -Name $VMName -Template $Template -Datastore $Datastore -ResourcePool $ResourcePool -Description $Description -ErrorAction Stop | Out-Null
-        Write-Log -Output $LogFile -Message "- Cloning $Template template"
+            Write-Host "  Cloning [$Template] template" -ForegroundColor Green
+            New-VM -VMHost $ESX -Name $VMName -Template $Template -Datastore $Datastore -ResourcePool $ResourcePool -Description $Description -ErrorAction Stop | Out-Null
+            Write-Log -Output $LogFile -Message "- Cloning $Template template"
         }
         Catch {
             $ErrorMessage = $_.Exception.Message
