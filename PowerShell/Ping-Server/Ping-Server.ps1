@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    Ping multiple servers.
+    Ping multiple servers
 .DESCRIPTION
-    Check if servers are reachable with event logs creation.
+    Check if servers are reachable with event logs creation
 .NOTES
     File name : Ping-Server.ps1
     Author : Pierre JACQUOT
@@ -25,7 +25,7 @@ $Hostname = [Environment]::MachineName
 $Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $Workfolder = Split-Path $script:MyInvocation.MyCommand.Path
 $Date = Get-Date -UFormat "%Y-%m-%d"
-$LogFileOK = $Workfolder + "\$Date-Ping-Server_Sucess.log"
+$LogFileOK = $Workfolder + "\$Date-Ping-Server_Success.log"
 $LogFileKO = $Workfolder + "\$Date-Ping-Server_Warning.log"
 $Servers = (Get-Content -Path ".\Servers.txt")
 $LineNumbers = $Servers.Count
