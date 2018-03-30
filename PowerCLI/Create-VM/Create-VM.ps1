@@ -51,7 +51,7 @@ If (!$Module) {
     Exit
 }
 
-Write-Host "Launching the creation of $VMNumber Virtual Machine(s)" -ForegroundColor Cyan
+Write-Host "Launching the creation of [$VMNumber] Virtual Machine(s)" -ForegroundColor Cyan
 Write-Log -Output $LogFile -Message "Launching the creation of $VMNumber Virtual Machine(s)"
 Write-Host "`r"
 
@@ -273,7 +273,7 @@ ForEach ($vm in $xml.CreateVM.VM) {
 
         ## Customizing VM ##
         Try {
-            $OSCustSpec = New-OSCustomizationSpec -Name $VMName -NamingScheme Fixed -NamingPrefix $VMName -OSType Windows -FullName Name -OrgName "OrgName" -ChangeSid -Domain "YourDomain.local" -DomainUsername $Login -DomainPassword $Password -AdminPassword $AdminPassword -TimeZone 105
+            $OSCustSpec = New-OSCustomizationSpec -Name $VMName -NamingScheme Fixed -NamingPrefix $VMName -OSType Windows -FullName Name -OrgName "OrgName" -ChangeSid -Domain "DomainName" -DomainUsername $Login -DomainPassword $Password -AdminPassword $AdminPassword -TimeZone 105
             Write-Host "  Applying customization on [$VMName]" -ForegroundColor Green
             $OSCustSpec | Get-OSCustomizationNicMapping | Set-OSCustomizationNicMapping -IpMode UseStaticIp -IpAddress $IP -SubnetMask $Mask -DefaultGateway $Gateway -DNS $DNS | Out-null
             Set-VM -VM $VMName -OSCustomizationSpec $OSCustSpec -Confirm:$false | Out-Null
@@ -338,6 +338,7 @@ ForEach ($vm in $xml.CreateVM.VM) {
         }
         Write-Host "`r"
         Write-Host "Please move the server to the right folder/OU !" -ForegroundColor Yellow
+        Write-Host "Please add AD groups (TSE & ADM) in the VM !" -ForegroundColor Yellow
         Write-Host "`r"
     }
     Catch {
