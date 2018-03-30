@@ -295,7 +295,7 @@ ForEach ($vm in $xml.CreateVM.VM) {
             Start-VM -VM $VMname –ErrorAction Stop | Out-Null
             Write-Log -Output $LogFile -Message "Power ON the VM $VMName"
             Write-Host "`r"
-            Write-Host "After starting, the VM will be restarted several times to finalize customization. Please don't touch the VM until everything is done." -ForegroundColor Red -BackgroundColor Yellow
+            Write-Host "After starting, the VM will be restarted several times in order to finalize customization. Please don't touch the VM until everything is done." -ForegroundColor Red -BackgroundColor Yellow
         }
         Catch {
             $ErrorMessage = $_.Exception.Message
