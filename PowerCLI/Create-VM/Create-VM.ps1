@@ -51,7 +51,7 @@ If (!$Module) {
     Exit
 }
 
-Write-Host "Launching the creation of [$VMNumber] Virtual Machine(s)" -ForegroundColor Cyan
+Write-Host "Launching the creation of [$VMNumber] Virtual Machine(s)." -ForegroundColor Cyan
 Write-Log -Output $LogFile -Message "Launching the creation of $VMNumber Virtual Machine(s)"
 Write-Host "`r"
 
