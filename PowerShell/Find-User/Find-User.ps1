@@ -35,15 +35,15 @@ Write-Host "Find-User :" -ForegroundColor Black -BackgroundColor Yellow
 Write-Host "Launching the research of [$LineNumbers] user(s) in AD." -ForegroundColor Cyan
 Write-Host "`r"
 
-ForEach ($Login in $Logins) {
-    $User = Get-ADUser -Filter { sAMAccountName -eq $Login }
+ForEach ($ADLogin in $Logins) {
+    $User = Get-ADUser -Filter { sAMAccountName -eq $ADLogin }
     If ($User  -eq $Null) {
-        Write-Host "$Login - User does not exist in AD" -ForegroundColor Red
-        Write-Log -Output $LogFileKO -Message "$Login - User does not exist in AD"
+        Write-Host "$ADLogin - User does not exist in AD" -ForegroundColor Red
+        Write-Log -Output $LogFileKO -Message "$ADLogin - User does not exist in AD"
     }
     Else {
-        Write-host "$Login - User found in AD" -ForegroundColor Green
-        Write-Log -Output $LogFileOK -Message "$Login - User found in AD"
+        Write-host "$ADLogin - User found in AD" -ForegroundColor Green
+        Write-Log -Output $LogFileOK -Message "$ADLogin - User found in AD"
     }
 }
 
