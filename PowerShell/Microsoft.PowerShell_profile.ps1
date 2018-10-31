@@ -1,4 +1,7 @@
 Set-Location -Path "D:\"
+New-Item alias:np -Value "C:\Windows\System32\notepad.exe"
+New-Item alias:np++ -Value "C:\Program Files (x86)\Notepad++\notepad++.exe"
+Clear-Host
 
 Function Test-Administrator {
     $Identity = [Security.Principal.WindowsIdentity]::GetCurrent()
@@ -16,7 +19,7 @@ Function Prompt {
     Write-Host "> " -ForegroundColor Yellow -NoNewline
     Write-Host (Get-Date -UFormat "[%d-%m-%Y %H:%M:%S] ") -ForegroundColor Cyan -NoNewline
     Write-Host "> " -ForegroundColor Yellow -NoNewline
-    Write-Host (Split-Path $PWD -Leaf) -ForegroundColor Green  -NoNewline
+    Write-Host (Split-Path $PWD -Leaf) -ForegroundColor Green -NoNewline
     If (Test-Administrator -eq $True) {
         $Host.UI.RawUI.WindowTitle = "[Administrateur] - Windows PowerShell > Hostname : $Hostname > Username : $Username"
         Write-Host " >" -ForegroundColor Yellow -NoNewline
