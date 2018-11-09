@@ -1,3 +1,18 @@
+<#
+.SYNOPSIS
+    Customize your PowerShell Profile.
+.DESCRIPTION
+    Customizing your PowerShell Profile in order to automatically load scripts when you start the PowerShell console.
+.NOTES
+    File name : Microsoft.PowerShell_profile.ps1
+    Author : Pierre JACQUOT
+    Date : 28/10/2018
+    Version : 1.0
+.LINK
+    Website : http://pierro.jacquot.free.fr
+    Reference : http://pierro.jacquot.free.fr/index.php/scripts/44-configurer-son-profile-sous-windows-powershell-ise
+#>
+
 Set-Location -Path "D:\"
 New-Item alias:np -Value "C:\Windows\System32\notepad.exe"
 New-Item alias:np++ -Value "C:\Program Files (x86)\Notepad++\notepad++.exe"
