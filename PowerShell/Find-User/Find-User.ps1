@@ -9,8 +9,8 @@
     Date : 14/05/2016
     Version : 1.0
 .LINK
-    Website : http://pierro.jacquot.free.fr
-    Reference : http://pierro.jacquot.free.fr/index.php/scripts/26-script-find-user
+    Website : https://www.pierrejacquot.yo.fr
+    Reference : https://www.pierrejacquot.yo.fr/index.php/scripts/26-script-find-user
 #>
 
 Clear-Host
