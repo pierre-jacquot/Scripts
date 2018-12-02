@@ -9,8 +9,8 @@
     Date : 20/06/2017
     Version : 1.0
 .LINK
-    Website : http://pierro.jacquot.free.fr
-    Reference : http://pierro.jacquot.free.fr/index.php/scripts/42-script-create-vm
+    Website : https://www.pierrejacquot.yo.fr
+    Reference : https://www.pierrejacquot.yo.fr/index.php/scripts/42-script-create-vm
 #>
 
 Clear-Host
