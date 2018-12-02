@@ -31,7 +31,7 @@ Voici mon fichier [Microsoft.PowerShell_profile.ps1](Microsoft.PowerShell_profil
 ## Licensing :
 The MIT License (MIT)
 
-Copyright (c) 2017 Pierre JACQUOT
+Copyright (c) 2018 Pierre JACQUOT
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
