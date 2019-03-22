@@ -1,10 +1,8 @@
 # Badges
-[![GitHub author](https://img.shields.io/badge/Author-Pierre%20JACQUOT-red.svg)](https://www.pierrejacquot.yo.fr)
+[![GitHub author](https://img.shields.io/badge/Author-Pierre%20JACQUOT-orange.svg)](https://www.pierrejacquot.yo.fr)
+[![Website www.pierrejacquot.yo.fr](https://img.shields.io/website-up-down-green-red/https/pierrejacquot.yo.fr.svg)](https://www.pierrejacquot.yo.fr)
 [![GitHub license](https://img.shields.io/github/license/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/blob/master/LICENSE)
 [![GitHub Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/pierre-jacquot/Scripts/graphs/commit-activity)
-[![Website www.pierrejacquot.yo.fr](https://img.shields.io/website-up-down-green-red/https/pierrejacquot.yo.fr.svg)](https://www.pierrejacquot.yo.fr)
-[![Made-with-powershell](https://img.shields.io/badge/Made%20with-PowerShell-blue.svg)](https://docs.microsoft.com/fr-fr/powershell)
-[![Made-with-powershell](https://img.shields.io/badge/Made%20with-PowerShell-orange.svg)](https://docs.microsoft.com/fr-fr/powershell)
 [![Made-with-powershell](https://img.shields.io/badge/Made%20with-PowerShell-blueviolet.svg)](https://docs.microsoft.com/fr-fr/powershell)
 [![GitHub top language](https://img.shields.io/github/languages/top/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot)
 [![GitHub language count](https://img.shields.io/github/languages/count/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot)
