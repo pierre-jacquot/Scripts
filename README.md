@@ -1,5 +1,5 @@
 # Badges
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)]
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/pierre-jacquot/Scripts/graphs/commit-activity)
 
 # Scripts
 Ce répertoire contient l'ensemble de mes scripts en **PowerShell / PowerCLI**.
