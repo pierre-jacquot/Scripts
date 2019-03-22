@@ -2,6 +2,7 @@
 [![GitHub license](https://img.shields.io/github/license/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/blob/master/LICENSE)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/pierre-jacquot/Scripts/graphs/commit-activity)
 [![Last commit](https://img.shields.io/github/last-commit/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/commits/master)
+[![Commit activity](https://img.shields.io/github/commit-activity/y/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/commits/master)
 
 # Scripts
 Ce répertoire contient l'ensemble de mes scripts en **PowerShell / PowerCLI**.
