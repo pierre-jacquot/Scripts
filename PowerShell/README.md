@@ -21,7 +21,9 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerShell**.
 | **Purge-Folder** | [Purge-Folder.ps1](Purge-Folder/Purge-Folder.ps1) |
 | **Remove-User** | [Remove-User.ps1](Remove-User/Remove-User.ps1) |
 
+
 Voici mon fichier [Microsoft.PowerShell_profile.ps1](Microsoft.PowerShell_profile.ps1) personnalisé qui est chargé automatiquement à l'ouverture de **PowerShell**.
+
 
 ## To Do - Scripts à venir :
 - [x] **Add-DNS**
@@ -31,7 +33,7 @@ Voici mon fichier [Microsoft.PowerShell_profile.ps1](Microsoft.PowerShell_profil
 ## Licensing :
 The MIT License (MIT)
 
-Copyright (c) 2018 Pierre JACQUOT
+Copyright (c) 2019 Pierre JACQUOT - https://www.pierrejacquot.yo.fr
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
