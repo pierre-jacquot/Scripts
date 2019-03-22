@@ -23,6 +23,8 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerShell / PowerCLI**.
 ## Catégories :
 - PowerCLI
 - PowerShell
+- [PowerCLI](PowerCLI)
+- [PowerShell](PowerShell)
 
 ## Licensing :
 The MIT License (MIT)
