@@ -1,6 +1,6 @@
 # Badges
 [![GitHub license](https://img.shields.io/github/license/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/blob/master/LICENSE)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/pierre-jacquot/Scripts/graphs/commit-activity)
+[![GitHub Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/pierre-jacquot/Scripts/graphs/commit-activity)
 [![Website www.pierrejacquot.yo.fr](https://img.shields.io/website-up-down-green-red/https/pierrejacquot.yo.fr.svg)](https://www.pierrejacquot.yo.fr)
 [![Made-with-powershell](https://img.shields.io/badge/Made%20with-PowerShell-1f425f.svg)](https://docs.microsoft.com/fr-fr/powershell)
 [![GitHub top language](https://img.shields.io/github/languages/top/pierre-jacquot/Scripts.svg)](https://docs.microsoft.com/fr-fr/powershell)
@@ -8,10 +8,10 @@
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/y/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/commits/master)
 [![GitHub contributors](https://img.shields.io/github/contributors/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/graphs/contributors)
 [![GitHub issues](https://img.shields.io/github/issues/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/issues)
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/pulls)
-[![GitHub code size](https://img.shields.io/github/languages/code-size/pierre-jacquot/Scripts.svg)]
-[![GitHub repo size](https://img.shields.io/github/repo-size/pierre-jacquot/Scripts.svg)]
-[![GitHub downloads](https://img.shields.io/github/downloads/pierre-jacquot/Scripts/total.svg)]
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/pulls)
+[![GitHub code size](https://img.shields.io/github/languages/code-size/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts)
+[![GitHub repo size](https://img.shields.io/github/repo-size/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts)
+[![GitHub downloads](https://img.shields.io/github/downloads/pierre-jacquot/Scripts/total.svg)](https://github.com/pierre-jacquot/Scripts)
 [![GitHub followers](https://img.shields.io/github/followers/pierre-jacquot.svg?label=Follow)](https://github.com/pierre-jacquot?tab=followers)
 
 # Scripts
