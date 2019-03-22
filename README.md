@@ -1,4 +1,5 @@
 # Badges
+[![GitHub license](https://img.shields.io/github/license/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/blob/master/LICENSE)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/pierre-jacquot/Scripts/graphs/commit-activity)
 
 # Scripts
