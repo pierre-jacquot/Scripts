@@ -1,6 +1,7 @@
 # Badges
 [![GitHub author](https://img.shields.io/badge/Author-Pierre%20JACQUOT-orange.svg)](https://www.pierrejacquot.yo.fr)
-[![Website www.pierrejacquot.yo.fr](https://img.shields.io/website-up-down-green-red/https/pierrejacquot.yo.fr.svg)](https://www.pierrejacquot.yo.fr)
+[![Blog website www.pierrejacquot.yo.fr](https://img.shields.io/website-up-down-green-red/https/pierrejacquot.yo.fr.svg?logo=joomla)](https://www.pierrejacquot.yo.fr)
+[![GitHub website github.com/pierre-jacquot](https://img.shields.io/website-up-down-green-red/https/github.com/pierre-jacquot.svg?logo=github)](https://github.com/pierre-jacquot)
 [![GitHub license](https://img.shields.io/github/license/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/blob/master/LICENSE)
 [![GitHub maintenance](https://img.shields.io/badge/Maintained-Yes-green.svg)](https://github.com/pierre-jacquot/Scripts/graphs/commit-activity)
 [![Made-with-powershell](https://img.shields.io/badge/Made%20with-PowerShell-blueviolet.svg)](https://docs.microsoft.com/fr-fr/powershell)
