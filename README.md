@@ -11,7 +11,7 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/pierre-jacquot/Scripts.svg?logo=clockify)](https://github.com/pierre-jacquot/Scripts/commits/master)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/y/pierre-jacquot/Scripts.svg?logo=quantopian)](https://github.com/pierre-jacquot/Scripts/commits/master)
 [![GitHub contributors](https://img.shields.io/github/contributors/pierre-jacquot/Scripts.svg?logo=myspace)](https://github.com/pierre-jacquot/Scripts/graphs/contributors)
-[![GitHub issues](https://img.shields.io/github/issues/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/issues)
+[![GitHub issues](https://img.shields.io/github/issues/pierre-jacquot/Scripts.svg?logo=highly)](https://github.com/pierre-jacquot/Scripts/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/pierre-jacquot/Scripts.svg?logo=gumroad)](https://github.com/pierre-jacquot/Scripts/pulls)
 [![GitHub code size](https://img.shields.io/github/languages/code-size/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts)
 [![GitHub repo size](https://img.shields.io/github/repo-size/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts)
