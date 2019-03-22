@@ -3,6 +3,7 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/pierre-jacquot/Scripts/graphs/commit-activity)
 [![Website www.pierrejacquot.yo.fr](https://img.shields.io/website-up-down-green-red/https/pierrejacquot.yo.fr.svg)](https://www.pierrejacquot.yo.fr)
 [![Made-with-powershell](https://img.shields.io/badge/Made%20with-PowerShell-1f425f.svg)](https://docs.microsoft.com/fr-fr/powershell)
+[![GitHub top language](https://img.shields.io/github/languages/top/pierre-jacquot/Scripts.svg)](https://docs.microsoft.com/fr-fr/powershell)
 [![Last commit](https://img.shields.io/github/last-commit/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/commits/master)
 [![Commit activity](https://img.shields.io/github/commit-activity/y/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/commits/master)
 [![GitHub contributors](https://img.shields.io/github/contributors/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/graphs/contributors)
