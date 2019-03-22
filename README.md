@@ -14,7 +14,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/pierre-jacquot/Scripts.svg?logo=highly)](https://github.com/pierre-jacquot/Scripts/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/pierre-jacquot/Scripts.svg?logo=gumroad)](https://github.com/pierre-jacquot/Scripts/pulls)
 [![GitHub code size](https://img.shields.io/github/languages/code-size/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts)
-[![GitHub repo size](https://img.shields.io/github/repo-size/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts)
+[![GitHub repo size](https://img.shields.io/github/repo-size/pierre-jacquot/Scripts.svg?logo=bandcamp)](https://github.com/pierre-jacquot/Scripts)
 [![GitHub downloads](https://img.shields.io/github/downloads/pierre-jacquot/Scripts/total.svg?logo=buzzfeed)](https://github.com/pierre-jacquot/Scripts)
 [![GitHub followers](https://img.shields.io/github/followers/pierre-jacquot.svg?label=Follow&logo=myspace)](https://github.com/pierre-jacquot?tab=followers)
 [![GitHub badges](https://img.shields.io/badge/Badges-19-ff6799.svg?logo=f-secure)](https://github.com/pierre-jacquot/Scripts)
