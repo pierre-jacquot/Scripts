@@ -8,6 +8,7 @@
 [![GitHub contributors](https://img.shields.io/github/contributors/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/graphs/contributors)
 [![GitHub issues](https://img.shields.io/github/issues/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/issues)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/pulls)
+[![GitHub followers](https://img.shields.io/github/followers/pierre-jacquot.svg?label=Follow)](https://github.com/pierre-jacquot?tab=followers)
 
 # Scripts
 Ce répertoire contient l'ensemble de mes scripts en **PowerShell / PowerCLI**.
