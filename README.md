@@ -10,13 +10,13 @@
 [![GitHub dependency status for GitHub repo](https://img.shields.io/librariesio/github/pierre-jacquot/Scripts.svg?logo=stackshare)](https://github.com/pierre-jacquot/Scripts/commits/master)
 [![GitHub last commit](https://img.shields.io/github/last-commit/pierre-jacquot/Scripts.svg?logo=clockify)](https://github.com/pierre-jacquot/Scripts/commits/master)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/y/pierre-jacquot/Scripts.svg?logo=quantopian)](https://github.com/pierre-jacquot/Scripts/commits/master)
-[![GitHub contributors](https://img.shields.io/github/contributors/pierre-jacquot/Scripts.svg?logo=myspace)](https://github.com/pierre-jacquot/Scripts/graphs/contributors)
+[![GitHub contributors](https://img.shields.io/github/contributors/pierre-jacquot/Scripts.svg?logo=probot)](https://github.com/pierre-jacquot/Scripts/graphs/contributors)
 [![GitHub issues](https://img.shields.io/github/issues/pierre-jacquot/Scripts.svg?logo=highly)](https://github.com/pierre-jacquot/Scripts/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/pierre-jacquot/Scripts.svg?logo=gumroad)](https://github.com/pierre-jacquot/Scripts/pulls)
 [![GitHub code size](https://img.shields.io/github/languages/code-size/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts)
 [![GitHub repo size](https://img.shields.io/github/repo-size/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts)
 [![GitHub downloads](https://img.shields.io/github/downloads/pierre-jacquot/Scripts/total.svg)](https://github.com/pierre-jacquot/Scripts)
-[![GitHub followers](https://img.shields.io/github/followers/pierre-jacquot.svg?label=Follow&?logo=draugiem-dot-lv&)](https://github.com/pierre-jacquot?tab=followers)
+[![GitHub followers](https://img.shields.io/github/followers/pierre-jacquot.svg?label=Follow&?logo=draugiem-dot-lv)](https://github.com/pierre-jacquot?tab=followers)
 [![GitHub badges](https://img.shields.io/badge/Badges-18-ff6799.svg?logo=f-secure)](https://github.com/pierre-jacquot/Scripts)
 
 # Scripts
