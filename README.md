@@ -2,7 +2,7 @@
 [![GitHub license](https://img.shields.io/github/license/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/blob/master/LICENSE)
 [![GitHub Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/pierre-jacquot/Scripts/graphs/commit-activity)
 [![Website www.pierrejacquot.yo.fr](https://img.shields.io/website-up-down-green-red/https/pierrejacquot.yo.fr.svg)](https://www.pierrejacquot.yo.fr)
-[![Made-with-powershell](https://img.shields.io/badge/Made%20with-PowerShell-1f425f.svg)](https://docs.microsoft.com/fr-fr/powershell)
+[![Made-with-powershell](https://img.shields.io/badge/Made%20with-PowerShell-blue.svg)](https://docs.microsoft.com/fr-fr/powershell)
 [![GitHub top language](https://img.shields.io/github/languages/top/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot)
 [![GitHub language count](https://img.shields.io/github/languages/count/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot)
 [![GitHub dependency status for GitHub repo](https://img.shields.io/librariesio/github/pierre-jacquot/Scripts.svg)](https://github.com/pierre-jacquot/Scripts/commits/master)
