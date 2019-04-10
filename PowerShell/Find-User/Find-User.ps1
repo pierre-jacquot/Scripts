@@ -37,7 +37,7 @@ Write-Host "`r"
 
 ForEach ($ADLogin in $Logins) {
     $User = Get-ADUser -Filter { sAMAccountName -eq $ADLogin }
-    If ($User  -eq $Null) {
+    If ($User -eq $Null) {
         Write-Host "$ADLogin - User does not exist in AD" -ForegroundColor Red
         Write-Log -Output $LogFileKO -Message "$ADLogin - User does not exist in AD"
     }
