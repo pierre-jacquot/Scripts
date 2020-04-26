@@ -15,7 +15,7 @@
 
 Set-Location -Path "D:\"
 New-Item alias:np -Value "C:\Windows\System32\notepad.exe"
-New-Item alias:np++ -Value "C:\Program Files (x86)\Notepad++\notepad++.exe"
+New-Item alias:np++ -Value "C:\Program Files\Notepad++\notepad++.exe"
 Clear-Host
 
 Function Test-Administrator {
@@ -25,8 +25,8 @@ Function Test-Administrator {
 }
 
 Function Prompt {
-    $Hostname = [Environment]::MachineName
-    $Username = [Environment]::UserName
+    [string]$Hostname = [Environment]::MachineName
+    [string]$Username = [Environment]::UserName
     $Host.UI.RawUI.WindowTitle = "Windows PowerShell > Hostname : $Hostname > Username : $Username"
     Write-Host "I " -NoNewline
     Write-Host "$([char]9829) " -ForegroundColor Red -NoNewline
