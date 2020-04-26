@@ -1,4 +1,4 @@
-DNSName,DNSType,DNSIP,DNSZone,DNSServer
-DNSNAME01,A,192.168.100.3,lab.microsoft.com,SRVDC01
-DNSNAME02,A,192.168.100.4,lab.microsoft.com,SRVDC01
-DNSNAME03,A,192.168.100.5,lab.microsoft.com,SRVDC01
+DNSName;DNSType;DNSIP;DNSZone;DNSServer
+DNSNAME01;A;192.168.100.3;lab.microsoft.com;SRVDC01
+DNSNAME02;A;192.168.100.4;lab.microsoft.com;SRVDC01
+DNSNAME03;A;192.168.100.5;lab.microsoft.com;SRVDC01
