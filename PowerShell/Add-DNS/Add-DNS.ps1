@@ -1,16 +1,16 @@
 <#
 .SYNOPSIS
-    DNS records creation.
+	DNS records creation
 .DESCRIPTION
-    Create multiple DNS records with associated PTR.
+	Create multiple DNS records with associated PTR
 .NOTES
-    File name : Add-DNS.ps1
-    Author : Pierre JACQUOT
-    Date : 07/05/2017
-    Version : 1.0
+	File name : Add-DNS.ps1
+	Author : Pierre JACQUOT
+	Date : 07/05/2017
+	Version : 1.0
 .LINK
-    Website : https://www.pierrejacquot.yo.fr
-    Reference : https://www.pierrejacquot.yo.fr/index.php/scripts/31-script-add-dns
+	Website : https://www.pierrejacquot.yo.fr
+    Reference : https://www.pierrejacquot.yo.fr/index.php/scripts/31-script-add-dns-v1-0
 #>
 
 Clear-Host
@@ -20,39 +20,58 @@ Function Write-Log([string]$Output, [string]$Message) {
     ((Get-Date -UFormat "[%d-%m-%Y %H:%M:%S] ") + $Message) | Out-File -FilePath $Output -Append -Force
 }
 
-$StartTime = Get-Date
-$Hostname = [Environment]::MachineName
-$Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+[datetime]$StartTime = Get-Date
+[string]$Hostname = [Environment]::MachineName
+[string]$Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $Workfolder = Split-Path $script:MyInvocation.MyCommand.Path
 $Date = Get-Date -UFormat "%Y-%m-%d"
 $LogFile = $Workfolder + "\$Date-Add-DNS.log"
-$Records = Import-Csv -Path ".\DNS-Records.csv"
-$LineNumbers = $Records.Count
+$Records = @(Import-Csv -Path ".\DNS-Records.csv" -Delimiter "," -Encoding UTF8)
+[int]$LineNumbers = $Records.Count
+[string]$Activity = "Trying to launch the creation of [$LineNumbers] DNS record(s)"
+[int]$Step = 1
 
 Write-Host "Add-DNS :" -ForegroundColor Black -BackgroundColor Yellow
 Write-Host "Launching the creation of [$LineNumbers] DNS record(s)." -ForegroundColor Cyan
 Write-Host "`r"
 
 ForEach ($Record in $Records) {
-    $RecordName = $Record.DNSName
-    $RecordType = $Record.DNSType
-    $RecordIP = $Record.DNSIP
-    $RecordZone = $Record.DNSZone
-    $RecordServer = $Record.DNSServer
+    [string]$RecordName = $Record.DNSName
+    [string]$RecordType = $Record.DNSType
+    [string]$RecordIP = $Record.DNSIP
+    [string]$RecordZone = $Record.DNSZone
+    [string]$RecordServer = $Record.DNSServer
+    [string]$Status = "Processing [$Step] of [$LineNumbers] - $(([math]::Round((($Step)/$LineNumbers*100),0)))% completed"
+    [string]$CurrentOperation = "Adding DNS record : Name $RecordName - Type : $RecordType - IP : $RecordIP - Zone : $RecordZone - DNS Server : $RecordServer"
+    Write-Progress -Activity $Activity -Status $Status -CurrentOperation $CurrentOperation -PercentComplete ($Step/$LineNumbers*100)
+    $Step++
+    Start-Sleep -Seconds 1
+    Try {
+        [string]$cmdDelete = "DNSCmd $RecordServer /RecordDelete $RecordZone $RecordName $RecordType $RecordIP /f"
+        Write-Host "[DELETE] - Running this command : $cmdDelete" -ForegroundColor Yellow
+        Invoke-Expression $cmdDelete | Out-Null
+        Write-Host "`t[$RecordName - $RecordType - $RecordIP - $RecordZone] has been deleted" -ForegroundColor Green
+        Write-Log -Output $LogFile -Message "[$RecordName - $RecordType - $RecordIP - $RecordZone] has been deleted"
+        Write-Host "`r"
 
-    $cmdDelete = "DNSCmd $RecordServer /RecordDelete $RecordZone $RecordName $RecordType $RecordIP /f"
-    Write-Host "Running the following command : $cmdDelete" -ForegroundColor Yellow
-    Write-Log -Output $LogFile -Message "[$RecordName - $RecordType - $RecordIP - $RecordZone] has been deleted"
-    Invoke-Expression $cmdDelete
-
-    $cmdAdd = "DNSCmd $RecordServer /RecordAdd $RecordZone $RecordName /CreatePTR $RecordType $RecordIP"
-    Write-Host "Running the following command : $cmdAdd" -ForegroundColor Green
-    Write-Log -Output $LogFile -Message "[$RecordName - $RecordType - $RecordIP - $RecordZone] has been added"
-    Invoke-Expression $cmdAdd
+        [string]$cmdAdd = "DNSCmd $RecordServer /RecordAdd $RecordZone $RecordName /CreatePTR $RecordType $RecordIP"
+        Invoke-Expression $cmdAdd | Out-Null
+        Write-Host "[ADD] - Running this command : $cmdAdd" -ForegroundColor Cyan
+        Write-Host "`t[$RecordName - $RecordType - $RecordIP - $RecordZone] has been added" -ForegroundColor Green
+        Write-Log -Output $LogFile -Message "[$RecordName - $RecordType - $RecordIP - $RecordZone] has been added"
+        Write-Host "`r"
+    }
+    Catch {
+        [string]$ErrorMessage = $_.Exception.Message
+        Write-Host "$ErrorMessage" -ForegroundColor Red
+        Write-Log -Output "$LogFile" -Message "$ErrorMessage"
+        Write-Host "`r"
+        Exit
+    }    
 }
 
-$EndTime = Get-Date
-$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
+[datetime]$EndTime = Get-Date
+[decimal]$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
 
 Write-Host "`r"
 Write-Host "Script launched from : " -NoNewline; Write-Host $Hostname -ForegroundColor Red
