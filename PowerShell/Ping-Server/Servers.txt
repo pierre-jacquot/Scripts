@@ -1,3 +1,5 @@
 SRVDC01
 google.fr
 192.168.100.222
+127.0.0.1
+localhost
