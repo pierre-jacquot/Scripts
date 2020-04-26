@@ -14,29 +14,56 @@
 #>
 
 Clear-Host
-Import-Module ActiveDirectory
 
 Function Write-Log([string]$Output, [string]$Message) {
     Write-Verbose $Message
     ((Get-Date -UFormat "[%d-%m-%Y %H:%M:%S] ") + $Message) | Out-File -FilePath $Output -Append -Force
 }
 
-$StartTime = Get-Date
-$Hostname = [Environment]::MachineName
-$Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+[datetime]$StartTime = Get-Date
+[string]$Hostname = [Environment]::MachineName
+[string]$Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $Workfolder = Split-Path $script:MyInvocation.MyCommand.Path
 $Date = Get-Date -UFormat "%Y-%m-%d"
 $LogFileOK = $Workfolder + "\$Date-Users_OK.log"
 $LogFileKO = $Workfolder + "\$Date-Users_KO.log"
 $Logins = (Get-Content -Path ".\Logins.txt")
-$LineNumbers = $Logins.Count
+[int]$LineNumbers = $Logins.Count
+[string]$Activity = "Trying to launch the research of [$LineNumbers] user(s) in AD"
+[int]$Step = 1
 
 Write-Host "Find-User :" -ForegroundColor Black -BackgroundColor Yellow
+Try {
+    Import-Module ActiveDirectory -ErrorAction Stop
+    Write-Host "ActiveDirectory module has been imported." -ForegroundColor Green
+    Write-Log -Output $LogFileOK -Message "ActiveDirectory module has been imported"
+}
+Catch {
+    Write-Warning "The ActiveDirectory module failed to load. Install the module and try again."
+    Write-Log -Output "$LogFileKO" -Message "The ActiveDirectory module failed to load. Install the module and try again"
+    Pause
+    Write-Host "`r"
+    Exit
+}
 Write-Host "Launching the research of [$LineNumbers] user(s) in AD." -ForegroundColor Cyan
 Write-Host "`r"
 
 ForEach ($ADLogin in $Logins) {
-    $User = Get-ADUser -Filter { sAMAccountName -eq $ADLogin }
+    [string]$Status = "Processing [$Step] of [$LineNumbers] - $(([math]::Round((($Step)/$LineNumbers*100),0)))% completed"
+    [string]$CurrentOperation = "Finding AD user : $ADLogin"
+    Write-Progress -Activity $Activity -Status $Status -CurrentOperation $CurrentOperation -PercentComplete ($Step/$LineNumbers*100)
+    $Step++
+    Start-Sleep -Seconds 1
+    Try {
+        $User = Get-ADUser -Filter { sAMAccountName -eq $ADLogin }
+    }
+    Catch {
+        [string]$ErrorMessage = $_.Exception.Message
+        Write-Host "$ErrorMessage" -ForegroundColor Red
+        Write-Host "`r"
+        Write-Log -Output "$LogFileKO" -Message "$ErrorMessage"
+        Exit
+    }
     If ($User -eq $Null) {
         Write-Host "$ADLogin - User does not exist in AD" -ForegroundColor Red
         Write-Log -Output $LogFileKO -Message "$ADLogin - User does not exist in AD"
@@ -47,8 +74,8 @@ ForEach ($ADLogin in $Logins) {
     }
 }
 
-$EndTime = Get-Date
-$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
+[datetime]$EndTime = Get-Date
+[decimal]$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
 
 Write-Host "`r"
 Write-Host "Script launched from : " -NoNewline; Write-Host $Hostname -ForegroundColor Red
