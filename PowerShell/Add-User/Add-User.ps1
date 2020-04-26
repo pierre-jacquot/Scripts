@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    Add AD users.
+    Add AD users
 .DESCRIPTION
-    Add multiple users in an AD group.
+    Add multiple users in AD group(s)
 .NOTES
     File name : Add-User.ps1
     Author : Pierre JACQUOT
@@ -14,43 +14,63 @@
 #>
 
 Clear-Host
-Import-Module ActiveDirectory
 
 Function Write-Log([string]$Output, [string]$Message) {
     Write-Verbose $Message
     ((Get-Date -UFormat "[%d-%m-%Y %H:%M:%S] ") + $Message) | Out-File -FilePath $Output -Append -Force
 }
 
-$StartTime = Get-Date
-$Hostname = [Environment]::MachineName
-$Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+[datetime]$StartTime = Get-Date
+[string]$Hostname = [Environment]::MachineName
+[string]$Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $Workfolder = Split-Path $script:MyInvocation.MyCommand.Path
 $Date = Get-Date -UFormat "%Y-%m-%d"
 $LogFile = $Workfolder + "\$Date-Add-User.log"
-$Records = Import-Csv -Path ".\Add-User.csv"
-$LineNumbers = $Records.Count
+$Records = @(Import-Csv -Path ".\Add-User.csv" -Delimiter "," -Encoding UTF8)
+[int]$LineNumbers = $Records.Count
+[string]$Activity = "Trying to launch the addition of [$LineNumbers] user(s) into AD group(s)"
+[int]$Step = 1
 
 Write-Host "Add-User :" -ForegroundColor Black -BackgroundColor Yellow
-Write-Host "Launching the addition of [$LineNumbers] user(s) into an AD group." -ForegroundColor Cyan
+Try {
+    Import-Module ActiveDirectory -ErrorAction Stop
+    Write-Host "ActiveDirectory module has been imported." -ForegroundColor Green
+    Write-Log -Output $LogFile -Message "ActiveDirectory module has been imported"
+}
+Catch {
+    Write-Warning "The ActiveDirectory module failed to load. Install the module and try again."
+    Write-Log -Output "$LogFile" -Message "The ActiveDirectory module failed to load. Install the module and try again"
+    Pause
+    Write-Host "`r"
+    Exit
+}
+Write-Host "Launching the addition of [$LineNumbers] user(s) into AD group(s)." -ForegroundColor Cyan
 Write-Host "`r"
 
 ForEach ($Record in $Records) {
-    $LoginName = $Record.sAMAccountName
-    $GroupName = $Record.GroupName
+    [string]$LoginName = $Record.sAMAccountName
+    [string]$GroupName = $Record.GroupName
+    [string]$Status = "Processing [$Step] of [$LineNumbers] - $(([math]::Round((($Step)/$LineNumbers*100),0)))% completed"
+    [string]$CurrentOperation = "Adding AD user : $LoginName into the group : $GroupName"
+    Write-Progress -Activity $Activity -Status $Status -CurrentOperation $CurrentOperation -PercentComplete ($Step/$LineNumbers*100)
+    $Step++
+    Start-Sleep -Seconds 1
     Try {
         Add-ADGroupMember -Identity $GroupName -Members $LoginName
         Write-Host "$LoginName has been added into the group : $GroupName" -ForegroundColor Green
         Write-Log -Output $LogFile -Message "$LoginName has been added into the group : $GroupName"
     }
     Catch {
-        $ErrorMessage = $_.Exception.Message
+        [string]$ErrorMessage = $_.Exception.Message
         Write-Host "$ErrorMessage" -ForegroundColor Red
         Write-Log -Output "$LogFile" -Message "$ErrorMessage"
+        Write-Host "`r"
+        Exit
     }
 }
 
-$EndTime = Get-Date
-$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
+[datetime]$EndTime = Get-Date
+[decimal]$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
 
 Write-Host "`r"
 Write-Host "Script launched from : " -NoNewline; Write-Host $Hostname -ForegroundColor Red
