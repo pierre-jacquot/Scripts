@@ -20,38 +20,51 @@ Function Write-Log([string]$Output, [string]$Message) {
     ((Get-Date -UFormat "[%d-%m-%Y %H:%M:%S] ") + $Message) | Out-File -FilePath $Output -Append -Force
 }
 
-$StartTime = Get-Date
-$Hostname = [Environment]::MachineName
-$Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+[datetime]$StartTime = Get-Date
+[string]$Hostname = [Environment]::MachineName
+[string]$Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $Workfolder = Split-Path $script:MyInvocation.MyCommand.Path
 $Date = Get-Date -UFormat "%Y-%m-%d"
 $LogFile = $Workfolder + "\$Date-Purge-Folder.log"
-$SourceFolder = "D:\Scripts\Purge-Folder\Logs"
-$AllFiles = Get-ChildItem -Path $SourceFolder -Recurse | Where-Object { ($_.LastWriteTime -lt (Get-Date).AddDays(-30)) -and ($_.Name -like "Test*") -and ($_.Extension -eq ".txt") }
-$FilesNumber = $AllFiles.Count
+[string]$SourceFolder = "D:\Scripts\Purge-Folder\Logs"
+$AllFiles = Get-ChildItem -Path $SourceFolder -Recurse
+$ConditionFiles = Get-ChildItem -Path $SourceFolder -Recurse | Where-Object { ($_.LastWriteTime -lt (Get-Date).AddDays(-30)) -and ($_.Name -like "Test*") -and ($_.Extension -eq ".txt") }
+[int]$FilesNumber = $AllFiles.Count
+[int]$ConditionFilesNumber = $ConditionFiles.Count
+[string]$Activity = "Trying to launch the deletion of [$ConditionFilesNumber] log file(s)"
+[int]$Step = 1
 
 cd $SourceFolder
 
 Write-Host "Purge-Folder :" -ForegroundColor Black -BackgroundColor Yellow
-Write-Host "Launching the deletion of [$FilesNumber] log file(s)." -ForegroundColor Cyan
+Write-Host "Launching the deletion of [$ConditionFilesNumber] log file(s)." -ForegroundColor Cyan
 Write-Host "`r"
 
 If ($FilesNumber -eq 0) {
-    Write-Host "No file has been removed" -ForegroundColor Green
-    Write-Log -Output "$LogFile" -Message "No file has been removed"
+    Write-Warning "Source folder $SourceFolder is empty"
+    Write-Log -Output "$LogFile" -Message "Source folder $SourceFolder is empty"
+}
+ElseIf ($ConditionFilesNumber -eq 0) {
+    Write-Warning "Source folder $SourceFolder does not contain Test*.txt files older than 30 days"
+    Write-Log -Output "$LogFile" -Message "Source folder $SourceFolder does not contain log files older than 30 days"
 }
 Else {
-    ForEach ($File in $AllFiles) {
-        $FileName = $File.Name
+    ForEach ($File in $ConditionFiles) {
+        [string]$FileName = $File.Name
         $FileLastWriteTime = $File.LastWriteTime
         $FileName | Remove-Item
-        Write-Host "Last modification : $FileLastWriteTime - The file $FileName has been removed" -ForegroundColor Green
-        Write-Log -Output "$LogFile" -Message "Last modification : $FileLastWriteTime - The file $FileName has been removed"
+        [string]$Status = "Processing [$Step] of [$ConditionFilesNumber] - $(([math]::Round((($Step)/$ConditionFilesNumber*100),0)))% completed"
+        [string]$CurrentOperation = "Removing log file :  $FileName - (Last modification : $FileLastWriteTime)"
+        Write-Progress -Activity $Activity -Status $Status -CurrentOperation $CurrentOperation -PercentComplete ($Step/$ConditionFilesNumber*100)
+        $Step++
+        Start-Sleep -Seconds 1
+        Write-Host "The file $FileName has been removed - (Last modification : $FileLastWriteTime)" -ForegroundColor Green
+        Write-Log -Output "$LogFile" -Message "The file $FileName has been removed - (Last modification : $FileLastWriteTime)"
     }
 }
 
-$EndTime = Get-Date
-$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
+[datetime]$EndTime = Get-Date
+[decimal]$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
 
 Write-Host "`r"
 Write-Host "Script launched from : " -NoNewline; Write-Host $Hostname -ForegroundColor Red
