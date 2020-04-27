@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    Account Management Program (ACM) on AD.
+    Account Management Program (ACM) on AD
 .DESCRIPTION
-    Create User, Administrator, Service, Monitoring accounts or groups on AD.
+    Create User, Administrator, Service, Monitoring accounts or groups on AD
 .NOTES
     File name : ACM.ps1
     Author : Pierre JACQUOT
@@ -13,7 +13,14 @@
     Reference : https://www.pierrejacquot.yo.fr/index.php/scripts/23-script-account-manager-acm
 #>
 
-Import-Module ActiveDirectory
+Try {
+    Import-Module ActiveDirectory -ErrorAction Stop
+}
+Catch {
+    Write-Warning "The ActiveDirectory module failed to load. Install the module and try again."
+    Write-Host "`r"
+    Exit
+}
 
 $Restart = $true
 
