@@ -62,7 +62,6 @@ Write-Host "`r"
 [string]$BiosStep = "#01 - [BIOS CONFIGURATION]"
 [string]$Status = "Processing [$Step] of [$TotalStep] - $(([math]::Round((($Step)/$TotalStep*100),0)))% completed"
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $BiosStep -PercentComplete ($Step/$TotalStep*100)
-Start-Sleep -Seconds 1
 Write-Log -Output $LogFile -Message $BiosStep
 Get-WmiObject "Win32_Bios" | Format-Table Manufacturer, @{Name='ReleaseDate';Expression={$_.ConverttoDateTime($_.ReleaseDate)}}, SMBIOSBIOSVersion, SerialNumber | Out-File -FilePath $LogFile -Append -Force
 Write-Host "$BiosStep has been exported" -ForegroundColor Green
@@ -73,7 +72,6 @@ $Step++
 [string]$ComputerStep = "#02 - [COMPUTER CONFIGURATION]"
 [string]$Status = "Processing [$Step] of [$TotalStep] - $(([math]::Round((($Step)/$TotalStep*100),0)))% completed"
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $ComputerStep -PercentComplete ($Step/$TotalStep*100)
-Start-Sleep -Seconds 1
 Write-Log -Output $LogFile -Message $ComputerStep
 Get-WmiObject "Win32_ComputerSystem" | Format-Table Name, Manufacturer, Model, Domain, UserName | Out-File -FilePath $LogFile -Append -Force
 Write-Host "$ComputerStep has been exported" -ForegroundColor Green
@@ -84,7 +82,6 @@ $Step++
 [string]$OSStep = "#03 - [OS CONFIGURATION]"
 [string]$Status = "Processing [$Step] of [$TotalStep] - $(([math]::Round((($Step)/$TotalStep*100),0)))% completed"
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $OSStep -PercentComplete ($Step/$TotalStep*100)
-Start-Sleep -Seconds 1
 Write-Log -Output $LogFile -Message $OSStep
 Get-WmiObject "Win32_OperatingSystem" | Format-List Manufacturer, Caption, CSDVersion, OSArchitecture, Version, BuildNumber, SystemDrive, WindowsDirectory, SystemDirectory, @{Name='InstallDate';Expression={$_.ConverttoDateTime($_.InstallDate)}}, @{Name='LastBootUpTime';Expression={$_.ConverttoDateTime($_.LastBootUpTime)}}, @{Name='LocalDateTime';Expression={$_.ConverttoDateTime($_.LocalDateTime)}} | Out-File -FilePath $LogFile -Append -Force
 Write-Host "$OSStep has been exported" -ForegroundColor Green
@@ -95,7 +92,6 @@ $Step++
 [string]$CPUStep = "#04 - [CPU CONFIGURATION]"
 [string]$Status = "Processing [$Step] of [$TotalStep] - $(([math]::Round((($Step)/$TotalStep*100),0)))% completed"
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $CPUStep -PercentComplete ($Step/$TotalStep*100)
-Start-Sleep -Seconds 1
 Write-Log -Output $LogFile -Message $CPUStep
 Get-WmiObject "Win32_Processor" | Format-Table Name, NumberOfCores, NumberOfLogicalProcessors | Out-File -FilePath $LogFile -Append -Force
 Get-WmiObject "Win32_Processor" | Measure-Object -Property LoadPercentage -Average | Format-Table @{Name="Used CPU (%)";Expression={$_.Average}}, @{Name="Free CPU (%)";Expression={"{0:N0}" -f ((100)-($_.Average))}} | Out-File -FilePath $LogFile -Append -Force
@@ -107,7 +103,6 @@ $Step++
 [string]$RAMStep = "#05 - [RAM CONFIGURATION]"
 [string]$Status = "Processing [$Step] of [$TotalStep] - $(([math]::Round((($Step)/$TotalStep*100),0)))% completed"
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $RAMStep -PercentComplete ($Step/$TotalStep*100)
-Start-Sleep -Seconds 1
 Write-Log -Output $LogFile -Message $RAMStep
 Get-WmiObject "Win32_PhysicalMemory" | Format-Table Manufacturer, Tag, DeviceLocator, Speed, SerialNumber, @{Name="Installed memory (Go)";Expression={$_.Capacity/1024/1024}} | Out-File -FilePath $LogFile -Append -Force
 Get-WmiObject "Win32_OperatingSystem" | Format-Table @{Name="Total Physical Memory (Go)";Expression={"{0:N2}" -f ($_.TotalVisibleMemorySize/1024/1024)}}, @{Name="Used Physical Memory (Go)";Expression={"{0:N2}" -f (($_.TotalVisibleMemorySize/1024/1024)-($_.FreePhysicalMemory/1024/1024))}}, @{Name="Free Physical Memory (Go)";Expression={"{0:N2}" -f ($_.FreePhysicalMemory/1024/1024)}} | Out-File -FilePath $LogFile -Append -Force
@@ -120,7 +115,6 @@ $Step++
 [string]$HDDStep = "#06 - [HDD CONFIGURATION]"
 [string]$Status = "Processing [$Step] of [$TotalStep] - $(([math]::Round((($Step)/$TotalStep*100),0)))% completed"
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $HDDStep -PercentComplete ($Step/$TotalStep*100)
-Start-Sleep -Seconds 1
 Write-Log -Output $LogFile -Message $HDDStep
 Get-WmiObject "Win32_LogicalDisk" -Filter "DriveType=3" | Format-Table FileSystem, DeviceID, VolumeName, @{Name="Total Size (Go)";Expression={"{0:N2}" -f ($_.Size/1GB)}}, @{Name="Used Space (Go)";Expression={"{0:N2}" -f (($_.Size/1GB)-($_.FreeSpace/1GB))}}, @{Name="Free Space (Go)";Expression={"{0:N2}" -f ($_.FreeSpace/1GB)}} | Out-File -FilePath $LogFile -Append -Force
 Get-WmiObject "Win32_Volume" -Filter "DriveType=3" | Format-Table Label, DriveLetter, @{Name="Capacity (Go)";Expression={“{0:N2}” -f ($_.Capacity/1024/1024/1024)}}, @{Name = "Used Space (Go)";Expression={“{0:N2}” -f  (($_.Capacity/1024/1024/1024)-($_.FreeSpace/1024/1024/1024))}}, @{Name="Free Space (Go)";Expression={“{0:N2}” -f ($_.FreeSpace/1024/1024/1024)}}, @{Name = "Used Space (%)";Expression={“{0:N0}” -f  (((($_.Capacity)-($_.FreeSpace))/($_.Capacity))*100)}}, @{Name = "Free Space (%)";Expression={“{0:N0}” -f  ((($_.FreeSpace)/($_.Capacity))*100)}} | Out-File -FilePath $LogFile -Append -Force
@@ -132,7 +126,6 @@ $Step++
 [string]$LanguageStep = "#07 - [REGIONAL & LANGUAGE CONFIGURATION]"
 [string]$Status = "Processing [$Step] of [$TotalStep] - $(([math]::Round((($Step)/$TotalStep*100),0)))% completed"
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $LanguageStep -PercentComplete ($Step/$TotalStep*100)
-Start-Sleep -Seconds 1
 Write-Log -Output $LogFile -Message $LanguageStep
 Get-Culture | Format-Table Parent, NativeName | Out-File -FilePath $LogFile -Append -Force
 Write-Host "$LanguageStep has been exported" -ForegroundColor Green
@@ -143,7 +136,6 @@ $Step++
 [string]$TimeZoneStep = "#08 - [TIMEZONE CONFIGURATION]"
 [string]$Status = "Processing [$Step] of [$TotalStep] - $(([math]::Round((($Step)/$TotalStep*100),0)))% completed"
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $TimeZoneStep -PercentComplete ($Step/$TotalStep*100)
-Start-Sleep -Seconds 1
 Write-Log -Output $LogFile -Message $TimeZoneStep
 Get-WmiObject "Win32_TimeZone" | Format-Table DayLightName, Description | Out-File -FilePath $LogFile -Append -Force
 Write-Host "$TimeZoneStep has been exported" -ForegroundColor Green
@@ -154,7 +146,6 @@ $Step++
 [string]$ShareStep = "#09 - [SHARE CONFIGURATION]"
 [string]$Status = "Processing [$Step] of [$TotalStep] - $(([math]::Round((($Step)/$TotalStep*100),0)))% completed"
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $ShareStep -PercentComplete ($Step/$TotalStep*100)
-Start-Sleep -Seconds 1
 Write-Log -Output $LogFile -Message $ShareStep
 Get-WmiObject "Win32_Share" | Format-Table Name, Path, Description | Out-File -FilePath $LogFile -Append -Force
 Write-Host "$ShareStep has been exported" -ForegroundColor Green
@@ -165,7 +156,6 @@ $Step++
 [string]$NetworkStep = "#10 - [NETWORK CONFIGURATION]"
 [string]$Status = "Processing [$Step] of [$TotalStep] - $(([math]::Round((($Step)/$TotalStep*100),0)))% completed"
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $NetworkStep -PercentComplete ($Step/$TotalStep*100)
-Start-Sleep -Seconds 1
 Write-Log -Output $LogFile -Message $NetworkStep
 Get-WmiObject "Win32_NetworkAdapterConfiguration" -Filter "IPEnabled=True" | Format-List Description, DHCPServer, DNSDomain, DNSServerSearchOrder, IPAddress, DefaultIPGateway, IPSubnet, MACAddress | Out-File -FilePath $LogFile -Append -Force
 Write-Host "$NetworkStep has been exported" -ForegroundColor Green
@@ -176,9 +166,8 @@ $Step++
 [string]$PrinterStep = "#11 - [PRINTER CONFIGURATION]"
 [string]$Status = "Processing [$Step] of [$TotalStep] - $(([math]::Round((($Step)/$TotalStep*100),0)))% completed"
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $PrinterStep -PercentComplete ($Step/$TotalStep*100)
-Start-Sleep -Seconds 1
 Write-Log -Output $LogFile -Message $PrinterStep
-Get-WmiObject "Win32_Printer" -filter "Shared=True" | Format-List Name, SystemName, ShareName, Comment, DriverName, PortName, Status, Shared, Published | Out-File -FilePath $LogFile -Append -Force
+Get-WmiObject "Win32_Printer" | Format-Table Name, SystemName, ShareName, DriverName, PortName, Status, Shared, Published | Out-File -FilePath $LogFile -Append -Force
 Write-Host "$PrinterStep has been exported" -ForegroundColor Green
 "-------------------------------------------------------------------------------" | Out-File -FilePath $LogFile -Append -Force
 "`r" | Out-File -FilePath $LogFile -Append -Force
@@ -187,7 +176,6 @@ $Step++
 [string]$ProcessStep = "#12 - [PROCESS LIST]"
 [string]$Status = "Processing [$Step] of [$TotalStep] - $(([math]::Round((($Step)/$TotalStep*100),0)))% completed"
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $ProcessStep -PercentComplete ($Step/$TotalStep*100)
-Start-Sleep -Seconds 1
 Write-Log -Output $LogFile -Message $ProcessStep
 Get-Process | Sort-Object CPU -Descending | Format-Table | Out-File -FilePath $LogFile -Append -Force
 Write-Host "$ProcessStep has been exported" -ForegroundColor Green
@@ -198,7 +186,6 @@ $Step++
 [string]$ServicesStep = "#13 - [SERVICES LIST]"
 [string]$Status = "Processing [$Step] of [$TotalStep] - $(([math]::Round((($Step)/$TotalStep*100),0)))% completed"
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $ServicesStep -PercentComplete ($Step/$TotalStep*100)
-Start-Sleep -Seconds 1
 Write-Log -Output $LogFile -Message $ServicesStep
 Get-WmiObject "Win32_Service" | Sort-Object State, Name | Format-Table Name, ProcessId, StartMode, State, Status, Description | Out-File -FilePath $LogFile -Append -Force
 Write-Host "$ServicesStep has been exported" -ForegroundColor Green
@@ -209,7 +196,6 @@ $Step++
 [string]$ProgramsStep = "#14 - [PROGRAMS LIST]"
 [string]$Status = "Processing [$Step] of [$TotalStep] - $(([math]::Round((($Step)/$TotalStep*100),0)))% completed"
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $ProgramsStep -PercentComplete ($Step/$TotalStep*100)
-Start-Sleep -Seconds 1
 Write-Log -Output $LogFile -Message $ProgramsStep
 Get-WmiObject "Win32_Product" | Sort-Object InstallDate -Descending | Format-Table Name, Version, InstallDate, InstallLocation, Vendor | Out-File -FilePath $LogFile -Append -Force
 Write-Host "$ProgramsStep has been exported" -ForegroundColor Green
@@ -220,7 +206,6 @@ $Step++
 [string]$UpdatesStep = "#15 - [WINDOWS UPDATES LIST]"
 [string]$Status = "Processing [$Step] of [$TotalStep] - $(([math]::Round((($Step)/$TotalStep*100),0)))% completed"
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $UpdatesStep -PercentComplete ($Step/$TotalStep*100)
-Start-Sleep -Seconds 1
 Write-Log -Output $LogFile -Message $UpdatesStep
 Get-HotFix | Sort-Object InstalledOn -Descending | Format-Table Description, HotFixID, InstalledBy, InstalledOn | Out-File -FilePath $LogFile -Append -Force
 Write-Host "$UpdatesStep has been exported" -ForegroundColor Green
