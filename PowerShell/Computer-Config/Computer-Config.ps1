@@ -166,9 +166,9 @@ Write-Log -Output $LogFile -Message "$PrinterStep has been exported"
 $Step++
 [string]$Status = "Processing [$Step] of [$TotalStep] - $(([math]::Round((($Step)/$TotalStep*100),0)))% completed"
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $ProcessStep -PercentComplete ($Step/$TotalStep*100)
-Write-Log -Output $LogFile -Message $ProcessStep
 [string]$ProcessInfoHTML = Get-Process | Sort-Object CPU -Descending | Select-Object Handles, CPU, ID, SI, ProcessName, StartTime | ConvertTo-Html -As Table -Fragment -PreContent "<h2>$ProcessStep :</h2>"
 Write-Host "$ProcessStep has been exported" -ForegroundColor Green
+Write-Log -Output $LogFile -Message "$ProcessStep has been exported"
 
 $Step++
 [string]$Status = "Processing [$Step] of [$TotalStep] - $(([math]::Round((($Step)/$TotalStep*100),0)))% completed"
