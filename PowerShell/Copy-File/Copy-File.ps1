@@ -19,12 +19,12 @@ chcp 1252 | Out-Null
 [datetime]$StartTime = Get-Date
 [string]$Hostname = [Environment]::MachineName
 [string]$Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-$Workfolder = Split-Path $script:MyInvocation.MyCommand.Path
-$Date = Get-Date -UFormat "%Y-%m-%d"
+[string]$Workfolder = Split-Path $MyInvocation.MyCommand.Path
+[string]$Date = Get-Date -UFormat "%Y-%m-%d"
 [string]$Source = "D:\Scripts\Copy-File\Stockage"
 [string]$Destination = "D:\Scripts\Copy-File\Archivage"
-$LogFile = $Workfolder + "\$Date-Copy-File.log"
-$Items = @(Get-ChildItem -Path $Source -Recurse)
+[string]$LogFile = $Workfolder + "\$Date-Copy-File.log"
+[array]$Items = Get-ChildItem -Path $Source -Recurse
 [int]$ItemsNumbers = $Items.Count
 
 Write-Host "Copy-File :" -ForegroundColor Black -BackgroundColor Yellow
@@ -52,6 +52,7 @@ Write-Host "`r"
 Write-Host "Script launched from : " -NoNewline; Write-Host $Hostname -ForegroundColor Red
 Write-Host "By : " -NoNewline; Write-Host $Login -ForegroundColor Red
 Write-Host "Path : " -NoNewline; Write-Host $Workfolder -ForegroundColor Red
+Write-Host "Log file : " -NoNewline; Write-Host (Split-Path $LogFile -Leaf) -ForegroundColor Red
 Write-Host "Start time : " -NoNewline; Write-Host $StartTime -ForegroundColor Red
 Write-Host "End time : " -NoNewline; Write-Host $EndTime -ForegroundColor Red
 Write-Host "Duration : " -NoNewline; Write-Host $Duration -ForegroundColor Red -nonewline; Write-Host " seconds"
