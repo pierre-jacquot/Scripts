@@ -23,10 +23,10 @@ Function Write-Log([string]$Output, [string]$Message) {
 [datetime]$StartTime = Get-Date
 [string]$Hostname = [Environment]::MachineName
 [string]$Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-$Workfolder = Split-Path $script:MyInvocation.MyCommand.Path
-$Date = Get-Date -UFormat "%Y-%m-%d"
-$LogFile = $Workfolder + "\$Date-Add-User.log"
-$Records = @(Import-Csv -Path ".\Add-User.csv" -Delimiter "," -Encoding UTF8)
+[string]$Workfolder = Split-Path $MyInvocation.MyCommand.Path
+[string]$Date = Get-Date -UFormat "%Y-%m-%d"
+[string]$LogFile = $Workfolder + "\$Date-Add-User.log"
+[array]$Records = Import-Csv -Path ".\Add-User.csv" -Delimiter "," -Encoding UTF8
 [int]$LineNumbers = $Records.Count
 [string]$Activity = "Trying to launch the addition of [$LineNumbers] user(s) into AD group(s)"
 [int]$Step = 1
@@ -76,6 +76,7 @@ Write-Host "`r"
 Write-Host "Script launched from : " -NoNewline; Write-Host $Hostname -ForegroundColor Red
 Write-Host "By : " -NoNewline; Write-Host $Login -ForegroundColor Red
 Write-Host "Path : " -NoNewline; Write-Host $Workfolder -ForegroundColor Red
+Write-Host "Log file : " -NoNewline; Write-Host (Split-Path $LogFile -Leaf) -ForegroundColor Red
 Write-Host "Start time : " -NoNewline; Write-Host $StartTime -ForegroundColor Red
 Write-Host "End time : " -NoNewline; Write-Host $EndTime -ForegroundColor Red
 Write-Host "Duration : " -NoNewline; Write-Host $Duration -ForegroundColor Red -nonewline; Write-Host " seconds"
