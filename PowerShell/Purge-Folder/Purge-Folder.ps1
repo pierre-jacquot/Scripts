@@ -51,13 +51,13 @@ Else {
         [string]$FileName = $File.Name
         $FileLastWriteTime = $File.LastWriteTime
         [string]$Status = "Processing [$Step] of [$ConditionFilesNumber] - $(([math]::Round((($Step)/$ConditionFilesNumber*100),0)))% completed"
-        [string]$CurrentOperation = "Removing log file :  $FileName - (Last modification : $FileLastWriteTime)"
+        [string]$CurrentOperation = "Removing log file :  $FileName - (LastWriteTime : $FileLastWriteTime)"
         Write-Progress -Activity $Activity -Status $Status -CurrentOperation $CurrentOperation -PercentComplete ($Step/$ConditionFilesNumber*100)
         $Step++
         Start-Sleep -Seconds 1
         Remove-Item $File.FullName
-        Write-Host "The file $FileName has been removed - (Last modification : $FileLastWriteTime)" -ForegroundColor Green
-        Write-Log -Output "$LogFile" -Message "The file $FileName has been removed - (Last modification : $FileLastWriteTime)"
+        Write-Host "The file $FileName has been removed - (LastWriteTime : $FileLastWriteTime)" -ForegroundColor Green
+        Write-Log -Output "$LogFile" -Message "The file $FileName has been removed - (LastWriteTime : $FileLastWriteTime)"
     }
 }
 
