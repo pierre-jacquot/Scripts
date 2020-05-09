@@ -13,7 +13,7 @@
     Reference : https://www.pierrejacquot.yo.fr/index.php/scripts/44-configurer-son-profile-sous-windows-powershell-ise
 #>
 
-#Set-Location -Path "D:\"
+Set-Location -Path "D:\"
 New-Item alias:np -Value "C:\Windows\System32\notepad.exe" | Out-Null
 New-Item alias:np++ -Value "C:\Program Files\Notepad++\notepad++.exe" | Out-Null
 Clear-Host
