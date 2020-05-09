@@ -34,8 +34,6 @@ Function Write-Log([string]$Output, [string]$Message) {
 [string]$Activity = "Trying to launch the deletion of [$ConditionFilesNumber] log file(s)"
 [int]$Step = 1
 
-cd $SourceFolder
-
 Write-Host "Purge-Folder :" -ForegroundColor Black -BackgroundColor Yellow
 Write-Host "Launching the deletion of [$ConditionFilesNumber] log file(s)." -ForegroundColor Cyan
 Write-Host "`r"
@@ -52,12 +50,12 @@ Else {
     ForEach ($File in $ConditionFiles) {
         [string]$FileName = $File.Name
         $FileLastWriteTime = $File.LastWriteTime
-        $FileName | Remove-Item
         [string]$Status = "Processing [$Step] of [$ConditionFilesNumber] - $(([math]::Round((($Step)/$ConditionFilesNumber*100),0)))% completed"
         [string]$CurrentOperation = "Removing log file :  $FileName - (Last modification : $FileLastWriteTime)"
         Write-Progress -Activity $Activity -Status $Status -CurrentOperation $CurrentOperation -PercentComplete ($Step/$ConditionFilesNumber*100)
         $Step++
         Start-Sleep -Seconds 1
+        Remove-Item $File.FullName
         Write-Host "The file $FileName has been removed - (Last modification : $FileLastWriteTime)" -ForegroundColor Green
         Write-Log -Output "$LogFile" -Message "The file $FileName has been removed - (Last modification : $FileLastWriteTime)"
     }
