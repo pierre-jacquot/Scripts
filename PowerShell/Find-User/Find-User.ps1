@@ -23,11 +23,11 @@ Function Write-Log([string]$Output, [string]$Message) {
 [datetime]$StartTime = Get-Date
 [string]$Hostname = [Environment]::MachineName
 [string]$Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-$Workfolder = Split-Path $script:MyInvocation.MyCommand.Path
-$Date = Get-Date -UFormat "%Y-%m-%d"
-$LogFileOK = $Workfolder + "\$Date-Users_OK.log"
-$LogFileKO = $Workfolder + "\$Date-Users_KO.log"
-$Logins = (Get-Content -Path ".\Logins.txt")
+[string]$Workfolder = Split-Path $MyInvocation.MyCommand.Path
+[string]$Date = Get-Date -UFormat "%Y-%m-%d"
+[string]$LogFileOK = $Workfolder + "\$Date-Users_OK.log"
+[string]$LogFileKO = $Workfolder + "\$Date-Users_KO.log"
+[array]$Logins = Get-Content -Path ".\Logins.txt"
 [int]$LineNumbers = $Logins.Count
 [string]$Activity = "Trying to launch the research of [$LineNumbers] user(s) in AD"
 [int]$Step = 1
@@ -81,6 +81,12 @@ Write-Host "`r"
 Write-Host "Script launched from : " -NoNewline; Write-Host $Hostname -ForegroundColor Red
 Write-Host "By : " -NoNewline; Write-Host $Login -ForegroundColor Red
 Write-Host "Path : " -NoNewline; Write-Host $Workfolder -ForegroundColor Red
+If ((Test-Path $LogFileOK) -eq $True) {
+    Write-Host "Log file : " -NoNewline; Write-Host (Split-Path $LogFileOK -Leaf) -ForegroundColor Red
+}
+If ((Test-Path $LogFileKO) -eq $True) {
+    Write-Host "Log file : " -NoNewline; Write-Host (Split-Path $LogFileKO -Leaf) -ForegroundColor Red
+}
 Write-Host "Start time : " -NoNewline; Write-Host $StartTime -ForegroundColor Red
 Write-Host "End time : " -NoNewline; Write-Host $EndTime -ForegroundColor Red
 Write-Host "Duration : " -NoNewline; Write-Host $Duration -ForegroundColor Red -nonewline; Write-Host " seconds"
