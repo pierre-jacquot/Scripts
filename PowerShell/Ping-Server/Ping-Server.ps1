@@ -23,11 +23,11 @@ Function Write-Log([string]$Output, [string]$Message) {
 [datetime]$StartTime = Get-Date
 [string]$Hostname = [Environment]::MachineName
 [string]$Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-$Workfolder = Split-Path $script:MyInvocation.MyCommand.Path
-$Date = Get-Date -UFormat "%Y-%m-%d"
-$LogFileOK = $Workfolder + "\$Date-Ping-Server_Success.log"
-$LogFileKO = $Workfolder + "\$Date-Ping-Server_Warning.log"
-$Servers = (Get-Content -Path ".\Servers.txt")
+[string]$Workfolder = Split-Path $MyInvocation.MyCommand.Path
+[string]$Date = Get-Date -UFormat "%Y-%m-%d"
+[string]$LogFileOK = $Workfolder + "\$Date-Ping-Server_Success.log"
+[string]$LogFileKO = $Workfolder + "\$Date-Ping-Server_Warning.log"
+[array]$Servers = Get-Content -Path ".\Servers.txt"
 [int]$LineNumbers = $Servers.Count
 [string]$Activity = "Trying to ping [$LineNumbers] server(s)"
 [int]$Step = 1
@@ -58,6 +58,12 @@ Write-Host "`r"
 Write-Host "Script launched from : " -NoNewline; Write-Host $Hostname -ForegroundColor Red
 Write-Host "By : " -NoNewline; Write-Host $Login -ForegroundColor Red
 Write-Host "Path : " -NoNewline; Write-Host $Workfolder -ForegroundColor Red
+If ((Test-Path $LogFileOK) -eq $True) {
+    Write-Host "Log file : " -NoNewline; Write-Host (Split-Path $LogFileOK -Leaf) -ForegroundColor Red
+}
+If ((Test-Path $LogFileKO) -eq $True) {
+    Write-Host "Log file : " -NoNewline; Write-Host (Split-Path $LogFileKO -Leaf) -ForegroundColor Red
+}
 Write-Host "Start time : " -NoNewline; Write-Host $StartTime -ForegroundColor Red
 Write-Host "End time : " -NoNewline; Write-Host $EndTime -ForegroundColor Red
 Write-Host "Duration : " -NoNewline; Write-Host $Duration -ForegroundColor Red -nonewline; Write-Host " seconds"
