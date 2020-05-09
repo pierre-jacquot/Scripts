@@ -1,0 +1,70 @@
+h1 {
+	font-family: Arial;
+	color: #e68a00;
+	font-size: 28px;
+}
+
+h2 {
+	font-family: Arial;
+	color: #000099;
+	font-size: 16px;
+}
+
+table {
+	font-size: 12px;
+	border: 0px; 
+	font-family: Arial;
+}
+	
+td {
+	padding: 4px;
+	margin: 0px;
+	border: 0;
+}
+	
+th {
+	background: #395870;
+	background: linear-gradient(#49708f, #293f50);
+	color: #ffffff;
+	font-size: 11px;
+	padding: 10px 15px;
+	vertical-align: middle;
+}
+
+tr:nth-child(even) {
+	background: #f0f0f2;
+}
+
+#PostContent {
+	font-family: Arial;
+	font-size: 11px;
+	font-style: italic;
+}
+
+span.PostContentBlue {
+    color: #000099;
+}
+
+.WarningStatus {
+	color: #ffffff;
+	font-weight: bold;
+	background: #ffa500;
+}
+
+.CriticalStatus {
+	color: #ffffff;
+	font-weight: bold;
+	background: #ff0000;
+}
+
+.StopStatus {
+	color: #ffffff;
+	font-weight: bold;
+	background: #ff0000;
+}
+
+.RunningStatus {
+	color: #ffffff;
+	font-weight: bold;
+	background: #008000;
+}
