@@ -23,12 +23,12 @@ Function Write-Log([string]$Output, [string]$Message) {
 [datetime]$StartTime = Get-Date
 [string]$Hostname = [Environment]::MachineName
 [string]$Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-$Workfolder = Split-Path $script:MyInvocation.MyCommand.Path
-$Date = Get-Date -UFormat "%Y-%m-%d"
-$LogFile = $Workfolder + "\$Date-Purge-Folder.log"
+[string]$Workfolder = Split-Path $MyInvocation.MyCommand.Path
+[string]$Date = Get-Date -UFormat "%Y-%m-%d"
+[string]$LogFile = $Workfolder + "\$Date-Purge-Folder.log"
 [string]$SourceFolder = "D:\Scripts\Purge-Folder\Logs"
-$AllFiles = Get-ChildItem -Path $SourceFolder -Recurse
-$ConditionFiles = Get-ChildItem -Path $SourceFolder -Recurse | Where-Object { ($_.LastWriteTime -lt (Get-Date).AddDays(-30)) -and ($_.Name -like "Test*") -and ($_.Extension -eq ".txt") }
+[array]$AllFiles = Get-ChildItem -Path $SourceFolder -Recurse
+[array]$ConditionFiles = Get-ChildItem -Path $SourceFolder -Recurse | Where-Object { ($_.LastWriteTime -lt (Get-Date).AddDays(-30)) -and ($_.Name -like "Test*") -and ($_.Extension -eq ".txt") }
 [int]$FilesNumber = $AllFiles.Count
 [int]$ConditionFilesNumber = $ConditionFiles.Count
 [string]$Activity = "Trying to launch the deletion of [$ConditionFilesNumber] log file(s)"
@@ -46,7 +46,7 @@ If ($FilesNumber -eq 0) {
 }
 ElseIf ($ConditionFilesNumber -eq 0) {
     Write-Warning "Source folder $SourceFolder does not contain Test*.txt files older than 30 days"
-    Write-Log -Output "$LogFile" -Message "Source folder $SourceFolder does not contain log files older than 30 days"
+    Write-Log -Output "$LogFile" -Message "Source folder $SourceFolder does not contain Test*.txt files older than 30 days"
 }
 Else {
     ForEach ($File in $ConditionFiles) {
@@ -70,6 +70,7 @@ Write-Host "`r"
 Write-Host "Script launched from : " -NoNewline; Write-Host $Hostname -ForegroundColor Red
 Write-Host "By : " -NoNewline; Write-Host $Login -ForegroundColor Red
 Write-Host "Path : " -NoNewline; Write-Host $Workfolder -ForegroundColor Red
+Write-Host "Log file : " -NoNewline; Write-Host (Split-Path $LogFile -Leaf) -ForegroundColor Red
 Write-Host "Start time : " -NoNewline; Write-Host $StartTime -ForegroundColor Red
 Write-Host "End time : " -NoNewline; Write-Host $EndTime -ForegroundColor Red
 Write-Host "Duration : " -NoNewline; Write-Host $Duration -ForegroundColor Red -nonewline; Write-Host " seconds"
