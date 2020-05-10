@@ -32,7 +32,7 @@ Function Prompt {
     Write-Host "$([char]9829) " -ForegroundColor Red -NoNewline
     Write-Host "PS " -NoNewline
     Write-Host "> " -ForegroundColor Yellow -NoNewline
-    Write-Host (Get-Date -UFormat "[%d-%m-%Y %H:%M:%S] ") -ForegroundColor Cyan -NoNewline
+    Write-Host (Get-Date -UFormat "[%d/%m/%Y %H:%M:%S] ") -ForegroundColor Cyan -NoNewline
     Write-Host "> " -ForegroundColor Yellow -NoNewline
     Write-Host (Split-Path $PWD -Leaf) -ForegroundColor Green -NoNewline
     If (Test-Administrator -eq $True) {
