@@ -17,10 +17,10 @@ Clear-Host
 
 Function Write-Log([string]$Output, [string]$Message) {
     Write-Verbose $Message
-    ((Get-Date -UFormat "[%d-%m-%Y %H:%M:%S] ") + $Message) | Out-File -FilePath $Output -Append -Force
+    ((Get-Date -UFormat "[%d/%m/%Y %H:%M:%S] ") + $Message) | Out-File -FilePath $Output -Append -Force
 }
 
-[datetime]$StartTime = Get-Date
+$StartTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 [string]$Hostname = [Environment]::MachineName
 [string]$Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 [string]$Workfolder = Split-Path $MyInvocation.MyCommand.Path
@@ -69,7 +69,7 @@ ForEach ($Record in $Records) {
     }
 }
 
-[datetime]$EndTime = Get-Date
+$EndTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 [decimal]$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
 
 Write-Host "`r"
