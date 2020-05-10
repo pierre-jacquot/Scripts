@@ -17,10 +17,10 @@ Clear-Host
 
 Function Write-Log([string]$Output, [string]$Message) {
     Write-Verbose $Message
-    ((Get-Date -UFormat "[%d-%m-%Y %H:%M:%S] ") + $Message) | Out-File -FilePath $Output -Append -Force
+    ((Get-Date -UFormat "[%d/%m/%Y %H:%M:%S] ") + $Message) | Out-File -FilePath $Output -Append -Force
 }
 
-[datetime]$StartTime = Get-Date
+$StartTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 [string]$Hostname = [Environment]::MachineName
 [string]$Login = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 [string]$Workfolder = Split-Path $MyInvocation.MyCommand.Path
@@ -194,7 +194,7 @@ Write-Host "$UpdatesStep has been exported" -ForegroundColor Green
 Write-Log -Output $LogFile -Message "$UpdatesStep has been exported"
 "`r" | Out-File -FilePath $LogFile -Append -Force
 
-[datetime]$EndTime = Get-Date
+$EndTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 [decimal]$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
 
 [string]$Report = ConvertTo-Html -Body "$H1 $BiosInfoHTML $ComputerInfoHTML $OSInfoHTML $CPUInfoHTML1 $CPUInfoHTML2 $RAMInfoHTML1 $RAMInfoHTML2 $DiskInfoHTML $LanguageInfoHTML $TimeZoneInfoHTML $ShareInfoHTML $NetworkInfoHTML $PrinterInfoHTML $ProcessInfoHTML $ServicesInfoHTML $ProgramsInfoHTML $UpdatesInfoHTML" -CssUri ".\Style.css" -Title "[$Date] - Computer Information Report on : $Hostname" -PostContent "<p id='PostContent'>Script launched from : <span class='PostContentBlue'>$Hostname</span><br/>By : <span class='PostContentBlue'>$Login</span><br/>Path : <span class='PostContentBlue'>$Workfolder</span><br/>Log file : <span class='PostContentBlue'>$(Split-Path $LogFile -Leaf)</span><br/>Export file : <span class='PostContentBlue'>$(Split-Path $ExportFile -Leaf)</span><br/>Start time : <span class='PostContentBlue'>$StartTime</span><br/>End time : <span class='PostContentBlue'>$EndTime</span><br/>Duration : <span class='PostContentBlue'>$Duration</span> seconds</p>"
