@@ -12,16 +12,16 @@ h2 {
 
 table {
 	font-size: 12px;
-	border: 0px; 
+	border: 0px;
 	font-family: Arial;
 }
-	
+
 td {
 	padding: 4px;
 	margin: 0px;
 	border: 0;
 }
-	
+
 th {
 	background: #395870;
 	background: linear-gradient(#49708f, #293f50);
@@ -35,14 +35,10 @@ tr:nth-child(even) {
 	background: #f0f0f2;
 }
 
-#PostContent {
-	font-family: Arial;
-	font-size: 11px;
-	font-style: italic;
-}
-
-span.PostContentBlue {
-    color: #000099;
+.CriticalStatus {
+	color: #ffffff;
+	font-weight: bold;
+	background: #ff0000;
 }
 
 .WarningStatus {
@@ -51,20 +47,18 @@ span.PostContentBlue {
 	background: #ffa500;
 }
 
-.CriticalStatus {
-	color: #ffffff;
+.SuccessStatus {
+	background-color: #008000;
 	font-weight: bold;
-	background: #ff0000;
+	color: #ffffff;
 }
 
-.StopStatus {
-	color: #ffffff;
-	font-weight: bold;
-	background: #ff0000;
+#PostContent {
+	font-family: Arial;
+	font-size: 11px;
+	font-style: italic;
 }
 
-.RunningStatus {
-	color: #ffffff;
-	font-weight: bold;
-	background: #008000;
+span.PostContentBlue {
+    color: #000099;
 }
