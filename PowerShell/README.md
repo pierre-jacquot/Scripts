@@ -27,7 +27,7 @@ Voici mon fichier [Microsoft.PowerShell_profile.ps1](Microsoft.PowerShell_profil
 - [x] **Add-DNS**
 - [x] **Get-FolderSize**
 - [x] **Purge-Folder**
-- [o] **Get-Certificate**
+- [ ] **Get-Certificate** -> Working in progress :+1:
 
 ## Licensing :
 The MIT License (MIT)
