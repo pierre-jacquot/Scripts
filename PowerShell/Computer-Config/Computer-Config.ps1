@@ -174,8 +174,8 @@ $Step++
 [string]$Status = "Processing [$Step] of [$TotalStep] - $(([math]::Round((($Step)/$TotalStep*100),0)))% completed"
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $ServicesStep -PercentComplete ($Step/$TotalStep*100)
 [string]$ServicesInfoHTML = Get-CimInstance -ClassName Win32_Service | Sort-Object State, Name | Select-Object Name, DisplayName, ProcessId, StartMode, State | ConvertTo-Html -As Table -Fragment -PreContent "<h2>$ServicesStep :</h2>"
-$ServicesInfoHTML = $ServicesInfoHTML -replace '<td>Running</td>','<td class="RunningStatus">Running</td>'
-$ServicesInfoHTML = $ServicesInfoHTML -replace '<td>Stopped</td>','<td class="StopStatus">Stopped</td>'
+$ServicesInfoHTML = $ServicesInfoHTML -replace '<td>Running</td>','<td class="SuccessStatus">Running</td>'
+$ServicesInfoHTML = $ServicesInfoHTML -replace '<td>Stopped</td>','<td class="CriticalStatus">Stopped</td>'
 Write-Host "$ServicesStep has been exported" -ForegroundColor Green
 Write-Log -Output $LogFile -Message "$ServicesStep has been exported"
 
