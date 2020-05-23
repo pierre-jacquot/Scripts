@@ -23,7 +23,6 @@ td {
 }
 
 th {
-	background: #395870;
 	background: linear-gradient(#49708f, #293f50);
 	color: #ffffff;
 	font-size: 11px;
@@ -32,19 +31,19 @@ th {
 }
 
 tr:nth-child(even) {
-	background: #f0f0f2;
+	background-color: #f0f0f2;
 }
 
 .CriticalStatus {
-	color: #ffffff;
+	background-color: #ff0000;
 	font-weight: bold;
-	background: #ff0000;
+	color: #ffffff;
 }
 
 .WarningStatus {
-	color: #ffffff;
+	background-color: #ffa500;
 	font-weight: bold;
-	background: #ffa500;
+	color: #ffffff;
 }
 
 .SuccessStatus {
