@@ -11,7 +11,6 @@ h2 {
 }
 
 table {
-	font-size: 12px;
 	border: 0px;
 	font-family: Arial;
 }
@@ -19,15 +18,14 @@ table {
 td {
 	padding: 4px;
 	margin: 0px;
-	border: 0;
+	font-size: 12px;
 }
 
 th {
 	background: linear-gradient(#49708f, #293f50);
 	color: #ffffff;
-	font-size: 11px;
+	font-size: 12px;
 	padding: 10px 15px;
-	vertical-align: middle;
 }
 
 tr:nth-child(even) {
