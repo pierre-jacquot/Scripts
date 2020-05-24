@@ -1,15 +1,15 @@
 <#
 .SYNOPSIS
-	Export certificates list with their expiration dates
+    Export certificates list with their expiration dates
 .DESCRIPTION
-	Export certificates list with their expiration dates and sent the HTML report by email
+    Export certificates list with their expiration dates and sent the HTML report by email
 .NOTES
-	File name : Get-Certificate.ps1
-	Author : Pierre JACQUOT
-	Date : 24/05/2020
-	Version : 1.0
+    File name : Get-Certificate.ps1
+    Author : Pierre JACQUOT
+    Date : 24/05/2020
+    Version : 1.0
 .LINK
-	Website : https://www.pierrejacquot.yo.fr
+    Website : https://www.pierrejacquot.yo.fr
     Reference : https://pierrejacquot.yo.fr/index.php/scripts/45-script-get-certificate
 #>
 
