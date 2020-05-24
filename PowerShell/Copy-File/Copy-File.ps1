@@ -1,13 +1,13 @@
 <#
 .SYNOPSIS
-	Copy existing files
+    Copy existing files
 .DESCRIPTION
-	Copy multiple files on a shared folder
+    Copy multiple files on a shared folder
 .NOTES
-	File name : Copy-File.ps1
-	Author : Pierre JACQUOT
-	Date : 13/06/2017
-	Version : 1.0
+    File name : Copy-File.ps1
+    Author : Pierre JACQUOT
+    Date : 13/06/2017
+    Version : 1.0
 .LINK
     Website : https://www.pierrejacquot.yo.fr
     Reference : https://www.pierrejacquot.yo.fr/index.php/scripts/35-script-copy-file-v1-0
