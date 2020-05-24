@@ -1,0 +1,49 @@
+h1 {
+	font-family: Arial;
+	color: #e68a00;
+	font-size: 28px;
+}
+
+h2 {
+	font-family: Arial;
+	color: #000000;
+	font-size: 16px;
+}
+
+p {
+	font-family: Arial;
+	color: #000000;
+	font-size: 12px;
+}
+
+table {
+	border: 0px;
+	font-family: Arial;
+}
+
+td {
+	padding: 4px;
+	margin: 0px;
+	font-size: 12px;
+}
+
+th {
+	background: linear-gradient(#49708f, #293f50);
+	color: #ffffff;
+	font-size: 11px;
+	padding: 10px 15px;
+}
+
+tr:nth-child(even) {
+	background-color: #f0f0f2;
+}
+
+#PostContent {
+	font-family: Arial;
+	font-size: 11px;
+	font-style: italic;
+}
+
+span.PostContentBlue {
+    color: #000099;
+}
