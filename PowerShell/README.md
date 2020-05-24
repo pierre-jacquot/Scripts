@@ -16,6 +16,7 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerShell**.
 | **Copy-File** | [Copy-File.ps1](Copy-File/Copy-File.ps1) |
 | **Create-Zip** | [Create-Zip.ps1](Create-Zip/Create-Zip.ps1) |
 | **Find-User** | [Find-User.ps1](Find-User/Find-User.ps1) |
+| **Get-Certificate** | [Get-Certificate.ps1](Get-Certificate/Get-Certificate.ps1) |
 | **Get-FolderSize** | [Get-FolderSize.ps1](Get-FolderSize/Get-FolderSize.ps1) |
 | **Ping-Server** | [Ping-Server.ps1](Ping-Server/Ping-Server.ps1) |
 | **Purge-Folder** | [Purge-Folder.ps1](Purge-Folder/Purge-Folder.ps1) |
