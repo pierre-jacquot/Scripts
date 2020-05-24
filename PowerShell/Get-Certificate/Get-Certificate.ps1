@@ -94,17 +94,18 @@ If ($CertificatesNumbers -ge 1) {
             Write-Host "`r"
         }
     } Until ($MailPassword -ne "")
+    
+    $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $MailTo, $MailPass
 
     $EndTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
     [decimal]$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
+    
     [string]$PostContent = "<p id='PostContent'>Script launched from : <span class='PostContentBlue'>$Hostname</span><br/>By : <span class='PostContentBlue'>$Login</span><br/>Path : <span class='PostContentBlue'>$Workfolder</span><br/>Export file : <span class='PostContentBlue'>$(Split-Path $ExportFile -Leaf)</span><br/>Start time : <span class='PostContentBlue'>$StartTime</span><br/>End time : <span class='PostContentBlue'>$EndTime</span><br/>Duration : <span class='PostContentBlue'>$Duration</span> seconds</p>"
-
     [string]$Report = ConvertTo-Html -Body "$CertificatesHTML" -Head $Style -PostContent $PostContent
     $Report | Out-File -FilePath $ExportFile -Encoding utf8
     Write-Host "Certificates report has been created : $ExportFile" -ForegroundColor Green
 
     Try {
-        $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $MailTo, $MailPass
         Send-MailMessage -From $MailFrom -to $MailTo -Subject $MailSubject -Body $Report -Priority High -Attachments $ExportFile -SmtpServer $MailSMTPServer -Port $MailSMTPPort -UseSsl -Credential $Credential -BodyAsHtml -Encoding UTF8
         Write-Host "Certificates report with attached file : $(Split-Path $ExportFile -Leaf) has been sent by e-mail" -ForegroundColor Green
     }
