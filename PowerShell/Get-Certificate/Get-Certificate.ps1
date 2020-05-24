@@ -1,16 +1,16 @@
 <#
 .SYNOPSIS
-	Displays certificates list with their expiration dates
+	Export certificates list with their expiration dates
 .DESCRIPTION
-	Displays and exports certificates list with their expiration dates
+	Export certificates list with their expiration dates and sent the HTML report by email
 .NOTES
 	File name : Get-Certificate.ps1
 	Author : Pierre JACQUOT
-	Date : 22/05/2020
+	Date : 24/05/2020
 	Version : 1.0
 .LINK
 	Website : https://www.pierrejacquot.yo.fr
-    Reference : https://www.pierrejacquot.yo.fr/index.php/scripts/
+    Reference : https://pierrejacquot.yo.fr/index.php/scripts/45-script-get-certificate
 #>
 
 Clear-Host
@@ -31,8 +31,8 @@ Write-Host "Launching the export of [$CertificatesNumbers] certificate(s)." -For
 Write-Host "`r"
 
 If ($CertificatesNumbers -ge 1) {
-    [string]$MailFrom = "UserName@mail.fr"
-    [string]$MailTo = "UserName@mail.fr"
+    [string]$MailFrom = "UserName[at]mail.fr"
+    [string]$MailTo = "UserName[at]mail.fr"
     [string]$MailSubject = "[$Date] - Certificate(s) report on : $Hostname"
     [string]$MailSMTPServer = "SMTPServerName"
     [int]$MailSMTPPort = "PortNumber"
