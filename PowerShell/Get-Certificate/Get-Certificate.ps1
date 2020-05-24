@@ -87,7 +87,7 @@ If ($CertificatesNumbers -ge 1) {
     }
 
     Do {
-        $MailPass = Read-Host "Set the password of [$MailTo] mailbox :" -AsSecureString
+        $MailPass = Read-Host "Set the password of [$MailTo] mailbox " -AsSecureString
         $MailPassword = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($MailPass))
         If ($MailPassword -eq "") {
             Write-Host "Password is mandatory !" -ForegroundColor Red
