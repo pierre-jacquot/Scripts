@@ -31,11 +31,11 @@ Write-Host "Launching the export of [$CertificatesNumbers] certificate(s)." -For
 Write-Host "`r"
 
 If ($CertificatesNumbers -ge 1) {
-    [string]$MailFrom = "pierro.jacquot@free.fr"
-    [string]$MailTo = "pierro.jacquot@free.fr"
+    [string]$MailFrom = "UserName@mail.fr"
+    [string]$MailTo = "UserName@mail.fr"
     [string]$MailSubject = "[$Date] - Certificate(s) report on : $Hostname"
-    [string]$MailSMTPServer = "smtp.free.fr"
-    [int]$MailSMTPPort = "587"
+    [string]$MailSMTPServer = "SMTPServerName"
+    [int]$MailSMTPPort = "PortNumber"
 
     [string]$Style="<title>$MailSubject</title>
     <style>
