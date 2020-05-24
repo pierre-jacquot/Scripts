@@ -9,18 +9,18 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerShell**.
 ## Liste des scripts :
 | Nom du script | Téléchargement | Exemple |
 |:---|:---|
-| **ACM** | [ACM.ps1](ACM/ACM.ps1) ||
-| **Add-DNS** | [Add-DNS.ps1](Add-DNS/Add-DNS.ps1) ||
-| **Add-User** | [Add-User.ps1](Add-User/Add-User.ps1) ||
+| **ACM** | [ACM.ps1](ACM/ACM.ps1) | N/A |
+| **Add-DNS** | [Add-DNS.ps1](Add-DNS/Add-DNS.ps1) | N/A |
+| **Add-User** | [Add-User.ps1](Add-User/Add-User.ps1) | N/A |
 | **Computer-Config** | [Computer-Config.ps1](Computer-Config/Computer-Config.ps1) | [Rapport HTML](https://pierrejacquot.yo.fr/2020-05-23-Computer-Config.html) |
-| **Copy-File** | [Copy-File.ps1](Copy-File/Copy-File.ps1) ||
-| **Create-Zip** | [Create-Zip.ps1](Create-Zip/Create-Zip.ps1) ||
-| **Find-User** | [Find-User.ps1](Find-User/Find-User.ps1) ||
-| **Get-Certificate** | [Get-Certificate.ps1](Get-Certificate/Get-Certificate.ps1) ||
+| **Copy-File** | [Copy-File.ps1](Copy-File/Copy-File.ps1) | N/A |
+| **Create-Zip** | [Create-Zip.ps1](Create-Zip/Create-Zip.ps1) | N/A |
+| **Find-User** | [Find-User.ps1](Find-User/Find-User.ps1) | N/A |
+| **Get-Certificate** | [Get-Certificate.ps1](Get-Certificate/Get-Certificate.ps1) | N/A |
 | **Get-FolderSize** | [Get-FolderSize.ps1](Get-FolderSize/Get-FolderSize.ps1) | [Rapport HTML](https://pierrejacquot.yo.fr/2020-05-24-Folders-Report.html) |
-| **Ping-Server** | [Ping-Server.ps1](Ping-Server/Ping-Server.ps1) ||
-| **Purge-Folder** | [Purge-Folder.ps1](Purge-Folder/Purge-Folder.ps1) ||
-| **Remove-User** | [Remove-User.ps1](Remove-User/Remove-User.ps1) ||
+| **Ping-Server** | [Ping-Server.ps1](Ping-Server/Ping-Server.ps1) | N/A |
+| **Purge-Folder** | [Purge-Folder.ps1](Purge-Folder/Purge-Folder.ps1) | N/A |
+| **Remove-User** | [Remove-User.ps1](Remove-User/Remove-User.ps1) | N/A |
 
 Voici mon fichier [Microsoft.PowerShell_profile.ps1](Microsoft.PowerShell_profile.ps1) personnalisé qui est chargé automatiquement à l'ouverture de **PowerShell**.
 
