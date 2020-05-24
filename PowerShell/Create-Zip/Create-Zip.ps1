@@ -1,13 +1,13 @@
 <#
 .SYNOPSIS
-	Zip files creation
+    Zip files creation
 .DESCRIPTION
-	Create multiple zip files on a shared folder
+    Create multiple zip files on a shared folder
 .NOTES
-	File name : Create-Zip.ps1
-	Author : Pierre JACQUOT
-	Date : 08/06/2017
-	Version : 1.0
+    File name : Create-Zip.ps1
+    Author : Pierre JACQUOT
+    Date : 08/06/2017
+    Version : 1.0
 .LINK
     Website : https://www.pierrejacquot.yo.fr
     Reference : https://www.pierrejacquot.yo.fr/index.php/scripts/34-script-create-zip
