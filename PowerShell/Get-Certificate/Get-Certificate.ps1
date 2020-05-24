@@ -37,6 +37,22 @@ If ($CertificatesNumbers -ge 1) {
     [string]$MailSMTPServer = "smtp.free.fr"
     [int]$MailSMTPPort = "587"
 
+    [string]$Style="<title>$MailSubject</title>
+    <style>
+        h1 { font-family: Arial; color: #e68a00; font-size: 28px; }
+        h2 { font-family: Arial; color: #000000; font-size: 16px; }
+        table {	border: 0px; font-family: Arial; }
+        td { padding: 4px; margin: 0px; font-size: 12px; }
+        th { background: linear-gradient(#49708f, #293f50); color: #ffffff; font-size: 11px; padding: 10px 15px; }
+        tr:nth-child(even) { background-color: #f0f0f2; }
+        .ExpiratedStatus { background-color: #000000; font-weight: bold; color: #ffffff; }
+        .CriticalStatus { background-color: #ff0000; font-weight: bold; color: #ffffff; }
+        .WarningStatus { background-color: #ffa500; font-weight: bold; color: #ffffff; }
+        .SuccessStatus { background-color: #008000; font-weight: bold; color: #ffffff; }
+        #PostContent { font-family: Arial; font-size: 11px; font-style: italic; }
+        span.PostContentBlue { color: #000099; }
+    </style>"
+
     [string]$PreContent = "<h1>Certificate(s) overview : $Date</h1><h2>Number of certificate(s) : <span class='PostContentBlue'>$CertificatesNumbers</span> on <span class='PostContentBlue'>$Hostname</span></h2>"
     [string]$CertificatesHTML = (Get-ChildItem -Path Cert:\LocalMachine\Root\ | Sort-Object NotAfter | Select-Object FriendlyName, @{Name="Start date";Expression={$_.NotBefore}}, @{Name="End date";Expression={$_.NotAfter}}, @{Name="Expires in";Expression={($_.NotAfter – (Get-Date)).Days}}, Thumbprint) | ConvertTo-Html -As Table -Fragment -PreContent $PreContent
     
@@ -83,7 +99,7 @@ If ($CertificatesNumbers -ge 1) {
     [decimal]$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
     [string]$PostContent = "<p id='PostContent'>Script launched from : <span class='PostContentBlue'>$Hostname</span><br/>By : <span class='PostContentBlue'>$Login</span><br/>Path : <span class='PostContentBlue'>$Workfolder</span><br/>Export file : <span class='PostContentBlue'>$(Split-Path $ExportFile -Leaf)</span><br/>Start time : <span class='PostContentBlue'>$StartTime</span><br/>End time : <span class='PostContentBlue'>$EndTime</span><br/>Duration : <span class='PostContentBlue'>$Duration</span> seconds</p>"
 
-    [string]$Report = ConvertTo-Html -Body "$CertificatesHTML" -CssUri ".\Style.css" -Title $MailSubject -PostContent $PostContent
+    [string]$Report = ConvertTo-Html -Body "$CertificatesHTML" -Head $Style -PostContent $PostContent
     $Report | Out-File -FilePath $ExportFile -Encoding utf8
     Write-Host "Certificates report has been created : $ExportFile" -ForegroundColor Green
 
