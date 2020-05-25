@@ -28,7 +28,7 @@ $StartTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 [string]$LogFile = $Workfolder + "\$Date-Create-Zip.log"
 [array]$Records = Import-Csv -Path ".\Zip-Records.csv" -Delimiter "," -Encoding UTF8
 [int]$LineNumbers = $Records.Count
-[string]$Activity = "Trying tp launch the creation of [$LineNumbers] zip file(s)"
+[string]$Activity = "Trying to launch the creation of [$LineNumbers] zip file(s)"
 [int]$Step = 1
 
 Write-Host "Create-Zip :" -ForegroundColor Black -BackgroundColor Yellow
