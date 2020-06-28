@@ -27,27 +27,36 @@ $StartTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 [string]$Date = Get-Date -UFormat "%Y-%m-%d"
 [string]$LogFileOK = $Workfolder + "\$Date-Ping-Server_Success.log"
 [string]$LogFileKO = $Workfolder + "\$Date-Ping-Server_Warning.log"
-[array]$Servers = Get-Content -Path ".\Servers.txt"
+[array]$Servers = Get-Content -Path ".\Servers.txt" -ErrorAction SilentlyContinue
 [int]$LineNumbers = $Servers.Count
 [string]$Activity = "Trying to ping [$LineNumbers] server(s)"
 [int]$Step = 1
 
 Write-Host "Ping-Server :" -ForegroundColor Black -BackgroundColor Yellow
-Write-Host "Launching the ping command on [$LineNumbers] server(s)." -ForegroundColor Cyan
-Write-Host "`r"
-
-ForEach ($Server in $Servers) {
-    [string]$Status = "Processing [$Step] of [$LineNumbers] - $(([math]::Round((($Step)/$LineNumbers*100),0)))% completed"
-    [string]$CurrentOperation = "Ping : $Server"
-    Write-Progress -Activity $Activity -Status $Status -CurrentOperation $CurrentOperation -PercentComplete ($Step/$LineNumbers*100)
-    $Step++
-    If (Test-Connection -ComputerName $Server -Count 2 -Quiet) {
-        Write-Host "$Server is alive and Pinging " -ForegroundColor Green
-        Write-Log -Output $LogFileOK -Message "$Server is alive and Pinging"
-    }
-    Else {
-        Write-Warning "$Server seems dead not pinging"
-        Write-Log -Output $LogFileKO -Message "$Server seems dead not pinging"
+If ((Test-Path ".\Servers.txt") -eq $False) {
+    Write-Warning "TXT file [Servers.txt] does not exist."
+    Write-Log -Output $LogFileKO -Message "TXT file [Servers.txt] does not exist."
+}
+ElseIf ($LineNumbers -eq 0) {
+    Write-Warning "TXT file [Servers.txt] is empty."
+    Write-Log -Output $LogFileKO -Message "TXT file [Servers.txt] is empty."
+}
+Else {
+    Write-Host "Launching the ping command on [$LineNumbers] server(s)." -ForegroundColor Cyan
+    Write-Host "`r"
+    ForEach ($Server in $Servers) {
+        [string]$Status = "Processing [$Step] of [$LineNumbers] - $(([math]::Round((($Step)/$LineNumbers*100),0)))% completed"
+        [string]$CurrentOperation = "Ping : $Server"
+        Write-Progress -Activity $Activity -Status $Status -CurrentOperation $CurrentOperation -PercentComplete ($Step/$LineNumbers*100)
+        $Step++
+        If (Test-Connection -ComputerName $Server -Count 2 -Quiet) {
+            Write-Host "$Server is alive and pinging." -ForegroundColor Green
+            Write-Log -Output $LogFileOK -Message "$Server is alive and pinging."
+        }
+        Else {
+            Write-Warning "$Server seems dead not pinging."
+            Write-Log -Output $LogFileKO -Message "$Server seems dead not pinging."
+        }
     }
 }
 
