@@ -27,7 +27,7 @@ $StartTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 [string]$Date = Get-Date -UFormat "%Y-%m-%d"
 [string]$LogFileOK = $Workfolder + "\$Date-Users_OK.log"
 [string]$LogFileKO = $Workfolder + "\$Date-Users_KO.log"
-[array]$Logins = Get-Content -Path ".\Logins.txt"
+[array]$Logins = Get-Content -Path ".\Logins.txt" -ErrorAction SilentlyContinue
 [int]$LineNumbers = $Logins.Count
 [string]$Activity = "Trying to launch the research of [$LineNumbers] user(s) in AD"
 [int]$Step = 1
@@ -36,41 +36,50 @@ Write-Host "Find-User :" -ForegroundColor Black -BackgroundColor Yellow
 Try {
     Import-Module ActiveDirectory -ErrorAction Stop
     Write-Host "ActiveDirectory module has been imported." -ForegroundColor Green
-    Write-Log -Output $LogFileOK -Message "ActiveDirectory module has been imported"
+    Write-Log -Output $LogFileOK -Message "ActiveDirectory module has been imported."
 }
 Catch {
     Write-Warning "The ActiveDirectory module failed to load. Install the module and try again."
-    Write-Log -Output "$LogFileKO" -Message "The ActiveDirectory module failed to load. Install the module and try again"
+    Write-Log -Output $LogFileKO -Message "The ActiveDirectory module failed to load. Install the module and try again."
     Pause
     Write-Host "`r"
     Exit
 }
-Write-Host "Launching the research of [$LineNumbers] user(s) in AD." -ForegroundColor Cyan
-Write-Host "`r"
 
-ForEach ($ADLogin in $Logins) {
-    [string]$Status = "Processing [$Step] of [$LineNumbers] - $(([math]::Round((($Step)/$LineNumbers*100),0)))% completed"
-    [string]$CurrentOperation = "Finding AD user : $ADLogin"
-    Write-Progress -Activity $Activity -Status $Status -CurrentOperation $CurrentOperation -PercentComplete ($Step/$LineNumbers*100)
-    $Step++
-    Start-Sleep -Seconds 1
-    Try {
-        $User = Get-ADUser -Filter { sAMAccountName -eq $ADLogin }
-    }
-    Catch {
-        [string]$ErrorMessage = $_.Exception.Message
-        Write-Host "$ErrorMessage" -ForegroundColor Red
-        Write-Host "`r"
-        Write-Log -Output "$LogFileKO" -Message "$ErrorMessage"
-        Exit
-    }
-    If ($User -eq $Null) {
-        Write-Host "$ADLogin - User does not exist in AD" -ForegroundColor Red
-        Write-Log -Output $LogFileKO -Message "$ADLogin - User does not exist in AD"
-    }
-    Else {
-        Write-host "$ADLogin - User found in AD" -ForegroundColor Green
-        Write-Log -Output $LogFileOK -Message "$ADLogin - User found in AD"
+If ((Test-Path ".\Logins.txt") -eq $False) {
+    Write-Warning "TXT file [Logins.txt] does not exist."
+    Write-Log -Output $LogFileKO -Message "TXT file [Logins.txt] does not exist."
+}
+ElseIf ($LineNumbers -eq 0) {
+    Write-Warning "TXT file [Logins.txt] is empty."
+    Write-Log -Output $LogFileKO -Message "TXT file [Logins.txt] is empty."
+}
+Else {
+    Write-Host "Launching the research of [$LineNumbers] user(s) in AD." -ForegroundColor Cyan
+    Write-Host "`r"
+    ForEach ($ADLogin in $Logins) {
+        [string]$Status = "Processing [$Step] of [$LineNumbers] - $(([math]::Round((($Step)/$LineNumbers*100),0)))% completed"
+        [string]$CurrentOperation = "Finding AD user : $ADLogin"
+        Write-Progress -Activity $Activity -Status $Status -CurrentOperation $CurrentOperation -PercentComplete ($Step/$LineNumbers*100)
+        $Step++
+        Start-Sleep -Seconds 1
+        Try {
+            $User = Get-ADUser -Filter { sAMAccountName -eq $ADLogin }
+        }
+        Catch {
+            [string]$ErrorMessage = $_.Exception.Message
+            Write-Host $ErrorMessage -ForegroundColor Red
+            Write-Host "`r"
+            Write-Log -Output $LogFileKO -Message $ErrorMessage
+        }
+        If ($User -eq $Null) {
+            Write-Host "$ADLogin - User does not exist in AD." -ForegroundColor Red
+            Write-Log -Output $LogFileKO -Message "$ADLogin - User does not exist in AD."
+        }
+        Else {
+            Write-host "$ADLogin - User found in AD." -ForegroundColor Green
+            Write-Log -Output $LogFileOK -Message "$ADLogin - User found in AD."
+        }
     }
 }
 
