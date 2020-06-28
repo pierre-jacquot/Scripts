@@ -26,34 +26,46 @@ $StartTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 [string]$Workfolder = Split-Path $MyInvocation.MyCommand.Path
 [string]$Date = Get-Date -UFormat "%Y-%m-%d"
 [string]$LogFile = $Workfolder + "\$Date-Create-Zip.log"
-[array]$Records = Import-Csv -Path ".\Zip-Records.csv" -Delimiter "," -Encoding UTF8
+Write-Host "Create-Zip :" -ForegroundColor Black -BackgroundColor Yellow
+Try {
+    [array]$Records = Import-Csv -Path ".\Zip-Records.csv" -Delimiter "," -Encoding UTF8
+}
+Catch {
+    [string]$ErrorMessage = $_.Exception.Message
+    Write-Host $ErrorMessage -ForegroundColor Red
+    Write-Log -Output $LogFile -Message $ErrorMessage
+}
 [int]$LineNumbers = $Records.Count
 [string]$Activity = "Trying to launch the creation of [$LineNumbers] zip file(s)"
 [int]$Step = 1
 
-Write-Host "Create-Zip :" -ForegroundColor Black -BackgroundColor Yellow
-Write-Host "Launching the creation of [$LineNumbers] zip file(s)." -ForegroundColor Cyan
-Write-Host "`r"
-
-ForEach ($Record in $Records) {
-    [string]$User = $Record.User
-    [string]$SourceFolder = $Record.SourceFolder+"$User\"
-    [string]$DestinationZip = $Record.DestinationZip+"$Date-Archive-$User.zip"
-    [string]$Status = "Processing [$Step] of [$LineNumbers] - $(([math]::Round((($Step)/$LineNumbers*100),0)))% completed"
-    [string]$CurrentOperation = "Creating zip file : $DestinationZip"
-    Write-Progress -Activity $Activity -Status $Status -CurrentOperation $CurrentOperation -PercentComplete ($Step/$LineNumbers*100)
-    $Step++
-    Start-Sleep -Seconds 1
-    Try {
-        Add-Type -Assembly "System.IO.Compression.FileSystem"
-        [IO.Compression.ZipFile]::CreateFromDirectory($SourceFolder, $DestinationZip)
-        Write-Host "The file $DestinationZip has been created" -ForegroundColor Green
-        Write-Log -Output "$LogFile" -Message "The file $DestinationZip has been created"
-    }
-    Catch {
-        [string]$ErrorMessage = $_.Exception.Message
-        Write-Host "$ErrorMessage" -ForegroundColor Red
-        Write-Log -Output "$LogFile" -Message "$ErrorMessage"
+If ((Test-Path ".\Zip-Records.csv") -eq $True -and $LineNumbers -eq 0) {
+    Write-Warning "CSV file [Zip-Records.csv] is empty."
+    Write-Log -Output $LogFile -Message "CSV file [Zip-Records.csv] is empty."
+}
+ElseIf ($LineNumbers -ge 1) {
+    Write-Host "Launching the creation of [$LineNumbers] zip file(s)." -ForegroundColor Cyan
+    Write-Host "`r"
+    ForEach ($Record in $Records) {
+        [string]$User = $Record.User
+        [string]$SourceFolder = $Record.SourceFolder+"$User\"
+        [string]$DestinationZip = $Record.DestinationZip+"$Date-Archive-$User.zip"
+        [string]$Status = "Processing [$Step] of [$LineNumbers] - $(([math]::Round((($Step)/$LineNumbers*100),0)))% completed"
+        [string]$CurrentOperation = "Creating zip file : $DestinationZip"
+        Write-Progress -Activity $Activity -Status $Status -CurrentOperation $CurrentOperation -PercentComplete ($Step/$LineNumbers*100)
+        $Step++
+        Start-Sleep -Seconds 1
+        Try {
+            Add-Type -Assembly "System.IO.Compression.FileSystem"
+            [IO.Compression.ZipFile]::CreateFromDirectory($SourceFolder, $DestinationZip)
+            Write-Host "The file $DestinationZip has been created." -ForegroundColor Green
+            Write-Log -Output $LogFile -Message "The file $DestinationZip has been created."
+        }
+        Catch {
+            [string]$ErrorMessage = $_.Exception.Message
+            Write-Host $ErrorMessage -ForegroundColor Red
+            Write-Log -Output $LogFile -Message $ErrorMessage
+        }
     }
 }
 
