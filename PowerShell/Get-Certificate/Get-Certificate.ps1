@@ -10,7 +10,7 @@
     Version : 1.0
 .LINK
     Website : https://www.pierrejacquot.yo.fr
-    Reference : https://pierrejacquot.yo.fr/index.php/scripts/45-script-get-certificate
+    Reference : https://www.pierrejacquot.yo.fr/index.php/scripts/45-script-get-certificate
 #>
 
 Clear-Host
@@ -77,7 +77,7 @@ If ($CertificatesNumbers -ge 1) {
             If ($ExpiresinDays -le 10) {
                 $CertificatesHTML = $CertificatesHTML -replace "<td>$(Get-Date $CertifEnd -Format 'dd/MM/yyyy HH:mm:ss')</td><td>$ExpiresinDays</td>","<td class='SuccessStatus'>$(Get-Date $CertifEnd -Format 'dd/MM/yyyy HH:mm:ss')</td><td class='CriticalStatus'>$ExpiresinDays days $($ExpiresinHours):$($ExpiresinMinutes):$($ExpiresinSeconds)</td>"
             }
-            ElseIf (($ExpiresinDays -ge 11) -and ($ExpiresinDays -le 30)) {
+            ElseIf ($ExpiresinDays -ge 11 -and $ExpiresinDays -le 30) {
                 $CertificatesHTML = $CertificatesHTML -replace "<td>$(Get-Date $CertifEnd -Format 'dd/MM/yyyy HH:mm:ss')</td><td>$ExpiresinDays</td>","<td class='SuccessStatus'>$(Get-Date $CertifEnd -Format 'dd/MM/yyyy HH:mm:ss')</td><td class='WarningStatus'>$ExpiresinDays days $($ExpiresinHours):$($ExpiresinMinutes):$($ExpiresinSeconds)</td>"
             }
             Else {
