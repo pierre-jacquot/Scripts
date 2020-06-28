@@ -28,7 +28,7 @@ $StartTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 [string]$LogFile = $Workfolder + "\$Date-Purge-Folder.log"
 [string]$SourceFolder = "D:\Scripts\Purge-Folder\Logs"
 [array]$AllFiles = Get-ChildItem -Path $SourceFolder -Recurse
-[array]$ConditionFiles = Get-ChildItem -Path $SourceFolder -Recurse | Where-Object { ($_.LastWriteTime -lt (Get-Date).AddDays(-30)) -and ($_.Name -like "Test*") -and ($_.Extension -eq ".txt") }
+[array]$ConditionFiles = $AllFiles | Where-Object { ($_.LastWriteTime -lt (Get-Date).AddDays(-30)) -and ($_.Name -like "Test*") -and ($_.Extension -eq ".txt") }
 [int]$FilesNumber = $AllFiles.Count
 [int]$ConditionFilesNumber = $ConditionFiles.Count
 [string]$Activity = "Trying to launch the deletion of [$ConditionFilesNumber] log file(s)"
@@ -39,12 +39,12 @@ Write-Host "Launching the deletion of [$ConditionFilesNumber] log file(s)." -For
 Write-Host "`r"
 
 If ($FilesNumber -eq 0) {
-    Write-Warning "Source folder $SourceFolder is empty"
-    Write-Log -Output "$LogFile" -Message "Source folder $SourceFolder is empty"
+    Write-Warning "Source folder $SourceFolder is empty."
+    Write-Log -Output $LogFile -Message "Source folder $SourceFolder is empty."
 }
 ElseIf ($ConditionFilesNumber -eq 0) {
-    Write-Warning "Source folder $SourceFolder does not contain Test*.txt files older than 30 days"
-    Write-Log -Output "$LogFile" -Message "Source folder $SourceFolder does not contain Test*.txt files older than 30 days"
+    Write-Warning "Source folder $SourceFolder does not contain Test*.txt files older than 30 days."
+    Write-Log -Output $LogFile -Message "Source folder $SourceFolder does not contain Test*.txt files older than 30 days."
 }
 Else {
     ForEach ($File in $ConditionFiles) {
@@ -56,8 +56,8 @@ Else {
         $Step++
         Start-Sleep -Seconds 1
         Remove-Item $File.FullName
-        Write-Host "The file $FileName has been removed - (LastWriteTime : $FileLastWriteTime)" -ForegroundColor Green
-        Write-Log -Output "$LogFile" -Message "The file $FileName has been removed - (LastWriteTime : $FileLastWriteTime)"
+        Write-Host "The file $FileName has been removed - (LastWriteTime : $FileLastWriteTime)." -ForegroundColor Green
+        Write-Log -Output $LogFile -Message "The file $FileName has been removed - (LastWriteTime : $FileLastWriteTime)."
     }
 }
 
