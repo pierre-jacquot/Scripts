@@ -26,46 +26,58 @@ $StartTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 [string]$Workfolder = Split-Path $MyInvocation.MyCommand.Path
 [string]$Date = Get-Date -UFormat "%Y-%m-%d"
 [string]$LogFile = $Workfolder + "\$Date-Remove_User.log"
-[array]$Records = Import-Csv -Path ".\Remove-User.csv" -Delimiter "," -Encoding UTF8
-[int]$LineNumbers = $Records.Count
-[string]$Activity = "Trying to launch the deletion of [$LineNumbers] user(s) into AD group(s)"
-[int]$Step = 1
 
 Write-Host "Remove-User :" -ForegroundColor Black -BackgroundColor Yellow
 Try {
-    Import-Module ActiveDirectory -ErrorAction Stop
+    Import-Module ActiveDirectory -ErrorAction SilentlyContinue
     Write-Host "ActiveDirectory module has been imported." -ForegroundColor Green
-    Write-Log -Output $LogFile -Message "ActiveDirectory module has been imported"
+    Write-Log -Output $LogFile -Message "ActiveDirectory module has been imported."
 }
 Catch {
     Write-Warning "The ActiveDirectory module failed to load. Install the module and try again."
-    Write-Log -Output "$LogFile" -Message "The ActiveDirectory module failed to load. Install the module and try again"
+    Write-Log -Output $LogFile -Message "The ActiveDirectory module failed to load. Install the module and try again."
     Pause
     Write-Host "`r"
     Exit
 }
-Write-Host "Launching the deletion of [$LineNumbers] user(s) from an AD group." -ForegroundColor Cyan
-Write-Host "`r"
+Try {
+    [array]$Records = Import-Csv -Path ".\Remove-User.csv" -Delimiter "," -Encoding UTF8
+}
+Catch {
+    [string]$ErrorMessage = $_.Exception.Message
+    Write-Host $ErrorMessage -ForegroundColor Red
+    Write-Log -Output $LogFile -Message $ErrorMessage
+}
+[int]$LineNumbers = $Records.Count
+[string]$Activity = "Trying to launch the deletion of [$LineNumbers] user(s) into AD group(s)"
+[int]$Step = 1
 
-ForEach ($Record in $Records) {
-    [string]$LoginName = $Record.sAMAccountName
-    [string]$GroupName = $Record.GroupName
-    [string]$Status = "Processing [$Step] of [$LineNumbers] - $(([math]::Round((($Step)/$LineNumbers*100),0)))% completed"
-    [string]$CurrentOperation = "Removing AD user : $LoginName into the group : $GroupName"
-    Write-Progress -Activity $Activity -Status $Status -CurrentOperation $CurrentOperation -PercentComplete ($Step/$LineNumbers*100)
-    $Step++
-    Start-Sleep -Seconds 1
-    Try {
-        Remove-ADGroupMember -Identity $GroupName -Members $LoginName -Confirm:$false
-        Write-Host "$LoginName has been removed of the group : $GroupName" -ForegroundColor Green
-        Write-Log -Output $LogFile -Message "$LoginName has been removed of the group : $GroupName"
-    }
-    Catch {
-        [string]$ErrorMessage = $_.Exception.Message
-        Write-Host "$ErrorMessage" -ForegroundColor Red
-        Write-Log -Output "$LogFile" -Message "$ErrorMessage"
-        Write-Host "`r"
-        Exit
+If ((Test-Path ".\Remove-User.csv") -eq $True -and $LineNumbers -eq 0) {
+    Write-Warning "CSV file [Remove-User.csv] is empty."
+    Write-Log -Output $LogFile -Message "CSV file [Remove-User.csv] is empty."
+}
+ElseIf ($LineNumbers -ge 1) {
+    Write-Host "Launching the deletion of [$LineNumbers] user(s) from an AD group." -ForegroundColor Cyan
+    Write-Host "`r"
+    ForEach ($Record in $Records) {
+        [string]$LoginName = $Record.sAMAccountName
+        [string]$GroupName = $Record.GroupName
+        [string]$Status = "Processing [$Step] of [$LineNumbers] - $(([math]::Round((($Step)/$LineNumbers*100),0)))% completed"
+        [string]$CurrentOperation = "Removing AD user : $LoginName into the group : $GroupName"
+        Write-Progress -Activity $Activity -Status $Status -CurrentOperation $CurrentOperation -PercentComplete ($Step/$LineNumbers*100)
+        $Step++
+        Start-Sleep -Seconds 1
+        Try {
+            Remove-ADGroupMember -Identity $GroupName -Members $LoginName -Confirm:$false
+            Write-Host "$LoginName has been removed of the group : $GroupName." -ForegroundColor Green
+            Write-Log -Output $LogFile -Message "$LoginName has been removed of the group : $GroupName."
+        }
+        Catch {
+            [string]$ErrorMessage = $_.Exception.Message
+            Write-Host $ErrorMessage -ForegroundColor Red
+            Write-Log -Output $LogFile -Message $ErrorMessage
+            Write-Host "`r"
+        }
     }
 }
 
