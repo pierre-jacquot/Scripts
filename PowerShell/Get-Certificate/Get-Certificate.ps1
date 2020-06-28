@@ -21,7 +21,7 @@ $StartTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 [string]$Workfolder = Split-Path $MyInvocation.MyCommand.Path
 [string]$Date = Get-Date -UFormat "%Y-%m-%d"
 [string]$ExportFile = $Workfolder + "\$Date-Certificates-Report.html"
-[array]$Certificates = (Get-ChildItem -Path Cert:\LocalMachine\Root\ | Sort-Object NotAfter | Select-Object FriendlyName, @{Name="Start date";Expression={$_.NotBefore}}, @{Name="End date";Expression={$_.NotAfter}}, @{Name="Expires in";Expression={$_.NotAfter – (Get-Date)}}, Thumbprint)
+[array]$Certificates = Get-ChildItem -Path Cert:\LocalMachine\Root\ | Sort-Object NotAfter | Select-Object FriendlyName, @{Name="Start date";Expression={$_.NotBefore}}, @{Name="End date";Expression={$_.NotAfter}}, @{Name="Expires in";Expression={($_.NotAfter – (Get-Date))}}, Thumbprint
 [int]$CertificatesNumbers = $Certificates.Count
 [string]$Activity = "Trying to launch the export of [$CertificatesNumbers] certificate(s)"
 [int]$Step = 1
@@ -54,7 +54,7 @@ If ($CertificatesNumbers -ge 1) {
     </style>"
 
     [string]$PreContent = "<h1>Certificate(s) overview : $Date</h1><h2>Number of certificate(s) : <span class='PostContentBlue'>$CertificatesNumbers</span> on <span class='PostContentBlue'>$Hostname</span></h2>"
-    [string]$CertificatesHTML = (Get-ChildItem -Path Cert:\LocalMachine\Root\ | Sort-Object NotAfter | Select-Object FriendlyName, @{Name="Start date";Expression={$_.NotBefore}}, @{Name="End date";Expression={$_.NotAfter}}, @{Name="Expires in";Expression={($_.NotAfter – (Get-Date)).Days}}, Thumbprint) | ConvertTo-Html -As Table -Fragment -PreContent $PreContent
+    [string]$CertificatesHTML = Get-ChildItem -Path Cert:\LocalMachine\Root\ | Sort-Object NotAfter | Select-Object FriendlyName, @{Name="Start date";Expression={$_.NotBefore}}, @{Name="End date";Expression={$_.NotAfter}}, @{Name="Expires in";Expression={($_.NotAfter – (Get-Date)).Days}}, Thumbprint | ConvertTo-Html -As Table -Fragment -PreContent $PreContent
     
     ForEach ($Certificate in $Certificates) {
         [string]$CertifName = $Certificate.FriendlyName
@@ -111,7 +111,7 @@ If ($CertificatesNumbers -ge 1) {
     }
     Catch {
         [string]$ErrorMessage = $_.Exception.Message
-        Write-Host "$ErrorMessage" -ForegroundColor Red
+        Write-Host $ErrorMessage -ForegroundColor Red
     }
 }
 
