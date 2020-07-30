@@ -225,7 +225,7 @@ While ($Restart) {
                 }
 
                 Do {
-                    $AccountName = Read-Host "Saisir le nom du compte "
+                    [string]$AccountName = Read-Host "Saisir le nom du compte "
                     If ($AccountName -eq "") {
                         Write-Host "`r"
                         Write-Host "Le nom du compte à créer ne peux pas être vide !" -ForegroundColor Red
