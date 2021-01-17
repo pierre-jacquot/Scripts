@@ -15,7 +15,7 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerCLI** pour VMware.
 ## Licensing :
 The MIT License (MIT)
 
-Copyright (c) 2020 Pierre JACQUOT - https://www.pierrejacquot.yo.fr
+Copyright (c) 2021 Pierre JACQUOT - https://www.pierrejacquot.yo.fr
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
