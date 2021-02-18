@@ -38,6 +38,10 @@ tr:nth-child(even) {
 	background-color: #f0f0f2;
 }
 
+tr:hover {
+	background-color: #ddd;
+}
+
 #PostContent {
 	font-family: Arial;
 	font-size: 11px;
