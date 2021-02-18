@@ -35,7 +35,7 @@ If ($CertificatesNumbers -ge 1) {
     [string]$MailTo = "UserName[at]mail.fr"
     [string]$MailSubject = "[$Date] - Certificate(s) report on : $Hostname"
     [string]$MailSMTPServer = "SMTPServerName"
-    [int]$MailSMTPPort = "SMTPPort"
+    [int]$MailSMTPPort = "PortNumber"
 
     [string]$Style="<title>$MailSubject</title>
     <style>
