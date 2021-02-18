@@ -39,6 +39,10 @@ tr:nth-child(even) {
 	background-color: #f0f0f2;
 }
 
+tr:hover {
+	background-color: #ddd;
+}
+
 .CriticalStatus {
 	background-color: #ff0000;
 	font-weight: bold;
