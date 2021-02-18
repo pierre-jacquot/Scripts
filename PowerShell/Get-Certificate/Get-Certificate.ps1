@@ -31,11 +31,11 @@ Write-Host "Launching the export of [$CertificatesNumbers] certificate(s)." -For
 Write-Host "`r"
 
 If ($CertificatesNumbers -ge 1) {
-    [string]$MailFrom = "UserName[at]mail.fr"
-    [string]$MailTo = "UserName[at]mail.fr"
+    [string]$MailFrom = "pierro.jacquot@free.fr"
+    [string]$MailTo = "pierro.jacquot@free.fr"
     [string]$MailSubject = "[$Date] - Certificate(s) report on : $Hostname"
-    [string]$MailSMTPServer = "SMTPServerName"
-    [int]$MailSMTPPort = "PortNumber"
+    [string]$MailSMTPServer = "smtp.free.fr"
+    [int]$MailSMTPPort = "587"
 
     [string]$Style="<title>$MailSubject</title>
     <style>
@@ -45,6 +45,7 @@ If ($CertificatesNumbers -ge 1) {
         td { padding: 4px; margin: 0px; font-size: 12px; }
         th { background: linear-gradient(#49708f, #293f50); color: #ffffff; font-size: 11px; padding: 10px 15px; }
         tr:nth-child(even) { background-color: #f0f0f2; }
+        tr:hover { background-color: #ddd; }
         .ExpiratedStatus { background-color: #000000; font-weight: bold; color: #ffffff; }
         .CriticalStatus { background-color: #ff0000; font-weight: bold; color: #ffffff; }
         .WarningStatus { background-color: #ffa500; font-weight: bold; color: #ffffff; }
