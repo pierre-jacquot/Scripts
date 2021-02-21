@@ -12,7 +12,7 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerShell**.
 | **ACM** | [ACM.ps1](ACM/ACM.ps1) | |
 | **Add-DNS** | [Add-DNS.ps1](Add-DNS/Add-DNS.ps1) | |
 | **Add-User** | [Add-User.ps1](Add-User/Add-User.ps1) | |
-| **Computer-Config** | [Computer-Config.ps1](Computer-Config/Computer-Config.ps1) | [Rapport HTML](https://www.pierrejacquot.yo.fr/scripts/Computer-Config/2021-02-21-Computer-Config.html) |
+| **Computer-Config** | [Computer-Config.ps1](Computer-Config/Computer-Config.ps1) | [Rapport HTML](https://www.pierrejacquot.yo.fr/scripts/Computer-Config/2021-02-21-Computer-Config-Report.html) |
 | **Copy-File** | [Copy-File.ps1](Copy-File/Copy-File.ps1) | |
 | **Create-Zip** | [Create-Zip.ps1](Create-Zip/Create-Zip.ps1) | |
 | **Find-User** | [Find-User.ps1](Find-User/Find-User.ps1) | |
