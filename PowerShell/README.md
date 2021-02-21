@@ -9,18 +9,18 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerShell**.
 ## Liste des scripts :
 | Nom du script | Téléchargement | Exemple |
 |---|---|---|
-| **ACM** | [ACM.ps1](ACM/ACM.ps1) | |
-| **Add-DNS** | [Add-DNS.ps1](Add-DNS/Add-DNS.ps1) | |
-| **Add-User** | [Add-User.ps1](Add-User/Add-User.ps1) | |
+| **ACM** | [ACM.ps1](ACM/ACM.ps1) | Non disponible |
+| **Add-DNS** | [Add-DNS.ps1](Add-DNS/Add-DNS.ps1) | A venir |
+| **Add-User** | [Add-User.ps1](Add-User/Add-User.ps1) | A venir |
 | **Computer-Config** | [Computer-Config.ps1](Computer-Config/Computer-Config.ps1) | [Rapport HTML](https://www.pierrejacquot.yo.fr/scripts/Computer-Config/2021-02-21-Computer-Config-Report.html) |
-| **Copy-File** | [Copy-File.ps1](Copy-File/Copy-File.ps1) | |
-| **Create-Zip** | [Create-Zip.ps1](Create-Zip/Create-Zip.ps1) | |
-| **Find-User** | [Find-User.ps1](Find-User/Find-User.ps1) | |
+| **Copy-File** | [Copy-File.ps1](Copy-File/Copy-File.ps1) | Non disponible |
+| **Create-Zip** | [Create-Zip.ps1](Create-Zip/Create-Zip.ps1) | Non disponible |
+| **Find-User** | [Find-User.ps1](Find-User/Find-User.ps1) | A venir |
 | **Get-Certificate** | [Get-Certificate.ps1](Get-Certificate/Get-Certificate.ps1) | [Rapport HTML](https://www.pierrejacquot.yo.fr/scripts/Get-Certificate/2021-02-21-Certificates-Report.html) |
 | **Get-FolderSize** | [Get-FolderSize.ps1](Get-FolderSize/Get-FolderSize.ps1) | [Rapport HTML](https://www.pierrejacquot.yo.fr/scripts/Get-FolderSize/2021-02-21-Folders-Report.html) |
 | **Ping-Server** | [Ping-Server.ps1](Ping-Server/Ping-Server.ps1) | [Rapport HTML](https://www.pierrejacquot.yo.fr/scripts/Ping-Server/2021-02-21-Servers-Report.html) |
 | **Purge-Folder** | [Purge-Folder.ps1](Purge-Folder/Purge-Folder.ps1) | [Rapport HTML](https://www.pierrejacquot.yo.fr/scripts/Purge-Folder/2021-02-21-FilesRemoval-Report.html) |
-| **Remove-User** | [Remove-User.ps1](Remove-User/Remove-User.ps1) | |
+| **Remove-User** | [Remove-User.ps1](Remove-User/Remove-User.ps1) | A venir |
 
 Voici mon fichier [Microsoft.PowerShell_profile.ps1](Microsoft.PowerShell_profile.ps1) personnalisé qui est chargé automatiquement à l'ouverture de **PowerShell**.
 
