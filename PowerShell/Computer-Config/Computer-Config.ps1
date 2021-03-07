@@ -26,7 +26,7 @@ $StartTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 [string]$Workfolder = Split-Path $MyInvocation.MyCommand.Path
 [string]$Date = Get-Date -UFormat "%Y-%m-%d"
 [string]$LogFile = $Workfolder + "\$Date-Computer-Config.log"
-[string]$ExportFile = $Workfolder + "\$Date-Computer-Config.html"
+[string]$ReportFile = $Workfolder + "\$Date-Computer-Config-Report.html"
 [string]$BiosStep = "#01 - [BIOS INFORMATION]"
 [string]$ComputerStep = "#02 - [COMPUTER INFORMATION]"
 [string]$OSStep = "#03 - [OPERATING SYSTEM INFORMATION]"
@@ -51,7 +51,8 @@ $StartTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 [string]$Activity = "Trying to launch the configuration export of the computer/server"
 [int]$Step = 1
 [int]$TotalStep = 19
-[string]$H1 = "<h1>[$Date] - Computer Information Report on : $Hostname</h1>"
+[string]$Title = "[$Date] - Computer config report on : $Hostname"
+[string]$TitleHTML = "<h1>$Title</h1>"
 
 Write-Host "Computer-Config :" -ForegroundColor Black -BackgroundColor Yellow
 Write-Host "Launching the configuration export of the computer/server." -ForegroundColor Cyan
@@ -181,7 +182,7 @@ $Step++
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $ProcessStep -PercentComplete ($Step/$TotalStep*100)
 [array]$ProcessInfo = Get-Process | Sort-Object CPU -Descending | Select-Object Handles, CPU, ID, SI, ProcessName, StartTime
 [int]$ProcessNumbers = $ProcessInfo.Count
-[string]$ProcessInfoHTML = $ProcessInfo | ConvertTo-Html -As Table -Fragment -PreContent "<h2>$ProcessStep :</h2><ul><li>Number of processes : <span class='PostContentBlue'><strong>$ProcessNumbers</strong></span></li></ul>"
+[string]$ProcessInfoHTML = $ProcessInfo | ConvertTo-Html -As Table -Fragment -PreContent "<h2>$ProcessStep :</h2><ul><li>Number of processe(s) : <span class='PostContentBlue'><strong>$ProcessNumbers</strong></span></li></ul>"
 Write-Host "$ProcessStep has been exported." -ForegroundColor Green
 Write-Log -Output $LogFile -Message "$ProcessStep has been exported."
 
@@ -193,7 +194,7 @@ Write-Progress -Activity $Activity -Status $Status -CurrentOperation $ServicesSt
 [array]$ServicesRunningInfo = $ServicesInfo | Where-Object {$_.State -eq "Running"}
 [int]$ServicesRunningNumbers = $ServicesRunningInfo.Count
 [int]$ServicesStoppedNumbers = $ServicesNumbers - $ServicesRunningNumbers
-[string]$ServicesInfoHTML = $ServicesInfo | ConvertTo-Html -As Table -Fragment -PreContent "<h2>$ServicesStep :</h2><ul><li>Total number of services : <span class='PostContentBlue'><strong>$ServicesNumbers</strong></span></li><li>Number of running services : <span class='PostContentBlue'><strong>$ServicesRunningNumbers</strong></span></li><li>Number of stopped services : <span class='PostContentBlue'><strong>$ServicesStoppedNumbers</strong></span></li></ul>"
+[string]$ServicesInfoHTML = $ServicesInfo | ConvertTo-Html -As Table -Fragment -PreContent "<h2>$ServicesStep :</h2><ul><li>Total number of service(s) : <span class='PostContentBlue'><strong>$ServicesNumbers</strong></span></li><li>Number of running service(s) : <span class='PostContentBlue'><strong>$ServicesRunningNumbers</strong></span></li><li>Number of stopped service(s) : <span class='PostContentBlue'><strong>$ServicesStoppedNumbers</strong></span></li></ul>"
 $ServicesInfoHTML = $ServicesInfoHTML -replace '<td>Running</td>','<td class="SuccessStatus">Running</td>'
 $ServicesInfoHTML = $ServicesInfoHTML -replace '<td>Stopped</td>','<td class="CriticalStatus">Stopped</td>'
 Write-Host "$ServicesStep has been exported." -ForegroundColor Green
@@ -204,7 +205,7 @@ $Step++
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $ProgramsStep -PercentComplete ($Step/$TotalStep*100)
 [array]$ProgramsInfo = Get-CimInstance -ClassName Win32_Product | Sort-Object InstallDate -Descending | Select-Object Name, Version, @{Name="InstallDate"; Expression={([datetime]::ParseExact($_.InstallDate, 'yyyyMMdd', $null)).toshortdatestring()}}, InstallLocation, Vendor
 [int]$ProgramsNumbers = $ProgramsInfo.Count
-[string]$ProgramsInfoHTML = $ProgramsInfo | ConvertTo-Html -As Table -Fragment -PreContent "<h2>$ProgramsStep :</h2><ul><li>Number of programs : <span class='PostContentBlue'><strong>$ProgramsNumbers</strong></span></li></ul>"
+[string]$ProgramsInfoHTML = $ProgramsInfo | ConvertTo-Html -As Table -Fragment -PreContent "<h2>$ProgramsStep :</h2><ul><li>Number of program(s) : <span class='PostContentBlue'><strong>$ProgramsNumbers</strong></span></li></ul>"
 Write-Host "$ProgramsStep has been exported." -ForegroundColor Green
 Write-Log -Output $LogFile -Message "$ProgramsStep has been exported."
 
@@ -213,7 +214,7 @@ $Step++
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $Programs32Step -PercentComplete ($Step/$TotalStep*100)
 [array]$Programs32Info = Get-ItemProperty $RegKey1 | Where-Object {$_.DisplayName} | Sort-Object -Property InstallDate -Descending | Select-Object DisplayName, DisplayVersion, @{Name="InstallDate"; Expression={([datetime]::ParseExact($_.InstallDate, 'yyyyMMdd', $null)).toshortdatestring()}}, InstallLocation, Publisher
 [int]$Programs32Numbers = $Programs32Info.Count
-[string]$Programs32InfoHTML = $Programs32Info | ConvertTo-Html -As Table -Fragment -PreContent "<h2>$Programs32Step :</h2><ul><li>Number of programs (32 bits) : <span class='PostContentBlue'><strong>$Programs32Numbers</strong></span></li></ul>"
+[string]$Programs32InfoHTML = $Programs32Info | ConvertTo-Html -As Table -Fragment -PreContent "<h2>$Programs32Step :</h2><ul><li>Number of program(s) (32 bits) : <span class='PostContentBlue'><strong>$Programs32Numbers</strong></span></li></ul>"
 Write-Host "$Programs32Step has been exported." -ForegroundColor Green
 Write-Log -Output $LogFile -Message "$Programs32Step has been exported."
 
@@ -222,7 +223,7 @@ $Step++
 Write-Progress -Activity $Activity -Status $Status -CurrentOperation $Programs64Step -PercentComplete ($Step/$TotalStep*100)
 [array]$Programs64Info = Get-ItemProperty $RegKey2 | Where-Object {$_.DisplayName} | Sort-Object -Property InstallDate -Descending | Select-Object DisplayName, DisplayVersion, @{Name="InstallDate"; Expression={([datetime]::ParseExact($_.InstallDate, 'yyyyMMdd', $null)).toshortdatestring()}}, InstallLocation, Publisher
 [int]$Programs64Numbers = $Programs64Info.Count
-[string]$Programs64InfoHTML = $Programs64Info | ConvertTo-Html -As Table -Fragment -PreContent "<h2>$Programs64Step :</h2><ul><li>Number of programs (64 bits) : <span class='PostContentBlue'><strong>$Programs64Numbers</strong></span></li></ul>"
+[string]$Programs64InfoHTML = $Programs64Info | ConvertTo-Html -As Table -Fragment -PreContent "<h2>$Programs64Step :</h2><ul><li>Number of program(s) (64 bits) : <span class='PostContentBlue'><strong>$Programs64Numbers</strong></span></li></ul>"
 Write-Host "$Programs64Step has been exported." -ForegroundColor Green
 Write-Log -Output $LogFile -Message "$Programs64Step has been exported."
 
@@ -239,17 +240,24 @@ Write-Log -Output $LogFile -Message "$UpdatesStep has been exported."
 $EndTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 [decimal]$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
 
-[string]$PostContent = "<p id='PostContent'>Script launched from : <span class='PostContentBlue'>$Hostname</span><br/>By : <span class='PostContentBlue'>$Login</span><br/>Path : <span class='PostContentBlue'>$Workfolder</span><br/>Log file : <span class='PostContentBlue'>$(Split-Path $LogFile -Leaf)</span><br/>Export file : <span class='PostContentBlue'>$(Split-Path $ExportFile -Leaf)</span><br/>Start time : <span class='PostContentBlue'>$StartTime</span><br/>End time : <span class='PostContentBlue'>$EndTime</span><br/>Duration : <span class='PostContentBlue'>$Duration</span> seconds</p>"
-[string]$Report = ConvertTo-Html -Body "$H1 $BiosInfoHTML $ComputerInfoHTML $OSInfoHTML $CPUInfoHTML1 $CPUInfoHTML2 $RAMInfoHTML1 $RAMInfoHTML2 $DiskInfoHTML $LanguageInfoHTML $TimeZoneInfoHTML $ShareInfoHTML $NetworkInfoHTML $PrinterInfoHTML $ProcessInfoHTML $ServicesInfoHTML $ProgramsInfoHTML $Programs32InfoHTML $Programs64InfoHTML $UpdatesInfoHTML" -CssUri ".\Style.css" -Title "[$Date] - Computer Information Report on : $Hostname" -PostContent $PostContent
-$Report | Out-File -FilePath $ExportFile -Encoding utf8
+[string]$PostContent = "<p id='PostContent'>Script launched from : <span class='PostContentBlue'>$Hostname</span><br/>
+By : <span class='PostContentBlue'>$Login</span><br/>
+Path : <span class='PostContentBlue'>$Workfolder</span><br/>
+Log file : <span class='PostContentBlue'>$(Split-Path $LogFile -Leaf)</span><br/>
+Report file : <span class='PostContentBlue'>$(Split-Path $ReportFile -Leaf)</span><br/>
+Start time : <span class='PostContentBlue'>$StartTime</span><br/>
+End time : <span class='PostContentBlue'>$EndTime</span><br/>
+Duration : <span class='PostContentBlue'>$Duration</span> second(s)</p>"
+[string]$Report = ConvertTo-Html -Body "$TitleHTML $BiosInfoHTML $ComputerInfoHTML $OSInfoHTML $CPUInfoHTML1 $CPUInfoHTML2 $RAMInfoHTML1 $RAMInfoHTML2 $DiskInfoHTML $LanguageInfoHTML $TimeZoneInfoHTML $ShareInfoHTML $NetworkInfoHTML $PrinterInfoHTML $ProcessInfoHTML $ServicesInfoHTML $ProgramsInfoHTML $Programs32InfoHTML $Programs64InfoHTML $UpdatesInfoHTML" -CssUri ".\Style.css" -Title $Title -PostContent $PostContent
+$Report | Out-File -FilePath $ReportFile -Encoding utf8
 
 Write-Host "`r"
 Write-Host "Script launched from : " -NoNewline; Write-Host $Hostname -ForegroundColor Red
 Write-Host "By : " -NoNewline; Write-Host $Login -ForegroundColor Red
 Write-Host "Path : " -NoNewline; Write-Host $Workfolder -ForegroundColor Red
 Write-Host "Log file : " -NoNewline; Write-Host (Split-Path $LogFile -Leaf) -ForegroundColor Red
-Write-Host "Export file : " -NoNewline; Write-Host (Split-Path $ExportFile -Leaf) -ForegroundColor Red
+Write-Host "Report file : " -NoNewline; Write-Host (Split-Path $ReportFile -Leaf) -ForegroundColor Red
 Write-Host "Start time : " -NoNewline; Write-Host $StartTime -ForegroundColor Red
 Write-Host "End time : " -NoNewline; Write-Host $EndTime -ForegroundColor Red
-Write-Host "Duration : " -NoNewline; Write-Host $Duration -ForegroundColor Red -nonewline; Write-Host " seconds"
+Write-Host "Duration : " -NoNewline; Write-Host $Duration -ForegroundColor Red -nonewline; Write-Host " second(s)"
 Write-Host "`r"
