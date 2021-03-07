@@ -55,5 +55,5 @@ Write-Host "Path : " -NoNewline; Write-Host $Workfolder -ForegroundColor Red
 Write-Host "Log file : " -NoNewline; Write-Host (Split-Path $LogFile -Leaf) -ForegroundColor Red
 Write-Host "Start time : " -NoNewline; Write-Host $StartTime -ForegroundColor Red
 Write-Host "End time : " -NoNewline; Write-Host $EndTime -ForegroundColor Red
-Write-Host "Duration : " -NoNewline; Write-Host $Duration -ForegroundColor Red -nonewline; Write-Host " seconds"
+Write-Host "Duration : " -NoNewline; Write-Host $Duration -ForegroundColor Red -nonewline; Write-Host " second(s)"
 Write-Host "`r"
