@@ -6,11 +6,11 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerCLI** pour VMware.
 - Licensing
 
 ## Liste des scripts :
-| Nom du script | Téléchargement |
-|:---|:---|
-| **Create-VM** | [Create-VM.ps1](Create-VM/Create-VM.ps1) |
-| **Get-Alerts** | [Get-Alerts.ps1](Get-Alerts/Get-Alerts.ps1) |
-| **Get-Snapshots** | [Get-Snapshots.ps1](Get-Snapshots/Get-Snapshots.ps1) |
+| Nom du script | Téléchargement | Exemple |
+|:---|:---|:---|
+| **Create-VM** | [Create-VM.ps1](Create-VM/Create-VM.ps1) | Non disponible |
+| **Get-Alerts** | [Get-Alerts.ps1](Get-Alerts/Get-Alerts.ps1) | A venir |
+| **Get-Snapshots** | [Get-Snapshots.ps1](Get-Snapshots/Get-Snapshots.ps1) | A venir |
 
 ## Licensing :
 The MIT License (MIT)
