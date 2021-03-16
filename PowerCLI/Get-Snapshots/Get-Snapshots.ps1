@@ -34,8 +34,8 @@ Try {
     Write-Host "Connected on the VMware vCenter Server : $Connexion" -ForegroundColor Green
 }
 Catch {
-	Write-Host "[ERROR] : Unable to connect on the VMware vCenter Server" -ForegroundColor Red
-	Exit
+    Write-Host "[ERROR] : Unable to connect on the VMware vCenter Server" -ForegroundColor Red
+    Exit
 }
 
 # Retrieves and count VM snapshot(s) on the VMware vCenter Server
