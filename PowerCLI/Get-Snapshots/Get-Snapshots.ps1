@@ -30,7 +30,7 @@ Write-Host "Get-Snapshots :" -ForegroundColor Black -BackgroundColor Yellow
 
 # Trying to connect to the VMware vCenter Server
 Try {
-	$Connexion = Connect-VIServer -Server $vCenter
+    $Connexion = Connect-VIServer -Server $vCenter
     Write-Host "Connected on the VMware vCenter Server : $Connexion" -ForegroundColor Green
 }
 Catch {
