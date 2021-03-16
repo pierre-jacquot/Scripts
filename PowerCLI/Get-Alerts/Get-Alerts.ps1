@@ -23,7 +23,7 @@ $StartTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 [string]$Date = Get-Date -UFormat "%Y-%m-%d"
 [string]$CSVFile = ".\$Date-Alerts-Export.csv"
 [string]$ReportFile = ".\$Date-Alerts-Report.html"
-[string]$vCenter = "vcenter-vsphere.gironde-habitat.fr"
+[string]$vCenter = "vCenterServerName"
 [string]$Table = $Null
 [System.Collections.ArrayList]$AlertList = @()
 
