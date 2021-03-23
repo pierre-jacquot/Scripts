@@ -24,22 +24,21 @@ $StartTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 [string]$CSVFile = $Workfolder + "\$Date-Snapshots-Export.csv"
 [string]$ReportFile = $Workfolder + "\$Date-Snapshots-Report.html"
 [string]$vCenter = "vCenterServerName"
-[string]$Table = $Null
 
 Write-Host "Get-Snapshots :" -ForegroundColor Black -BackgroundColor Yellow
 
 # Trying to connect to the VMware vCenter Server
 Try {
-    $Connexion = Connect-VIServer -Server $vCenter
+	$Connexion = Connect-VIServer -Server $vCenter
     Write-Host "Connected on the VMware vCenter Server : $Connexion" -ForegroundColor Green
 }
 Catch {
-    Write-Host "[ERROR] : Unable to connect on the VMware vCenter Server" -ForegroundColor Red
-    Exit
+	Write-Host "[ERROR] : Unable to connect on the VMware vCenter Server" -ForegroundColor Red
+	Exit
 }
 
 # Retrieves and count VM snapshot(s) on the VMware vCenter Server
-[array]$Snapshots = (Get-VM | Get-Snapshot | Sort-Object Created -Descending | Select-Object VM, @{Name="SizeGB";Expression={"{0:N2}" -f $_.SizeGB}}, Created, Name, Description)
+[array]$Snapshots = Get-VM | Get-Snapshot | Select-Object Created, VM, @{Name="SizeGB";Expression={"{0:N2}" -f $_.SizeGB}}, Name, Description | Sort-Object SizeGB
 [int]$SnapshotsNumber = $Snapshots.Count
 
 If ($SnapshotsNumber -ge 1) {
@@ -50,67 +49,45 @@ If ($SnapshotsNumber -ge 1) {
     [string]$MailSubject = "[$Date] - [VMware] - Snapshot(s) daily report on : $vCenter"
     [string]$MailSMTPServer = "SMTPServerName"
 
-    [string]$MailBody = '<html>'
-    $MailBody += '<head>'
-    $MailBody += "<title>$MailSubject</title>"
-    $MailBody += '<style type="text/css">'
-    $MailBody += 'h1 { font-family: Arial; color: #e68a00; font-size: 28px; }'
-    $MailBody += 'h2 { font-family: Arial; color: #000000; font-size: 16px; }'
-    $MailBody += '.customTable { border: 1px solid #000000; }'
-    $MailBody += '.customTable table { border-collapse: collapse; border-spacing: 0; margin: 0px; padding: 0px; }'
-    $MailBody += '.customTable th { background-color: #d3e5d4; font-size: 14px; font-family: Arial; font-weight: bold; }'
-    $MailBody += '.customTable td { font-size: 13px; font-family: Arial; }'
-    $MailBody += '.customTable tr:nth-child(even) { background-color: #f0f0f2; }'
-    $MailBody += '.customTable tr:hover { background-color: #ddd; }'
-    $MailBody += '#PostInfo { font-family: Arial; font-size: 11px; font-style: italic; }'
-    $MailBody += 'span.Info { color: #000099; }'
-    $MailBody += '</style>'
-    $MailBody += '</head>'
+    [string]$Style="<title>$MailSubject</title>
+    <style>
+        h1 { font-family: Arial; color: #e68a00; font-size: 28px; }
+        h2 { font-family: Arial; color: #000000; font-size: 16px; }
+        table { border-collapse: collapse; }
+        td, th { border: 1px solid #000000; }
+        td { font-size: 13px; font-family: Arial; }
+        th { background-color: #d3e5d4; font-size: 14px; font-family: Arial; font-weight: bold; text-align: left; }
+        tr:nth-child(even) { background-color: #f0f0f2; }
+        tr:hover { background-color: #ddd; }
+        .CriticalStatus { background-color: #ff0000; font-weight: bold; color: #ffffff; }
+        .WarningStatus { background-color: #ffa500; font-weight: bold; color: #ffffff; }
+        #PostContent { font-family: Arial; font-size: 11px; font-style: italic; }
+        span.PostContentBlue { color: #000099; }
+    </style>"
 
-    $MailBody += '<body>'
-    $MailBody += "<h1>$MailSubject</h1>"
-    $MailBody += "<h2>Number of snapshot(s) : <span class='Info'>$SnapshotsNumber</span></h2>"
-
-    # Prepare Table
-    $Table += '<table class="customTable">'
-    $Table += "<tr><th>VM</th><th>SizeGB</th><th>Created</th><th>Name</th><th>Description</th></tr>"
-
-    Foreach ($Snapshot in $Snapshots) {
-        [string]$SnapVM = ($Snapshot.VM).Name
-        $SnapSizeGB = "{0:N2}" -f $Snapshot.SizeGB
-        $SnapCreated = $Snapshot.Created
-        [string]$SnapName = $Snapshot.Name
-        [string]$SnapDescription = $Snapshot.Description
-
-        $Table += "<tr><td>$SnapVM</td><td>$SnapSizeGB</td><td>$SnapCreated</td><td>$SnapName</td><td>$SnapDescription</td></tr>"
-    }
-
-    $Table += "</table>"
-
+    $Snapshots | Format-Table -AutoSize
     $Snapshots | Export-Csv -Path $CSVFile -NoTypeInformation -Delimiter ";" -Encoding UTF8
+    
     $EndTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
     [decimal]$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
 
-    [string]$Info = "<p id='PostInfo'>Script launched from : <span class='Info'>$Hostname</span><br/>
-    By : <span class='Info'>$Login</span><br/>
-    Path : <span class='Info'>$Workfolder</span><br/>
-    CSV file : <span class='Info'>$(Split-Path $CSVFile -Leaf)</span><br/>
-    Report file : <span class='Info'>$(Split-Path $ReportFile -Leaf)</span><br/>
-    Start time : <span class='Info'>$StartTime</span><br/>
-    End time : <span class='Info'>$EndTime</span><br/>
-    Duration : <span class='Info'>$Duration</span> second(s)</p>"
+    [string]$PreContent = "<h1>$MailSubject</h1>
+    <h2>Number of snapshot(s) : <span class='PostContentBlue'>$SnapshotsNumber</span></h2>"
+    [string]$PostContent = "<p id='PostContent'>Script launched from : <span class='PostContentBlue'>$Hostname</span><br/>
+    By : <span class='PostContentBlue'>$Login</span><br/>
+    Path : <span class='PostContentBlue'>$Workfolder</span><br/>
+    CSV file : <span class='PostContentBlue'>$(Split-Path $CSVFile -Leaf)</span><br/>
+    Report file : <span class='PostContentBlue'>$(Split-Path $ReportFile -Leaf)</span><br/>
+    Start time : <span class='PostContentBlue'>$StartTime</span><br/>
+    End time : <span class='PostContentBlue'>$EndTime</span><br/>
+    Duration : <span class='PostContentBlue'>$Duration</span> second(s)</p>"
 
-    $MailBody += $Table
-    $MailBody += $Info
-    $MailBody += '</body>'
-    $MailBody += '</html>'
-
-    $MailBody | Out-File -FilePath $ReportFile
-
-    $Snapshots | Format-Table
+    [string]$Report = $Snapshots | ConvertTo-Html -As Table -Head $Style -PreContent $PreContent -PostContent $PostContent
+    $Report | Out-File -FilePath $ReportFile -Encoding utf8
+    Write-Host "[VMware] - Snapshot(s) report has been created : $ReportFile" -ForegroundColor Green
 
     Try {
-        Send-MailMessage -From $MailFrom -To $MailTo -Cc $MailCc -Subject $MailSubject -Body $MailBody -Priority High -Attachments $ReportFile -SmtpServer $MailSMTPServer -BodyAsHtml -Encoding UTF8
+        Send-MailMessage -From $MailFrom -To $MailTo -Cc $MailCc -Subject $MailSubject -Body $Report -Priority High -Attachments $ReportFile -SmtpServer $MailSMTPServer -BodyAsHtml -Encoding UTF8
         Write-Host "VM snapshot(s) report with attached file : $(Split-Path $ReportFile -Leaf) has been sent by e-mail" -ForegroundColor Green
     }
     Catch {
