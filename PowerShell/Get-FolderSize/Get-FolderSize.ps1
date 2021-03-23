@@ -60,7 +60,7 @@ Else {
         $FolderSizeInMB = "{0:N3}" -f ($FolderSize.Sum / 1MB)
         $FolderSizeInGB = "{0:N3}" -f ($FolderSize.Sum / 1GB)
 
-        $FolderObject = [PSCustomObject]@{
+        $ParamList = [PSCustomObject]@{
             FolderName = $FolderBaseName
             "Size (Bytes)" = $FolderSize.Sum
             "Size (MB)" = $FolderSizeInMB
@@ -68,7 +68,7 @@ Else {
             CreationTime = $FolderCreationTime
             LastWriteTime = $FolderLastWriteTime
         }
-        $FolderList.Add($FolderObject) | Out-Null
+        $FolderList.Add($ParamList) | Out-Null
     }
 }
 
@@ -94,6 +94,7 @@ Report file : <span class='PostContentBlue'>$(Split-Path $ReportFile -Leaf)</spa
 Start time : <span class='PostContentBlue'>$StartTime</span><br/>
 End time : <span class='PostContentBlue'>$EndTime</span><br/>
 Duration : <span class='PostContentBlue'>$Duration</span> second(s)</p>"
+
 [string]$Report = $FoldersList | ConvertTo-Html -As Table -CssUri ".\Style.css" -Title $Title -PreContent $PreContent -PostContent $PostContent
 $Report | Out-File -FilePath $ReportFile -Encoding utf8
 
