@@ -64,17 +64,19 @@ Else {
             Write-Warning "$Server seems dead not pinging."
             Write-Log -Output $LogFileKO -Message "$Server seems dead not pinging."
         }
-        $ServerObject = [PSCustomObject]@{
+        $ParamList = [PSCustomObject]@{
             "Hostname / IP" = $Server
             Status = $ServerStatus
         }
-        $ServerList.Add($ServerObject) | Out-Null
+        $ServerList.Add($ParamList) | Out-Null
     }
 }
 
 $ServerList | Export-Csv -Path $CSVFile -NoTypeInformation -Delimiter ";" -Encoding UTF8
+
 $EndTime = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
 [decimal]$Duration = [math]::Round((New-TimeSpan -Start $StartTime -End $EndTime).TotalSeconds,2)
+
 [string]$PreContent = "<h1>$Title</h1>
 <h2>Number of server(s) : <span class='PostContentBlue'>$LineNumbers</span></h2>"
 [string]$SuccessLogFile = "Success log file : <span class='PostContentBlue'>$(Split-Path $LogFileOK -Leaf)</span><br/>"
@@ -94,6 +96,7 @@ $(If ((Test-Path $LogFileKO) -eq $True) {
 Start time : <span class='PostContentBlue'>$StartTime</span><br/>
 End time : <span class='PostContentBlue'>$EndTime</span><br/>
 Duration : <span class='PostContentBlue'>$Duration</span> second(s)</p>"
+
 [string]$Report = $ServerList | ConvertTo-Html -As Table -CssUri ".\Style.css" -Title $Title -PreContent $PreContent -PostContent $PostContent
 $Report = $Report -replace '<td>OK</td>','<td class="SuccessStatus">OK</td>'
 $Report = $Report -replace '<td>KO</td>','<td class="CriticalStatus">KO</td>'
