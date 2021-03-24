@@ -1,4 +1,4 @@
-# Badges
+# Badges :
 [![GitHub author](https://img.shields.io/badge/Author-Pierre%20JACQUOT-orange.svg?logo=android)](https://github.com/pierre-jacquot)
 [![Blog website](https://img.shields.io/website-up-down-green-red/https/pierrejacquot.yo.fr.svg?logo=joomla)](https://www.pierrejacquot.yo.fr)
 [![GitHub website](https://img.shields.io/website-up-down-green-red/https/github.com/pierre-jacquot.svg?logo=github)](https://github.com/pierre-jacquot)
@@ -19,7 +19,7 @@
 [![GitHub followers](https://img.shields.io/github/followers/pierre-jacquot.svg?label=Follow&logo=myspace)](https://github.com/pierre-jacquot?tab=followers)
 [![GitHub badges](https://img.shields.io/badge/Badges-19-ff6799.svg?logo=f-secure)](https://github.com/pierre-jacquot/Scripts)
 
-# Scripts
+# Scripts :
 Ce répertoire contient l'ensemble de mes scripts en **PowerShell / PowerCLI**.
 
 ## Catégories :
