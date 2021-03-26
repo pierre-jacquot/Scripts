@@ -1,6 +1,6 @@
 # Badges :
 [![GitHub author](https://img.shields.io/badge/Author-Pierre%20JACQUOT-orange.svg?logo=android)](https://github.com/pierre-jacquot)
-[![Blog website](https://img.shields.io/website-up-down-green-red/https/pierrejacquot.yo.fr.svg?logo=joomla)](https://www.pierrejacquot.yo.fr)
+[![Blog website](https://img.shields.io/website-up-down-green-red/https/pierrejacquot.go.yo.fr.svg?logo=joomla)](https://www.pierrejacquot.yo.fr)
 [![GitHub website](https://img.shields.io/website-up-down-green-red/https/github.com/pierre-jacquot.svg?logo=github)](https://github.com/pierre-jacquot)
 [![GitHub license](https://img.shields.io/github/license/pierre-jacquot/Scripts.svg?logo=hackhands)](https://github.com/pierre-jacquot/Scripts/blob/master/LICENSE)
 [![GitHub maintenance](https://img.shields.io/badge/Maintained-Yes-green.svg?logo=serverfault)](https://github.com/pierre-jacquot/Scripts/graphs/commit-activity)
