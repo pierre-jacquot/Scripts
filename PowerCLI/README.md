@@ -9,8 +9,8 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerCLI** pour VMware.
 | Nom du script | Téléchargement | Exemple |
 |:---|:---|:---|
 | **Create-VM** | [Create-VM.ps1](Create-VM/Create-VM.ps1) | Non disponible |
-| **Get-Alerts** | [Get-Alerts.ps1](Get-Alerts/Get-Alerts.ps1) | [Rapport HTML](https://www.pierrejacquot.yo.fr/scripts/Get-Alerts/2021-03-17-Alerts-Report.html) |
-| **Get-Snapshots** | [Get-Snapshots.ps1](Get-Snapshots/Get-Snapshots.ps1) | [Rapport HTML](https://www.pierrejacquot.yo.fr/scripts/Get-Snapshots/2021-03-17-Snapshots-Report.html) |
+| **Get-Alerts** | [Get-Alerts.ps1](Get-Alerts/Get-Alerts.ps1) | [Rapport HTML](https://www.pierrejacquot.go.yo.fr/scripts/Get-Alerts/2021-03-17-Alerts-Report.html) |
+| **Get-Snapshots** | [Get-Snapshots.ps1](Get-Snapshots/Get-Snapshots.ps1) | [Rapport HTML](https://www.pierrejacquot.go.yo.fr/scripts/Get-Snapshots/2021-03-17-Snapshots-Report.html) |
 
 ## Licensing :
 The MIT License (MIT)
