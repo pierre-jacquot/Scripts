@@ -9,8 +9,8 @@
     Date : 10/11/2015
     Version : 1.0
 .LINK
-    Website : https://www.pierrejacquot.yo.fr
-    Reference : https://www.pierrejacquot.yo.fr/index.php/scripts/25-script-computer-config
+    Website : https://www.pierrejacquot.go.yo.fr
+    Reference : https://www.pierrejacquot.go.yo.fr/index.php/scripts/25-script-computer-config
 #>
 
 Clear-Host
