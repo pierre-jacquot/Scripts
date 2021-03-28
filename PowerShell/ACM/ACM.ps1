@@ -9,8 +9,8 @@
     Date : 13/10/2015
     Version : 1.0
 .LINK
-    Website : https://www.pierrejacquot.yo.fr
-    Reference : https://www.pierrejacquot.yo.fr/index.php/scripts/23-script-account-manager-acm
+    Website : https://www.pierrejacquot.go.yo.fr
+    Reference : https://www.pierrejacquot.go.yo.fr/index.php/scripts/23-script-account-manager-acm
 #>
 
 Function Write-Log([string]$Output, [string]$Message) {
