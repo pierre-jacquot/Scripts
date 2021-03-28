@@ -9,8 +9,8 @@
     Date : 16/05/2016
     Version : 1.0
 .LINK
-    Website : https://www.pierrejacquot.yo.fr
-    Reference : https://www.pierrejacquot.yo.fr/index.php/scripts/27-script-add-user
+    Website : https://www.pierrejacquot.go.yo.fr
+    Reference : https://www.pierrejacquot.go.yo.fr/index.php/scripts/27-script-add-user
 #>
 
 Clear-Host
