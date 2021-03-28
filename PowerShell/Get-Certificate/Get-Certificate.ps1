@@ -9,8 +9,8 @@
     Date : 24/05/2020
     Version : 1.0
 .LINK
-    Website : https://www.pierrejacquot.yo.fr
-    Reference : https://www.pierrejacquot.yo.fr/index.php/scripts/45-script-get-certificate
+    Website : https://www.pierrejacquot.go.yo.fr
+    Reference : https://www.pierrejacquot.go.yo.fr/index.php/scripts/45-script-get-certificate
 #>
 
 Clear-Host
