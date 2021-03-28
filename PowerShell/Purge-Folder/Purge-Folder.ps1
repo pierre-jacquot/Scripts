@@ -9,8 +9,8 @@
     Date : 07/02/2018
     Version : 1.0
 .LINK
-    Website : https://www.pierrejacquot.yo.fr
-    Reference : https://www.pierrejacquot.yo.fr/index.php/scripts/43-script-purge-folder
+    Website : https://www.pierrejacquot.go.yo.fr
+    Reference : https://www.pierrejacquot.go.yo.fr/index.php/scripts/43-script-purge-folder
 #>
 
 Clear-Host
