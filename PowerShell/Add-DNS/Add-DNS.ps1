@@ -9,8 +9,8 @@
     Date : 07/05/2017
     Version : 1.0
 .LINK
-    Website : https://www.pierrejacquot.yo.fr
-    Reference : https://www.pierrejacquot.yo.fr/index.php/scripts/31-script-add-dns-v1-0
+    Website : https://www.pierrejacquot.go.yo.fr
+    Reference : https://www.pierrejacquot.go.yo.fr/index.php/scripts/31-script-add-dns-v1-0
 #>
 
 Clear-Host
