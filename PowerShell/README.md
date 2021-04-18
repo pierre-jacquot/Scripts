@@ -26,7 +26,7 @@ Voici mon fichier [Microsoft.PowerShell_profile.ps1](Microsoft.PowerShell_profil
 
 ## To Do - Scripts à venir :
 - [x] **Get-Certificate**
-- [] **KeePass-AddEntry**
+- [ ] **KeePass-AddEntry**
 
 ## Licensing :
 The MIT License (MIT)
