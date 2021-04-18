@@ -25,8 +25,8 @@ Ce répertoire contient l'ensemble de mes scripts en **PowerShell**.
 Voici mon fichier [Microsoft.PowerShell_profile.ps1](Microsoft.PowerShell_profile.ps1) personnalisé qui est chargé automatiquement à l'ouverture de **PowerShell**.
 
 ## To Do - Scripts à venir :
-- [x] **Purge-Folder**
 - [x] **Get-Certificate**
+- [] **KeePass-AddEntry**
 
 ## Licensing :
 The MIT License (MIT)
